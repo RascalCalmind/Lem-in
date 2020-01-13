@@ -21,7 +21,7 @@ the only ones with an actual command will be:\
 **Links**\
 name1-name2\
 \
-**Comments**
+**Comments**\
 comments start with # and will be ignored\
 \
 Output:\
