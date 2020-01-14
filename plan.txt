@@ -1,0 +1,31 @@
+
+[0] Create a function that checks the input
+	[0] Check if the file exists and if we can read from it
+	[0] Check for amount of ants else exit
+	[0] Check for start room else exit
+	[0] Check for end room else exit
+	[0] Check for rooms with coordinates (unsigned ints?)
+	[0] Check for connections between rooms
+	[0] save all information
+[0] Check for available routes using the A* algorithm
+	- https://www.youtube.com/watch?v=ySN5Wnu88nE
+	- https://en.wikipedia.org/wiki/A*_search_algorithm
+	- https://en.wikipedia.org/wiki/Iterative_deepening_A*
+	- https://en.wikipedia.org/wiki/SMA*
+	[0] when it finds two paths to one room delete the longer route as an option.
+		so save the weight of the shortest route.
+	[0] As second route options use a path that doesn't cross the first route.
+	[0] if rooms are dead ends, delete them.
+	[0] Always try to move to rooms in the general direction of the end room first.
+	[0] Check the Dijkstra algorithm with reduced cost.
+[0] Move ants in the quickest way
+	[0] When more ants, use more paths.
+	[0] Check wether using more paths benefits the amount of steps.
+	[0] perhaps find a threshold of paths vs ants amounts for using more paths
+[0] Output
+	[0] Amount of ants
+	[0] Starting room with coordinates
+	[0] End room with coordinates
+	[0] All rooms with coordinates
+	[0] All connections between rooms
+	[0] All room coordinates of moving ants that are not in start/end

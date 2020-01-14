@@ -24,7 +24,7 @@ name1-name2\
 **Comments**\
 comments start with # and will be ignored\
 \
-Output:\
+**Output**\
 number of ants.\
 all the rooms\
 all links\
