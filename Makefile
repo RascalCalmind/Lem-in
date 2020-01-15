@@ -6,17 +6,17 @@
 #    By: lhageman <lhageman@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/13 17:45:16 by lhageman       #+#    #+#                 #
-#    Updated: 2020/01/13 17:54:13 by lhageman      ########   odam.nl          #
+#    Updated: 2020/01/15 17:39:47 by lhageman      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 LEM = lem-in
 LIBFT = libft/libft.a
 
-CCC = gcc -gc -Wall -Werror -Wextra
-CCO = gcc -g -Wall -Werror -Wextra -o
+CCC = gcc -gc -Wall -Wextra
+CCO = gcc -g -Wall -Wextra -o
 
-SRC = ft_lem-in.c
+SRC = ft_lem_in.c
 OBJ = $(SRC:%.c=%.o)
 TRASH = $(SRC:%.c=%c.~)
 
@@ -28,9 +28,9 @@ $(LIBFT):
 %.o: %.c
 	@$(CCO) $@ $< -I./libft -c
 
-$(LEM): $(OBJ) $(LIBFT)
+$(LEM): $(LIBFT) $(OBJ) 
 	@echo "\033[0;35mmaking Lem-in\033[0m"
-	@$(CCO) $(LEM) $(OBJ) -L ./libft -libft
+	@$(CCO) $(LEM) $(OBJ) -L ./libft -lft
 
 clean:
 	@$(MAKE) clean -C libft

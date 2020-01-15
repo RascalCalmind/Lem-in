@@ -1,5 +1,6 @@
 
 [0] Create a function that checks the input
+	[0] READ is done by doing: ./lem-in < filename.txt
 	[0] Check if the file exists and if we can read from it
 	[0] Check for amount of ants else exit
 	[0] Check for start room else exit
@@ -7,6 +8,7 @@
 	[0] Check for rooms with coordinates (unsigned ints?)
 	[0] Check for connections between rooms
 	[0] save all information
+	[0] no possible solution will also give an exit
 [0] Check for available routes using the A* algorithm
 	- https://www.youtube.com/watch?v=ySN5Wnu88nE
 	- https://en.wikipedia.org/wiki/A*_search_algorithm

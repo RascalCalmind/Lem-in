@@ -52,3 +52,15 @@ Calculating 'h''
             cell and the goal cell using the distance formula
             h = sqrt( (current_cell.x - goal.x)2 + (current_cell.y - goal.y)2 )
             use this if you can move in any direction.
+
+Ideas on how to save our 'rooms''
+- save all its connections
+    if a room only has one/no connection delete it
+- give each room its Euclidean distance to the end immediately
+
+When using more than one path, check the difference in how many steps it takes to reach
+the end between paths, thus finding where to possibly place more ants than another place
+to optimize the quickest way of getting the ants to the other side.
+So look at flow capacity and how many ants are in total.
+
+Create a sorting algoritm to work with the A* to keep the open list in order at all times.
