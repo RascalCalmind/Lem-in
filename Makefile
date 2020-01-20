@@ -6,7 +6,7 @@
 #    By: lhageman <lhageman@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/13 17:45:16 by lhageman       #+#    #+#                 #
-#    Updated: 2020/01/15 17:39:47 by lhageman      ########   odam.nl          #
+#    Updated: 2020/01/20 14:33:35 by lhageman      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ LIBFT = libft/libft.a
 CCC = gcc -gc -Wall -Wextra
 CCO = gcc -g -Wall -Wextra -o
 
-SRC = ft_lem_in.c
+SRC =	ft_lem_in.c \
+		ft_create.c
+
 OBJ = $(SRC:%.c=%.o)
 TRASH = $(SRC:%.c=%c.~)
 
