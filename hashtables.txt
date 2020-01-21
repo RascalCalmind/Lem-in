@@ -1,0 +1,137 @@
+In computing a hash table (hash map) is a data structure that
+implements an associative arrat abstract data type, a structure
+that can map keys to values. A hash table uses a hash function
+to compute an index, also called a hash code, into an array
+of buckets or slots, from which the desired value can be found.
+
+Ideally, the hash function will assign each key to a unique
+bucket, but most hash table designs employ an imperfect
+hash function, which might cause hash collisions where the hash
+function generates the same index for more than one key. Such
+collisions are always accommodated in some way.
+
+In a well-dimensioned hash table, the average cost (number of
+instructions) for each lookup in independent of the number of
+elements stored in the table. Many hash table designs also allow
+arbitrary insertions and deletions of key-value pairs, at constant
+average cost per operation.
+
+In many situations, hash tables turn out to be on average more 
+efficient than search trees or any other table lookup structure.
+For this reason, they are widely used in many kinds of computer
+software, particularly for associative arrays, database indexing,
+caches and sets.
+
+The idea of hashing is to distribute the entries (key/value pairs)
+across an array of buckets. Given a key, the algorithm computes an
+index that suggests where the entry can be found.
+    index = f(key, array_size)
+often this is done in two steps:
+    hash = hashfunc(key)
+    index = hash % array_size
+In this method the hash is independent of the array size, and it 
+is then reduced to an index(a number between 0 and array_size - 1)
+using the modulo operator (%).
+
+In the case that the array size is a power of two, the remainder
+operation is reduced to masking, which improves speed but can increase
+problems with a poor hash function.
+
+Hash function requirements:
+    - a uniform distribution of hash values 
+        (decreases the number of collisions)
+    - avoid clustering behavior
+Perfect hashing allows for constant time lookups in all cases. This 
+is in contrast to most chaining and open addressing methods, where 
+the time for lookup is low on average, but may be very large, O(n), for
+instance when all the keys hash to a few values.
+
+Seperate chaining with linked lists --
+
+http://burtleburtle.net/bob/hash/doobs.html
+
+To avoid collisions you can add linear probing. Letting the function
+go through the list in a linear way to find an open slot. The same way
+you will have to find your data afterwards, by lineary going through
+the list until you find your match.
+Open addressing: A way to avoid/reduce collision you could increase the size of the list,
+say make a list this big that only 70% of the list is ever occupied.
+Load factor =  Total numbers of items stored / size of the array
+For dynamically allocated lists, you could increase the size based on
+this load factor when it reaches a certain threshold.
+Closed adressing (chaining) can also be used in a way to avoid collision. 
+For this every item in the array has a linked list, so when item have the 
+same key value in the array, they will still be at the same spot in the 
+array but on the next node in a linked list in that place. This way you can 
+avoid the nightmare of maybe having to linear probe throughout your 
+whole list.
+Open addressing options to avoid clustering:
+    - plus 3 rehash (check the next +3 spot)
+    - quadratic probing (failed attempts)^2
+    - double hasing (second hash function)
+Objectives of hash function
+    - minimize collisions
+    - uniform distribution of hash values
+    - easy to calculate
+    - resolve any collisions
+
+example of hash function
+    take the sum of ascii characters of the name of your element
+    divide this by the amount of elements in the array
+    take the remainder of this number
+
+https://algs4.cs.princeton.edu/34hash/
+- modular hasing = choose the array size M to be prime, and, for
+    any positive integer key k, compute the remainder when dividing
+    k by M. This function is very easy to compute (k % M) and is
+    effective in dispersing the keys evenly between 0 and M-1.
+- Floating-point numbers. If the keys are real numbers between 0
+    and 1, we might just multiply by M and round off the nearest
+    integer to get an index between 0 and M - 1. althought it is
+    intuitive, this approach is defective because it gives more
+    more weight to the most significant bits of the keysl the least
+    significant bits play no role. One way to address this situation
+    is to use modular hashing on the binary representation of the key
+- Strings. Modular hashing works for long keys such as strings, too:
+    we simply treat them as huge integers. For example, compute a
+    modular hash function for a string S, where R is a small prime
+    integer:
+    int hash = 0
+    for (int i = 0l i < s.length(); i++)
+        hash = (R * hash + s.charAt(i)) % M;
+- compound keys. If the key type has multiple integer fields,
+    we can typically mix them together in the way just described
+    for String values.
+    int hash = (((first int * R + second int) % M) * R + third int) % M;
+
+"31 is a prime, so that when the user mods out by another number, 
+they have no common factors (unless it's a multiple of 31). 
+31 is also a Mersenne prime (like 127 or 8191) which is a prime 
+number that is one less than a power of 2. This means that the mod 
+can be done with one shift and one subtract if the machine's
+ multiply instruction is slow."
+
+ Hash attack. Find 2^N strings, each of length N, that have the same 
+ hashCode() value, supposing the hashCode() implementation for String 
+ (as specified in the Java standard) is the following:
+public int hashCode() {
+   int hash = 0;
+   for (int i = 0; i < length(); i++)
+      hash = (hash * 31) + charAt(i);
+   return hash;
+}
+Solution. It is easy to verify that "Aa" and "BB" hash to the same 
+hashCode() value (2112). Now, any string of length 2N that is 
+formed by concatenating these two strings together in any order 
+(e.g., BBBBBB, AaAaAa, BBAaBB, AaBBBB) will hash to the same value.
+ Here is a list of 10000 strings with the same hash value:
+ https://algs4.cs.princeton.edu/34hash/hash-attack.txt
+
+ Data we're gonna receive ->
+ string for the name of the room (could be anything of ascii value)
+ x coordinate of the room
+ y coordinate of the room
+
+ Concept -> use the x and y coordinates to create a cool table
+            but keep in mind that these values could also potentially
+            be very large positive numbers.
