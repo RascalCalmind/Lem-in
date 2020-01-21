@@ -135,3 +135,47 @@ formed by concatenating these two strings together in any order
  Concept -> use the x and y coordinates to create a cool table
             but keep in mind that these values could also potentially
             be very large positive numbers.
+            Perhaps turn the x and y coordinates into a string
+            with the minimum length of a maxint-length
+            so either 2147483647 > len of 10 characters
+            so 2 would be 0000000002.
+            or have a look at its bitwise representation.
+http://cs.ucf.edu/~dmarino/ucf/cot3100h/lectures/COT3100BitwiseOps.pdf
+all our integers for the coordinate will be unsigned, so always positive.
+
+To convert a decimal to binary, one just repeatedly divides their number
+by 2, keeping track of each remainder as follows until the quotient is 0:
+
+46 -> 101110
+2 | 46
+2 | 23  -> R = 0
+2 | 11  -> R = 1
+2 | 5   -> R = 1
+2 | 2   -> R = 1
+2 | 1   -> R = 0
+2 | 0   -> R = 1
+
+str = 011101 -> reverse this and you get 101110
+
+char *ft-get-bit(int num)
+{
+    int cop;
+    char *str;
+    int i;
+
+    i = 0;
+    str = malloc(sizeof(char * (32 + 1)));
+    while(num > 0)
+    {
+        cop = num;
+        num /= 2
+        cop %/ 2
+        if (cop == 1)
+            str[i] == '1';
+        if (cop == 0)
+            str[i] == '0';
+        i+= 1;
+    }
+    ft_str_rev(str);
+    return (str);
+}
