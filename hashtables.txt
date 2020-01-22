@@ -179,3 +179,7 @@ char *ft-get-bit(int num)
     ft_str_rev(str);
     return (str);
 }
+
+Create an array of lists with a name, x, y, and euclidian h
+position in array is calculated with hash function using
+x and y positions?
