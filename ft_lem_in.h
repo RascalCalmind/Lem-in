@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/29 15:42:35 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/01/29 18:39:19 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,11 @@ typedef struct		s_rstr
 
 int         		ft_free_char_arr(char **arr, int len);
 int					ft_hashf(char *name);
+void				ft_free_rstr(t_rstr *list);
 
-//int					ft_create_room(t_room *room);
-//int					ft_create_lemin(t_lemin *list);
-//void				ft_free_room(t_room *room);
-//void				ft_free_lemin(t_lemin *list);
+int					ft_create_room(t_room *room);
+int					ft_create_lemin(t_lemin *list);
+void				ft_free_room(t_room *room);
+void				ft_free_lemin(t_lemin *list);
 
 #endif

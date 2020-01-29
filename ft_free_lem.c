@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 13:09:54 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/29 15:33:42 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/01/29 18:27:08 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,30 @@ void		ft_free_lemin(t_lemin *list)
 		list = NULL;
 	}
 	return ;
+}
+
+void	ft_free_rstr(t_rstr *list)
+{
+	t_rstr *temp;
+	if (!list)
+		return ;
+	while (list->next != NULL)
+	{
+		temp = list->next;
+		if (list->str)
+		{
+			free(list->str);
+			list->str = NULL;
+		}
+		if (list->next)
+		{
+			free(list->next);
+			list->next = NULL;
+		}
+		if (list)
+		{
+			free(list);
+			list = NULL;
+		}
+	}
 }

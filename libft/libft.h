@@ -6,7 +6,7 @@
 /*   By: lhageman <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/07/24 22:17:20 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/16 14:54:10 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/01/29 18:41:12 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,7 @@ void				*ft_memcpy(void *restrict dst, const void *restrict src,
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strchr(const char *s, int c);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
+
+int					ft_check_int(char *str);
 
 #endif

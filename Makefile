@@ -6,7 +6,7 @@
 #    By: lhageman <lhageman@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/13 17:45:16 by lhageman       #+#    #+#                 #
-#    Updated: 2020/01/29 15:35:32 by lhageman      ########   odam.nl          #
+#    Updated: 2020/01/29 18:55:32 by lhageman      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ CCO = gcc -g -Wall -Wextra -o
 
 SRC =	ft_lem_in.c \
 		ft_free_lem.c \
-		ft_hashf.c \
-		./errors/ft_error.c
-		# ft_create.c
+		./hashtable/ft_hashf.c \
+		./errors/ft_error.c \
+		ft_create.c
 
 OBJ = $(SRC:%.c=%.o)
 TRASH = $(SRC:%.c=%c.~)
