@@ -6,78 +6,11 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/20 13:55:12 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/20 14:20:08 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/01/29 15:55:01 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lem_in.h"
-
-int			ft_room_array_len(t_room **room)
-{
-	int i;
-
-	i = 0;
-	if (!room)
-		return (0);
-	while (room[i])
-	{
-		i += 1;
-	}
-	return (i);
-}
-
-void		ft_free_room(t_room *room)
-{
-	int i;
-	int len;
-
-	i = 0;
-	if (!room)
-		return ;
-	if (room->name)
-	{
-		free(room->name);
-		room->name = NULL;
-	}
-	len = ft_room_array_len(room->conn);
-	while (i <= len)
-	{
-		ft_free_room(room->conn[i]);
-		i += 1;
-	}
-	if (room)
-	{
-		free(room);
-		room = NULL;
-	}
-}
-
-void		ft_free_lemin(t_lemin *list)
-{
-	if (!list)
-		return ;
-	if (list->start)
-	{
-		free(list->start);
-		list->start = NULL;
-	}
-	if (list->end)
-	{
-		free(list->end);
-		list->end = NULL;
-	}
-	if (list->room != NULL)
-	{
-		ft_free_room(list->room);
-		list->room = NULL;
-	}
-	if (list)
-	{
-		free(list);
-		list = NULL;
-	}
-	return ;
-}
 
 int			ft_create_room(t_room *room)
 {
@@ -86,7 +19,8 @@ int			ft_create_room(t_room *room)
 	room->x = 0;
 	room->y = 0;
 	room->h = 0;
-	room->conn = NULL;
+	room->links = NULL;
+	room->next = NULL;
 }
 
 int			ft_create_lemin(t_lemin *list)

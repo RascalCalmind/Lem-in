@@ -6,36 +6,47 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/25 16:19:57 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/01/29 15:42:35 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LEM_IN_H
 # define FT_LEM_IN_H
+
 # include <unistd.h>
 # include <stdlib.h>
+
 # include "libft/libft.h"
 # include "libft/ft_printf.h"
+# include "./errors/ft_error.h"
 
-
-typedef struct  	s_room
+typedef struct		s_room
 {
 	char			*name;
 	unsigned int	x;
 	unsigned int	y;
 	unsigned int	h;
-	struct t_room	**conn;
-	struct t_room	*next;
-}               	t_room;
+	struct s_room	**links;
+	struct s_room	*next;
+	unsigned int	visited : 1;
+}					t_room;
 
-typedef struct  	s_lemin
+typedef struct		s_lemin
 {
 	char			*start;
 	char			*end;
-	t_room			*room;
+	t_room			**room;
 	unsigned int	ants;
-}               	t_lemin;
+}					t_lemin;
 
+typedef struct		s_rstr
+{
+	char			*str;
+	struct s_rstr	*next;
+}					t_rstr;
+
+int         		ft_free_char_arr(char **arr, int len);
+int					ft_hashf(char *name);
 
 //int					ft_create_room(t_room *room);
 //int					ft_create_lemin(t_lemin *list);
