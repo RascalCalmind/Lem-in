@@ -6,39 +6,33 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 14:50:43 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/29 15:42:10 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/01/29 19:22:11 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_lem_in.h"
+#include <stdio.h>
 
-// TODO: Make smaller (26 lines)
-int	ft_hashf(char *name)
+// TODO: Fix comment
+/**
+ * Hashing algorithm based on SDBM.
+ * 
+ * Code: hash(i) = hash(i - 1) * 65599 + str[i];
+ * 
+ * @ref: http://www.cse.yorku.ca/~oz/hash.html
+ */
+
+unsigned int	ft_hash_sdbm(char *str, unsigned int max_int)
 {
 	int				i;
-	char			*str;
 	unsigned long	hash;
-	int				c;
-	int				num;
 
 	i = 0;
-	c = 0;
-	hash = 5381;
-	if (!name)
-		return (-1);
-	while (name[i]++) // NOT ALLOWED TO ++ into thingy
+	hash = 0;
+	while (str[i])
 	{
-		c = name[i];
-		hash = ((hash << 5) + hash) + c;
+		hash = str[i] + (hash << 6) + (hash << 16) - hash;
+		i++;
 	}
-	str = ft_itoa(hash);
-	if (!str)
-		return (-1);
-	str = ft_strsub(str, 5, 4);
-	if (!str)
-		return (-1);
-	num = atoi(str);
-	if (str)
-		free(str);
-	return (num);
+	hash %= max_int;
+	return (hash);
 }
