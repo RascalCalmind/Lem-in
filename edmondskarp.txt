@@ -1,0 +1,143 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         ::::::::             #
+#    edmondskarp.txt                                    :+:    :+:             #
+#                                                      +:+                     #
+#    By: lhageman <lhageman@student.codam.nl>         +#+                      #
+#                                                    +#+                       #
+#    Created: 2020/01/20 15:41:24 by lhageman       #+#    #+#                 #
+#    Updated: 2020/01/20 18:06:56 by lhageman      ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
+
+https://cp-algorithms.com/graph/edmonds_karp.html
+https://cp-algorithms.com/graph/breadth-first-search.html
+
+A Network is a directed graph G with vertices V and edges E combined with 
+a function c, which assigns each edge a non-negative integer value, the capacity
+of e. Such a network is called a flow network, if we additionally label 
+two vertices, one as source ane one as sink.
+
+A flow in a flow network is function f, that again assigns each edge e a
+non-negative integer value, namely the flow. The function has to fullfill
+the followin two conditions:
+-   The flow of an edge cannot exceed the capacity.
+    f(e) <= c(e)
+-   The sum of the incoming flow of a vertex u has to be equal to the sum of the 
+    outgoing flow of u except in the source and sink vetices.
+    ∑(v,u)∈Ef((v,u))    =   ∑(u,v)∈Ef((u,v))
+-   The source vertex s only has an outgoing flow, and the sink vertex t has only 
+    incoming flow
+    ∑(s,u)∈Ef((s,u)) = ∑(u,t)∈Ef((u,t))
+
+A good example to visualize this is representing the edges as water piped, the 
+capacity of an edge is the maximal amount of water that can flow through the
+pipe per second, and the flow of and edge is the amount of water that currently
+flows through the pipe per second. This motivates the first flow condition. There
+cannot flow more water through a pipe than its capacity. The vertices act as
+junctions, where water comes out of some pipes, and distributes it in some way
+to the other pipes. This also motivates the second flow condition. In each junction
+all the incoming water has to be distributed to the other pipes. It cannot magically
+dissapear or appear. The source s is origin of all the water and the water can only
+drain in the sink t.
+
+       _               0/5              
+ 0/7  /  ==→==[A]=======→=========[B]==→=== \ 0/8
+     / /      | |  \ =↓= \        | |      \ \
+    [s]   0/3 |↑|     \=0/3= \    |↑| 0/3   [t]
+     \ \      | |          \=↓= \ | |      / /
+ 0/4  \__==→==[D]=======→=========[C]==→==__/ 0/5
+                       0/2
+
+The first value of each edge respresents the flow, which is initially 0 and the 
+second value represents the capacity. The value of a flow of a network is the sum
+of all flows that gets produced in source s, or equavanlently of the flows that are
+consumed in the sink t. A maximal flow is a flow with the maximal possible value.
+Finding this maximal flow of a flow network is the problem that we want to solve.
+In the visualization with water pipes, the problem can be formulated in the
+follwing way: how much water can we push through the pipes from the source to the sink.
+
+       _               5/5              
+ 6/7  /  ==→==[A]=======→=========[B]==→=== \ 6/8
+     / /      | |  \ =↓= \        | |      \ \
+    [s]   2/3 |↑|     \=3/3= \    |↑| 1/3   [t]
+     \ \      | |          \=↓= \ | |      / /
+ 4/4  \__==→==[D]=======→=========[C]==→==__/ 4/5
+                       2/2
+
+Lets define one more thing. A residual capacity of an directed edge is the capacity
+minus the flow. It shoudl be noted that if there is a flow along some directed edge
+(u, v), than the reversed edge has capacity 0 and we can define the flow of it as
+f((v, u)) = -f((u, v)). This also defines the residual capacity for all reversed edges.
+From all these edges we can create a residual network, which is just a network with the 
+same vertices and same egdes, but we sue the residual capacities as capacities.
+
+The Ford-Fulkerson method works as follows. First we set the flow of each edge to zero.
+Then we look for an augmenting path from s to t. An augmenting path is simple path in the
+residual graph, i.e. along the edges whose residual capacities is positive. Is such a path
+found, then we can add increase the flow along these edges. We keep on searching for
+augmenting paths and increasing the flow. Once there doesn't exists an augmenting path any
+more, the flow is maximal.
+
+Let C be the smallest residual capacity of the edges in the path. Then we increase the flow
+in the following way: we update f((u, v)) += C and f((v, u)) -= C for every edge (u, v)
+in the path.
+
+       _               0/5              
+ 0/7  /  ==→==[A]=======→=========[B]==→=== \ 0/8
+     / /      | |  \ =↓= \        | |      \ \
+    [s]   0/3 |↑|     \=0/3= \    |↑| 0/3   [t]
+     \ \      | |          \=↓= \ | |      / /
+ 0/4  \__==→==[D]=======→=========[C]==→==__/ 0/5
+                       0/2
+
+We can find path s - A - B - t with the residual capacities 7, 5, 8. Their minimum is 5,
+therefor we can increase the flow along this path by 5. This gives a flow of 5 for the
+network.
+
+       _               5/5              
+ 5/7  /  ==→==[A]=======→=========[B]==→=== \ 5/8
+     / /      | |  \ =↓= \        | |      \ \
+    [s]   0/3 |↑|     \=0/3= \    |↑| 0/3   [t]
+     \ \      | |          \=↓= \ | |      / /
+ 0/4  \__==→==[D]=======→=========[C]==→==__/ 0/5
+                       0/2
+
+Again we look for an augmenting path, this time we find s - D - A - C - t with the residual
+capacities 4, 3, 3 and 5. Therefore we can increase the flow by 3 and we get a flow of 8 
+for the network.
+       _               5/5              
+ 5/7  /  ==→==[A]=======→=========[B]==→=== \ 5/8
+     / /      | |  \ =↓= \        | |      \ \
+    [s]   3/3 |↑|     \=3/3= \    |↑| 0/3   [t]
+     \ \      | |          \=↓= \ | |      / /
+ 3/4  \__==→==[D]=======→=========[C]==→==__/ 3/5
+                       0/2
+
+This time we find the path s - D - C - B - t with the residual capacities 1, 2, 3 and 3
+and we increase by 1.
+       _               5/5              
+ 5/7  /  ==→==[A]=======→=========[B]==→=== \ 6/8
+     / /      | |  \ =↓= \        | |      \ \
+    [s]   3/3 |↑|     \=3/3= \    |↑|1/3   [t]
+     \ \      | |          \=↓= \ | |      / /
+ 4/4  \__==→==[D]=======→=========[C]==→==__/ 3/5
+                       1/2
+
+This time we find the augmenting path s - A - D - C - t with the residual capacities
+2, 3, 1 and 2. we can increase by 1. But this path is very interesting it includes the
+reversed edge (A, D). in the original flow network we are not allowed to send any flow from A
+to D. But because we already have a flow of 3 from D to A this is possible. The intuition of it
+is the following: Instead of sending a flow of 3 from D to A, we can send 2 and compensate this
+by sending an additional flow of 1 from s to A, which allows us to send an additional flow of 
+1 along the path D - C - t.
+       _               5/5              
+ 6/7  /  ==→==[A]=======→=========[B]==→=== \ 6/8
+     / /      | |  \ =↓= \        | |      \ \
+    [s]   2/3 |↑|     \=3/3= \    |↑|1/3   [t]
+     \ \      | |          \=↓= \ | |      / /
+ 4/4  \__==→==[D]=======→=========[C]==→==__/ 4/5
+                       2/2
+
+Now it is impossible to find an augmenting path between s and t, therefore this flow of 10
+is the maximal possible. We have found the maximal flow. It h
