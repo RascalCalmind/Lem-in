@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/20 13:55:12 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/29 18:58:59 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/01/30 16:04:43 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ int			ft_create_lemin(t_lemin *list)
 	list->end = end;
 	list->room = &room;
 	list->ants = 0;
+	ft_printf("end:[%s]\tstart:[%s]\n", list->end, list->start);
 	return (0);
 }

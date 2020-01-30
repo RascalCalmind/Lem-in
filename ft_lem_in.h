@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/29 18:39:19 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/01/30 14:59:00 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,18 @@ typedef struct		s_rstr
 }					t_rstr;
 
 int         		ft_free_char_arr(char **arr, int len);
-int					ft_hashf(char *name);
+unsigned int		ft_hash_sdbm(char *str, unsigned int max_int);
 void				ft_free_rstr(t_rstr *list);
 
 int					ft_create_room(t_room *room);
 int					ft_create_lemin(t_lemin *list);
+char				**ft_room_check(char *str);
+int					ft_store_room(t_lemin *list, t_rstr *file);
 void				ft_free_room(t_room *room);
 void				ft_free_lemin(t_lemin *list);
+
+int					ft_contains(char *str, char c);
+
+int					ft_free_error_lem_rstr(t_lemin *list, t_rstr *file);
 
 #endif

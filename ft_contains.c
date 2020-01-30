@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_hash.c                                          :+:    :+:            */
+/*   ft_contains.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/29 14:50:43 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/29 19:29:30 by lhageman      ########   odam.nl         */
+/*   Created: 2020/01/30 13:54:26 by lhageman       #+#    #+#                */
+/*   Updated: 2020/01/30 15:02:22 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "ft_lem_in.h"
 
-// TODO: Fix comment
-/**
- * Hashing algorithm based on SDBM.
- * 
- * Code: hash(i) = hash(i - 1) * 65599 + str[i];
- * 
- * @ref: http://www.cse.yorku.ca/~oz/hash.html
- */
-
-unsigned int	ft_hash_sdbm(char *str, unsigned int max_int)
+int		ft_contains(char *str, char c)
 {
-	int				i;
-	unsigned long	hash;
+	size_t i;
+	int q;
 
 	i = 0;
-	hash = 0;
-	while (str[i])
+	q = 0;
+	if (!str || !c)
+		return (-1);
+	while (i < ft_strlen(str))
 	{
-		hash = str[i] + (hash << 6) + (hash << 16) - hash;
-		i++;
+		if (str[i] == c)
+			q += 1;
+		i += 1;
 	}
-	hash %= max_int;
-	return (hash);
+	return (q);
 }

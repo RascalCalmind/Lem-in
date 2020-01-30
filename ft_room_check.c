@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_hash.c                                          :+:    :+:            */
+/*   ft_room_check.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/29 14:50:43 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/29 19:29:30 by lhageman      ########   odam.nl         */
+/*   Created: 2020/01/30 14:29:05 by lhageman       #+#    #+#                */
+/*   Updated: 2020/01/30 15:50:22 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "ft_lem_in.h"
 
-// TODO: Fix comment
-/**
- * Hashing algorithm based on SDBM.
- * 
- * Code: hash(i) = hash(i - 1) * 65599 + str[i];
- * 
- * @ref: http://www.cse.yorku.ca/~oz/hash.html
- */
-
-unsigned int	ft_hash_sdbm(char *str, unsigned int max_int)
+char	**ft_room_check(char *str)
 {
-	int				i;
-	unsigned long	hash;
+	char	**arr;
+	int		i;
+	int		ret;
 
 	i = 0;
-	hash = 0;
-	while (str[i])
+	ret = 0;
+	arr = ft_strsplit(str, ' ');
+	while (i < 3)
 	{
-		hash = str[i] + (hash << 6) + (hash << 16) - hash;
-		i++;
+		if (i > 0)
+		{
+			ret = ft_check_int(arr[i]);
+			if (ret != 0)
+				return (NULL);
+		}
+		ft_printf("ft_room_check\t\tarr[%i]:%s\n", i, arr[i]);
+		i += 1;
 	}
-	hash %= max_int;
-	return (hash);
+	return (arr);
 }
