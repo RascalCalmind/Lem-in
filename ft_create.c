@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/20 13:55:12 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/30 16:04:43 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/03 13:38:03 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ int			ft_create_room(t_room *room)
 	return (0);
 }
 
-int			ft_create_lemin(t_lemin *list)
+int			ft_create_lemin(t_lemin *list, int rooms)
 {
 	char	*str;
 	char	*end;
-	int		ret;
-	t_room	*room;
+	// int		ret;
+	t_room	**room;
+	int i;
 
+	i = 0;
 	str = ft_strnew(0);
 	if (str == NULL)
 		return (-1);
@@ -41,20 +43,29 @@ int			ft_create_lemin(t_lemin *list)
 		free(str);
 		return (-1);
 	}
-	room = malloc(sizeof(t_room));
+	room = malloc(sizeof(t_room **) * rooms);
 	if (!room)
 		return (-1);
-	ret = ft_create_room(room);
-	if (!room || ret == -1)
+	while (i < rooms)
 	{
-		free(str);
-		free(end);
-		return (-1);
+		room[i] = NULL;
+		i += 1;
 	}
+	//room = malloc(sizeof(t_room));
+	// if (!room)
+	// 	return (-1);
+	//ret = ft_create_room(room);
+	// if (!room || ret == -1)
+	// {
+	// 	free(str);
+	// 	free(end);
+	// 	return (-1);
+	// }
 	list->start = str;
 	list->end = end;
-	list->room = &room;
+	list->room = room;
 	list->ants = 0;
-	ft_printf("end:[%s]\tstart:[%s]\n", list->end, list->start);
+	list->rooms = rooms;
+	ft_printf("end:[%s]\tstart:[%s]\n---\n", list->end, list->start);
 	return (0);
 }

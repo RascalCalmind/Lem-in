@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/30 14:59:00 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/03 17:59:30 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct		s_lemin
 	char			*start;
 	char			*end;
 	t_room			**room;
+	unsigned int	rooms;
 	unsigned int	ants;
 }					t_lemin;
 
@@ -50,11 +51,12 @@ unsigned int		ft_hash_sdbm(char *str, unsigned int max_int);
 void				ft_free_rstr(t_rstr *list);
 
 int					ft_create_room(t_room *room);
-int					ft_create_lemin(t_lemin *list);
+int					ft_create_lemin(t_lemin *list, int rooms);
 char				**ft_room_check(char *str);
 int					ft_store_room(t_lemin *list, t_rstr *file);
-void				ft_free_room(t_room *room);
+void				ft_free_room(t_room *room, unsigned int rooms);
 void				ft_free_lemin(t_lemin *list);
+void				ft_print_lemin(t_lemin *lemin);
 
 int					ft_contains(char *str, char c);
 

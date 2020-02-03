@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:34:10 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/30 15:52:47 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/03 18:19:11 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int		ft_create_lists(t_lemin *list, t_rstr *file)
 			arr = ft_room_check(file->str);
 			if (arr == NULL)
 				return (ft_free_error_lem_rstr(list, file));
-			list->start = arr[0];
-			free(arr);
+			list->start = ft_strdup(arr[0]);
+			ft_free_char_arr(arr, 4);
 			ft_store_room(list, file);
 			start = 1;
 		}
@@ -59,8 +59,8 @@ int		ft_create_lists(t_lemin *list, t_rstr *file)
 			arr = ft_room_check(file->str);
 			if (arr == NULL)
 				return (ft_free_error_lem_rstr(list, file));
-			list->end = arr[0];
-			free(arr);
+			list->end = ft_strdup(arr[0]);
+			ft_free_char_arr(arr, 4);
 			ft_store_room(list, file);
 			end = 1;
 		}
@@ -111,8 +111,39 @@ int	ft_read(t_rstr *file)
 				file->next = NULL;
 			}
 		}
+		free(line);
+		line = NULL;
 	}
 	return (0);
+}
+
+int	ft_room_count(t_rstr *file)
+{
+	int		cnt;
+	char	**arr;
+
+	cnt = 0;
+	while (file->next != NULL)
+	{
+		if (file->str && ft_contains(file->str, ' ') == 2)
+		{
+			arr = ft_strsplit(file->str, ' ');
+			if (ft_check_int(arr[1]) == 0 && ft_check_int(arr[2]) == 0)
+				cnt += 1;
+			if (arr)
+				ft_free_char_arr(arr, 4);
+		}
+		file = file->next;
+	}
+	if (file->str && ft_contains(file->str, ' ') == 2)
+	{
+		arr = ft_strsplit(file->str, ' ');
+		if (ft_check_int(arr[1]) == 0 && ft_check_int(arr[2]) == 0)
+			cnt += 1;
+		if (arr)
+			ft_free_char_arr(arr, 4);
+	}
+	return (cnt);
 }
 
 int	main(int argc, char **argv)
@@ -138,7 +169,15 @@ int	main(int argc, char **argv)
 		ft_free_rstr(file);
 		return (ft_error(3));
 	}
-	ret = ft_create_lemin(list);
+	ret = ft_room_count(file);
+	if (ret < 2)
+	{
+		free(list);
+		list = NULL;
+		ft_free_rstr(file);
+		return (ft_error(ERR_PARAMS));
+	}
+	ret = ft_create_lemin(list, ret);
 	if (list == NULL || ret == -1)
 	{
 		ft_free_rstr(file);
@@ -148,6 +187,10 @@ int	main(int argc, char **argv)
 	if (ret == -1)
 		return (ft_error(4));
 	ft_printf("start: %s, end: %s, ants: %i\n", list->start, list->end, list->ants);
+	ft_print_lemin(list);
 	ft_free_rstr(file);
 	ft_free_lemin(list);
+	while (1)
+		;
+	return (0);
 }

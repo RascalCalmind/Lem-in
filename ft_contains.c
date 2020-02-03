@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 13:54:26 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/30 15:02:22 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/01/31 16:05:28 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		ft_contains(char *str, char c)
 {
-	size_t i;
-	int q;
+	size_t	i;
+	int		q;
 
 	i = 0;
 	q = 0;

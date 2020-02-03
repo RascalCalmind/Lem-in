@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 14:01:47 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/30 16:07:24 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/03 18:25:06 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		ft_calc_heuridian(t_lemin *list, t_room *room, char *str)
 
 	h = 0;
 	end = ft_hash_sdbm(str, 8);
+	ft_printf("ft_calc_heuridian\tcalculating heuridian\n");
 	if (list->room[end]->name != str && list->room[end]->next != NULL)
 	{
 		temp = list->room[end];
@@ -39,7 +40,7 @@ int		ft_calc_heuridian(t_lemin *list, t_room *room, char *str)
 			//h = sqrt((room->x - list->room[end]->x)^2 + (room->y - list->room[end]->y)^2);
 		}
 	}
-	ft_printf("heuridian: %i\n", h);
+	ft_printf("heuridian: %i\n---\n", h);
 	return (h);
 }
 
@@ -63,10 +64,14 @@ int		ft_store_room(t_lemin *list, t_rstr *file)
 	{
 		ft_printf("ft_store_room\t\tgoing into not null\n");
 		temp = list->room[arri];
+		ft_printf("ft_store_room\t\tsetting temp to first node\n");
 		while (list->room[arri]->next != NULL)
 			list->room[arri] = list->room[arri]->next;
+		ft_printf("ft_store_room\t\tlooping to find the last node\n");
 		room = malloc(sizeof(t_room));
+		ft_printf("ft_store_room\t\tallocating new room\n");
 		list->room[arri]->next = room;
+		ft_printf("ft_store_room\t\tsetting next node to new room\n");
 		list->room[arri] = list->room[arri]->next;
 	}
 	else
@@ -90,8 +95,9 @@ int		ft_store_room(t_lemin *list, t_rstr *file)
 	ft_printf("ft_store_room\t\tassigned y to room\n");
 	if (ft_strlen(list->end) > 0)
 		list->room[arri]->h = ft_calc_heuridian(list, list->room[arri], list->end);
-	ft_printf("ft_store_room\t\tcalculated euclidian distance if possible\n");
+	ft_printf("ft_store_room\t\tcalculated euclidian distance if possible\n---\n");
 	list->room[arri] = temp;
+	ft_free_char_arr(arr, 4);
 	return (0);
 }
 
