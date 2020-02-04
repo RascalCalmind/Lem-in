@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:34:10 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/04 20:30:51 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/04 21:02:36 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,9 @@ int	ft_read(t_rstr *file)
 {
 	char	*line;
 	int		i;
-	int fd;
 
 	i = 0;
-	fd = open("./testmaps/map1.txt");
-	while (get_next_line(fd, &line))
+	while (get_next_line(STDIN_FILENO, &line))
 	{
 		if (ft_strlen(line) > 0)
 		{
@@ -163,12 +161,8 @@ int	main(int argc, char **argv)
 	file = ft_memalloc(sizeof(t_rstr));
 	if (!file)
 		return (ft_error(ERR_MEM));
-	// if (argc > 1)
-	// 	return (ft_error(ERR_PARAMS));
-	// else
-	// {
-
-	// }
+	if (argc > 1)
+		return (ft_error(ERR_PARAMS));
 	ret = ft_read(file);
 	list = ft_memalloc(sizeof(t_lemin));
 	if (!list)
