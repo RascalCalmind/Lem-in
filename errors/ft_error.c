@@ -6,7 +6,7 @@
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 15:25:41 by wmisiedj       #+#    #+#                */
-/*   Updated: 2020/01/29 18:56:45 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/04 19:34:33 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@ int	ft_error(int i)
 {
 	if (i == ERR_PARAMS)
 		ft_dprintf(STDERR_FILENO, "Too many arguments given!\n");
-	if (i == ERR_ROOM_NAME)
+	else if (i == ERR_ROOM_NAME)
 		ft_dprintf(STDERR_FILENO, "Invalid roomname! Can't start with 'L'\n");
-	if (i == ERR_MEM)
+	else if (i == ERR_MEM)
 		ft_dprintf(STDERR_FILENO, "Trouble allocating memory\n");
-	ft_dprintf(STDERR_FILENO, "Error\n");
+	else if (i == ERR_DOUBLE_COMMANDS)
+		ft_dprintf(STDERR_FILENO, "Detected double commands, either \
+##start or ##end is double.\n");
+	else
+		ft_dprintf(STDERR_FILENO, "Error number: %d\n", i);
 	return (-1);
 }

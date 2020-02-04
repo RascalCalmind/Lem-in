@@ -6,11 +6,15 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 14:29:05 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/03 15:30:36 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/04 17:31:01 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lem_in.h"
+
+/**
+ * Checks if room line is valid, returns arumgents (name / x / y)
+ */
 
 char	**ft_room_check(char *str)
 {

@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/03 17:59:30 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/04 19:48:39 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include "libft/libft.h"
 # include "libft/ft_printf.h"
 # include "./errors/ft_error.h"
+
+#define MAX_HASHTABLE 9999
 
 typedef struct		s_room
 {
@@ -46,7 +48,7 @@ typedef struct		s_rstr
 	struct s_rstr	*next;
 }					t_rstr;
 
-int         		ft_free_char_arr(char **arr, int len);
+int					ft_free_char_arr(char **arr, int len);
 unsigned int		ft_hash_sdbm(char *str, unsigned int max_int);
 void				ft_free_rstr(t_rstr *list);
 

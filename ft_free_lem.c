@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 13:09:54 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/03 18:12:45 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/04 20:59:53 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,40 +58,23 @@ void		ft_free_room(t_room *room, unsigned int rooms)
 	i = 0;
 	ft_printf("ft_free_room\t\t start\n");
 	temp = NULL;
-	if (!room)
+	if (room == NULL)
 		return ;
-	if (room->name)
+	if (room->name != NULL)
 	{
 		ft_printf("ft_free_room\t\tfree'ing room->name [%s]\n", room->name);
 		free(room->name);
 		room->name = NULL;
 	}
-	if (room->links)
+	if (room->links != NULL)
 	{
 		ft_printf("ft_free_room\t\tfree'ing room->links\n");
 		free(room->links);
 		room->links = NULL;
 	}
-	if (room->next)
-	{
-		ft_printf("ft_free_room\t\tfree'ing room->next\n");
-		temp = room;
-		// len = ft_room_array_len(room->links);
-		while (i <= rooms)
-		{
-			ft_free_room(room->next, ft_room_array_len(&room->next));
-			if (room)
-			{
-				free(room);
-				room = NULL;
-			}
-			room = room->next;
-			i += 1;
-		}
-	}
-	if (temp)
-		room = temp;
-	if (room)
+	if (room->next != NULL)
+		ft_free_room(room->next, ft_room_array_len(&room->next));
+	if (room != NULL)
 	{
 		free(room);
 		room = NULL;
@@ -121,14 +104,18 @@ void		ft_free_lemin(t_lemin *list)
 	}
 	while (i < list->rooms)
 	{
-		if (list->room[i])
+		if (list->room[i] != NULL)
 		{
 			ft_printf("ft_free_lemin\t\tfree list->room\n");
 			ft_free_room(list->room[i], list->rooms);
 			// free(list->room[i]);
 			// list->room[i] = NULL;
 		}
-		i += 1;
+		i++;
+	}
+	if (list->room) {
+		free(list->room);
+		list->room = NULL;
 	}
 	if (list)
 	{
