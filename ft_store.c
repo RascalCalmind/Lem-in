@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 14:01:47 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/06 16:10:21 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/06 18:41:20 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ int		ft_calc_heuridian(t_lemin *list, t_room *room, char *str)
 			list->room[end]->next)
 			list->room[end] = list->room[end]->next;
 		if (list->room[end] && list->room[end]->name != str)
+		{
+			list->room[end] = temp;
 			return (-1);
+		}
 		else
 		{
 			x = room->x - list->room[end]->x;
@@ -43,12 +46,13 @@ int		ft_calc_heuridian(t_lemin *list, t_room *room, char *str)
 			h = x + y;
 			//h = sqrt((room->x - list->room[end]->x)^2 + (room->y - list->room[end]->y)^2);
 		}
+		list->room[end] = temp;
 	}
 	ft_printf("heuridian: %i\n---\n", h);
 	return (h);
 }
 
-int		ft_store_room(t_lemin *list, t_rstr *file)
+int		ft_store_room(t_lemin *lemin, t_rstr *file)
 {
 	char	**args;
 	int		i;
@@ -61,47 +65,46 @@ int		ft_store_room(t_lemin *list, t_rstr *file)
 	ret = 0;
 	args = ft_room_check(file->str);
 	if (args == NULL)
-		return (ft_free_error_lem_rstr(list, file));
+		return (ft_free_error_lem_rstr(lemin, file));
 	hash = ft_hash_sdbm(args[0], 8);
-	ft_printf("ft_store_room\t\thash: %i\n", hash);
-	if (list->room[hash] != NULL)
+	ft_printf("ft_store_room\t\thash: %i | NAME: %s\n", hash, args[0]);
+	room = ft_memalloc(sizeof(t_room));
+	if (lemin->room[hash] != NULL)
 	{
-		ft_printf("ft_store_room\t\tgoing into not null\n");
-		temp = list->room[hash];
+		ft_printf("ft_store_room\t\t EXISTING ROOM STATUS TEMP: %s\n", lemin->room[hash]->name);
+		temp = lemin->room[hash];
 		ft_printf("ft_store_room\t\tsetting temp to first node\n");
-		while (list->room[hash]->next != NULL)
-			list->room[hash] = list->room[hash]->next;
-		ft_printf("ft_store_room\t\tlooping to find the last node\n");
-		room = malloc(sizeof(t_room));
-		ft_printf("ft_store_room\t\tallocating new room\n");
-		list->room[hash]->next = room;
-		ft_printf("ft_store_room\t\tsetting next node to new room\n");
-		list->room[hash] = list->room[hash]->next;
+		while (lemin->room[hash]->next != NULL)
+		{
+			ft_printf("ft_store_room LOOP:\t\tLooping to next room.....\n");
+			lemin->room[hash] = lemin->room[hash]->next;
+		}
+		ft_printf("ft_store_room\t\t ASSIGNING ROOM INTO NEXT OF %s\n", lemin->room[hash]->name);
+		lemin->room[hash]->next = room;
+		ft_printf("ft_store_room\t\tsetting current node to new room\n");
+		lemin->room[hash] = lemin->room[hash]->next;
 	}
 	else
 	{
 		ft_printf("ft_store_room\t\tgoing into null\n");
-		room = malloc(sizeof(t_room));
-		list->room[hash] = room;
-		ft_printf("ft_store_room\t\tassigned new room to list->room[hashnum]\n");
-		temp = list->room[hash];
+		lemin->room[hash] = room;
+		ft_printf("ft_store_room\t\tassigned new room to lemin->room[hashnum]\n");
+		temp = lemin->room[hash];
 		ft_printf("ft_store_room\t\tset temp to current new room\n");
 	}
-	ret = ft_create_room(list->room[hash]);
-	ft_printf("ft_store_room\t\tset all variables of new room\n");
-	if (ret == -1)
-		return (ft_free_error_lem_rstr(list, file));
-	list->room[hash]->name = ft_strdup(args[0]);
+	lemin->room[hash]->name = ft_strdup(args[0]);
 	ft_printf("ft_store_room\t\tassigned name to room\n");
-	list->room[hash]->x = ft_atoi(args[1]);
+	lemin->room[hash]->x = ft_atoi(args[1]);
 	ft_printf("ft_store_room\t\tassigned x to room\n");
-	list->room[hash]->y = ft_atoi(args[2]);
+	lemin->room[hash]->y = ft_atoi(args[2]);
 	ft_printf("ft_store_room\t\tassigned y to room\n");
 	ft_free_char_arr(args, 4);
-	if (list->end != NULL)
-		list->room[hash]->h = ft_calc_heuridian(list, list->room[hash], list->end);
+	if (lemin->end != NULL)
+		lemin->room[hash]->h = ft_calc_heuridian(lemin, lemin->room[hash], lemin->end);
 	ft_printf("ft_store_room\t\tcalculated euclidian distance if possible\n---\n");
-	list->room[hash] = temp;
+	lemin->room[hash] = temp;
+	ft_printf("ft_store_room\t\tRESET STATUS TEMP: %s\n", lemin->room[hash]->name);
+	ft_print_lemin(lemin);
 	return (1);
 }
 

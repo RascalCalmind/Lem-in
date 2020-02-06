@@ -1,46 +1,46 @@
-ft_free_char_array		free string in array 1
+ft_free_char_array		free string in array STARTROOM
 ---
 ft_free_char_array		free string in array 0
 ---
 ft_free_char_array		free string in array 0
 ---
-ft_free_char_array		free string in array 8
+ft_free_char_array		free string in array ENDROOM
 ---
 ft_free_char_array		free string in array 8
 ---
 ft_free_char_array		free string in array 8
+---
+ft_free_char_array		free string in array ROOM1
+---
+ft_free_char_array		free string in array 0
 ---
 ft_free_char_array		free string in array 2
 ---
-ft_free_char_array		free string in array 0
----
-ft_free_char_array		free string in array 2
----
-ft_free_char_array		free string in array 3
+ft_free_char_array		free string in array ROOM2
 ---
 ft_free_char_array		free string in array 0
 ---
 ft_free_char_array		free string in array 3
 ---
-ft_free_char_array		free string in array 4
+ft_free_char_array		free string in array ROOM3
 ---
 ft_free_char_array		free string in array 0
 ---
 ft_free_char_array		free string in array 4
 ---
-ft_free_char_array		free string in array 5
+ft_free_char_array		free string in array ROOM4
 ---
 ft_free_char_array		free string in array 0
 ---
 ft_free_char_array		free string in array 5
 ---
-ft_free_char_array		free string in array 6
+ft_free_char_array		free string in array ROOM5
 ---
 ft_free_char_array		free string in array 0
 ---
 ft_free_char_array		free string in array 6
 ---
-ft_free_char_array		free string in array 7
+ft_free_char_array		free string in array ROOM6
 ---
 ft_free_char_array		free string in array 0
 ---
@@ -49,243 +49,447 @@ ft_free_char_array		free string in array 7
 end:[(null)]	start:[(null)]
 ---
 ft_create_lists		file->str:##start
-ft_free_char_array		free string in array 1
+ft_free_char_array		free string in array STARTROOM
 ---
 ft_free_char_array		free string in array 0
 ---
 ft_free_char_array		free string in array 0
 ---
-ft_room_check		arr[0]:1
+ft_room_check		arr[0]:STARTROOM
 ft_room_check		arr[1]:0
 ft_room_check		arr[2]:0
-ft_store_room		hash: 1
+ft_store_room		hash: 5 | NAME: STARTROOM
 ft_store_room		going into null
-ft_store_room		assigned new room to list->room[hashnum]
+ft_store_room		assigned new room to lemin->room[hashnum]
 ft_store_room		set temp to current new room
-ft_store_room		set all variables of new room
 ft_store_room		assigned name to room
 ft_store_room		assigned x to room
 ft_store_room		assigned y to room
+ft_free_char_array		free string in array STARTROOM
+---
+ft_free_char_array		free string in array 0
+---
+ft_free_char_array		free string in array 0
+---
 ft_store_room		calculated euclidian distance if possible
 ---
-ft_free_char_array		free string in array 1
----
-ft_free_char_array		free string in array 0
----
-ft_free_char_array		free string in array 0
----
-ft_create_lists		file->str:1 0 0
-ft_room_check		arr[0]:1
-ft_room_check		arr[1]:0
-ft_room_check		arr[2]:0
-ft_store_room		hash: 1
-ft_store_room		going into not null
-ft_store_room		setting temp to first node
-ft_store_room		looping to find the last node
-ft_store_room		allocating new room
-ft_store_room		setting next node to new room
-ft_store_room		set all variables of new room
-ft_store_room		assigned name to room
-ft_store_room		assigned x to room
-ft_store_room		assigned y to room
-ft_store_room		calculated euclidian distance if possible
----
-ft_free_char_array		free string in array 1
----
-ft_free_char_array		free string in array 0
----
-ft_free_char_array		free string in array 0
----
+ft_store_room		RESET STATUS TEMP: STARTROOM
+PRINTING LEMIN LISTS 
+
+Amount of ants:		 1
+Starting room name:	 STARTROOM
+Total amount of rooms:	 8
+Position in list: 0
+Position in list: 1
+Position in list: 2
+Position in list: 3
+Position in list: 4
+Position in list: 5
+INITIALR ROOM: STARTROOM
+Room name:		 STARTROOM
+Room coordinates:	 0,0
+SHOULD RESET ROOM: STARTROOM
+Position in list: 6
+Position in list: 7
 ft_create_lists		file->str:##end
-ft_free_char_array		free string in array 8
+ft_free_char_array		free string in array ENDROOM
 ---
 ft_free_char_array		free string in array 8
 ---
 ft_free_char_array		free string in array 8
 ---
-ft_room_check		arr[0]:8
+ft_room_check		arr[0]:ENDROOM
 ft_room_check		arr[1]:8
 ft_room_check		arr[2]:8
-ft_store_room		hash: 0
+ft_store_room		hash: 6 | NAME: ENDROOM
 ft_store_room		going into null
-ft_store_room		assigned new room to list->room[hashnum]
+ft_store_room		assigned new room to lemin->room[hashnum]
 ft_store_room		set temp to current new room
-ft_store_room		set all variables of new room
 ft_store_room		assigned name to room
 ft_store_room		assigned x to room
 ft_store_room		assigned y to room
+ft_free_char_array		free string in array ENDROOM
+---
+ft_free_char_array		free string in array 8
+---
+ft_free_char_array		free string in array 8
+---
 ft_calc_heuridian	calculating heuridian
 heuridian: 0
 ---
 ft_store_room		calculated euclidian distance if possible
 ---
-ft_free_char_array		free string in array 8
----
-ft_free_char_array		free string in array 8
----
-ft_free_char_array		free string in array 8
----
-ft_create_lists		file->str:8 8 8
-ft_room_check		arr[0]:8
-ft_room_check		arr[1]:8
-ft_room_check		arr[2]:8
-ft_store_room		hash: 0
-ft_store_room		going into not null
-ft_store_room		setting temp to first node
-ft_store_room		looping to find the last node
-ft_store_room		allocating new room
-ft_store_room		setting next node to new room
-ft_store_room		set all variables of new room
-ft_store_room		assigned name to room
-ft_store_room		assigned x to room
-ft_store_room		assigned y to room
-ft_calc_heuridian	calculating heuridian
-heuridian: 0
----
-ft_store_room		calculated euclidian distance if possible
----
-ft_free_char_array		free string in array 8
----
-ft_free_char_array		free string in array 8
----
-ft_free_char_array		free string in array 8
----
-ft_create_lists		file->str:2 0 2
-ft_room_check		arr[0]:2
+ft_store_room		RESET STATUS TEMP: ENDROOM
+PRINTING LEMIN LISTS 
+
+Amount of ants:		 1
+Starting room name:	 STARTROOM
+End room name:		 ENDROOM
+Total amount of rooms:	 8
+Position in list: 0
+Position in list: 1
+Position in list: 2
+Position in list: 3
+Position in list: 4
+Position in list: 5
+INITIALR ROOM: STARTROOM
+Room name:		 STARTROOM
+Room coordinates:	 0,0
+SHOULD RESET ROOM: STARTROOM
+Position in list: 6
+INITIALR ROOM: ENDROOM
+Room name:		 ENDROOM
+Room coordinates:	 8,8
+SHOULD RESET ROOM: ENDROOM
+Position in list: 7
+ft_create_lists		file->str:ROOM1 0 2
+ft_room_check		arr[0]:ROOM1
 ft_room_check		arr[1]:0
 ft_room_check		arr[2]:2
-ft_store_room		hash: 2
-ft_store_room		going into null
-ft_store_room		assigned new room to list->room[hashnum]
-ft_store_room		set temp to current new room
-ft_store_room		set all variables of new room
+ft_store_room		hash: 6 | NAME: ROOM1
+ft_store_room		 EXISTING ROOM STATUS TEMP: ENDROOM
+ft_store_room		setting temp to first node
+ft_store_room		 ASSIGNING ROOM INTO NEXT OF ENDROOM
+ft_store_room		setting current node to new room
 ft_store_room		assigned name to room
 ft_store_room		assigned x to room
 ft_store_room		assigned y to room
-ft_calc_heuridian	calculating heuridian
-ft_store_room		calculated euclidian distance if possible
----
-ft_free_char_array		free string in array 2
+ft_free_char_array		free string in array ROOM1
 ---
 ft_free_char_array		free string in array 0
 ---
 ft_free_char_array		free string in array 2
 ---
-ft_create_lists		file->str:3 0 3
-ft_room_check		arr[0]:3
+ft_calc_heuridian	calculating heuridian
+heuridian: 0
+---
+ft_store_room		calculated euclidian distance if possible
+---
+ft_store_room		RESET STATUS TEMP: ENDROOM
+PRINTING LEMIN LISTS 
+
+Amount of ants:		 1
+Starting room name:	 STARTROOM
+End room name:		 ENDROOM
+Total amount of rooms:	 8
+Position in list: 0
+Position in list: 1
+Position in list: 2
+Position in list: 3
+Position in list: 4
+Position in list: 5
+INITIALR ROOM: STARTROOM
+Room name:		 STARTROOM
+Room coordinates:	 0,0
+SHOULD RESET ROOM: STARTROOM
+Position in list: 6
+INITIALR ROOM: ENDROOM
+Room name:		 ENDROOM
+Room coordinates:	 8,8
+Room name:		 ROOM1
+Room coordinates:	 0,2
+SHOULD RESET ROOM: ENDROOM
+Position in list: 7
+ft_create_lists		file->str:ROOM2 0 3
+ft_room_check		arr[0]:ROOM2
 ft_room_check		arr[1]:0
 ft_room_check		arr[2]:3
-ft_store_room		hash: 3
+ft_store_room		hash: 7 | NAME: ROOM2
 ft_store_room		going into null
-ft_store_room		assigned new room to list->room[hashnum]
+ft_store_room		assigned new room to lemin->room[hashnum]
 ft_store_room		set temp to current new room
-ft_store_room		set all variables of new room
 ft_store_room		assigned name to room
 ft_store_room		assigned x to room
 ft_store_room		assigned y to room
-ft_calc_heuridian	calculating heuridian
-heuridian: 0
----
-ft_store_room		calculated euclidian distance if possible
----
-ft_free_char_array		free string in array 3
+ft_free_char_array		free string in array ROOM2
 ---
 ft_free_char_array		free string in array 0
 ---
 ft_free_char_array		free string in array 3
 ---
-ft_create_lists		file->str:4 0 4
-ft_room_check		arr[0]:4
+ft_calc_heuridian	calculating heuridian
+ft_store_room		calculated euclidian distance if possible
+---
+ft_store_room		RESET STATUS TEMP: ROOM2
+PRINTING LEMIN LISTS 
+
+Amount of ants:		 1
+Starting room name:	 STARTROOM
+End room name:		 ENDROOM
+Total amount of rooms:	 8
+Position in list: 0
+Position in list: 1
+Position in list: 2
+Position in list: 3
+Position in list: 4
+Position in list: 5
+INITIALR ROOM: STARTROOM
+Room name:		 STARTROOM
+Room coordinates:	 0,0
+SHOULD RESET ROOM: STARTROOM
+Position in list: 6
+INITIALR ROOM: ENDROOM
+Room name:		 ENDROOM
+Room coordinates:	 8,8
+Room name:		 ROOM1
+Room coordinates:	 0,2
+SHOULD RESET ROOM: ENDROOM
+Position in list: 7
+INITIALR ROOM: ROOM2
+Room name:		 ROOM2
+Room coordinates:	 0,3
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM2
+ft_create_lists		file->str:ROOM3 0 4
+ft_room_check		arr[0]:ROOM3
 ft_room_check		arr[1]:0
 ft_room_check		arr[2]:4
-ft_store_room		hash: 4
+ft_store_room		hash: 0 | NAME: ROOM3
 ft_store_room		going into null
-ft_store_room		assigned new room to list->room[hashnum]
+ft_store_room		assigned new room to lemin->room[hashnum]
 ft_store_room		set temp to current new room
-ft_store_room		set all variables of new room
 ft_store_room		assigned name to room
 ft_store_room		assigned x to room
 ft_store_room		assigned y to room
-ft_calc_heuridian	calculating heuridian
-heuridian: 0
----
-ft_store_room		calculated euclidian distance if possible
----
-ft_free_char_array		free string in array 4
+ft_free_char_array		free string in array ROOM3
 ---
 ft_free_char_array		free string in array 0
 ---
 ft_free_char_array		free string in array 4
 ---
-ft_create_lists		file->str:5 0 5
-ft_room_check		arr[0]:5
+ft_calc_heuridian	calculating heuridian
+ft_store_room		calculated euclidian distance if possible
+---
+ft_store_room		RESET STATUS TEMP: ROOM3
+PRINTING LEMIN LISTS 
+
+Amount of ants:		 1
+Starting room name:	 STARTROOM
+End room name:		 ENDROOM
+Total amount of rooms:	 8
+Position in list: 0
+INITIALR ROOM: ROOM3
+Room name:		 ROOM3
+Room coordinates:	 0,4
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM3
+Position in list: 1
+Position in list: 2
+Position in list: 3
+Position in list: 4
+Position in list: 5
+INITIALR ROOM: STARTROOM
+Room name:		 STARTROOM
+Room coordinates:	 0,0
+SHOULD RESET ROOM: STARTROOM
+Position in list: 6
+INITIALR ROOM: ENDROOM
+Room name:		 ENDROOM
+Room coordinates:	 8,8
+Room name:		 ROOM1
+Room coordinates:	 0,2
+SHOULD RESET ROOM: ENDROOM
+Position in list: 7
+INITIALR ROOM: ROOM2
+Room name:		 ROOM2
+Room coordinates:	 0,3
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM2
+ft_create_lists		file->str:ROOM4 0 5
+ft_room_check		arr[0]:ROOM4
 ft_room_check		arr[1]:0
 ft_room_check		arr[2]:5
-ft_store_room		hash: 5
+ft_store_room		hash: 1 | NAME: ROOM4
 ft_store_room		going into null
-ft_store_room		assigned new room to list->room[hashnum]
+ft_store_room		assigned new room to lemin->room[hashnum]
 ft_store_room		set temp to current new room
-ft_store_room		set all variables of new room
 ft_store_room		assigned name to room
 ft_store_room		assigned x to room
 ft_store_room		assigned y to room
-ft_calc_heuridian	calculating heuridian
-heuridian: 0
----
-ft_store_room		calculated euclidian distance if possible
----
-ft_free_char_array		free string in array 5
+ft_free_char_array		free string in array ROOM4
 ---
 ft_free_char_array		free string in array 0
 ---
 ft_free_char_array		free string in array 5
 ---
-ft_create_lists		file->str:6 0 6
-ft_room_check		arr[0]:6
+ft_calc_heuridian	calculating heuridian
+ft_store_room		calculated euclidian distance if possible
+---
+ft_store_room		RESET STATUS TEMP: ROOM4
+PRINTING LEMIN LISTS 
+
+Amount of ants:		 1
+Starting room name:	 STARTROOM
+End room name:		 ENDROOM
+Total amount of rooms:	 8
+Position in list: 0
+INITIALR ROOM: ROOM3
+Room name:		 ROOM3
+Room coordinates:	 0,4
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM3
+Position in list: 1
+INITIALR ROOM: ROOM4
+Room name:		 ROOM4
+Room coordinates:	 0,5
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM4
+Position in list: 2
+Position in list: 3
+Position in list: 4
+Position in list: 5
+INITIALR ROOM: STARTROOM
+Room name:		 STARTROOM
+Room coordinates:	 0,0
+SHOULD RESET ROOM: STARTROOM
+Position in list: 6
+INITIALR ROOM: ENDROOM
+Room name:		 ENDROOM
+Room coordinates:	 8,8
+Room name:		 ROOM1
+Room coordinates:	 0,2
+SHOULD RESET ROOM: ENDROOM
+Position in list: 7
+INITIALR ROOM: ROOM2
+Room name:		 ROOM2
+Room coordinates:	 0,3
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM2
+ft_create_lists		file->str:ROOM5 0 6
+ft_room_check		arr[0]:ROOM5
 ft_room_check		arr[1]:0
 ft_room_check		arr[2]:6
-ft_store_room		hash: 6
+ft_store_room		hash: 2 | NAME: ROOM5
 ft_store_room		going into null
-ft_store_room		assigned new room to list->room[hashnum]
+ft_store_room		assigned new room to lemin->room[hashnum]
 ft_store_room		set temp to current new room
-ft_store_room		set all variables of new room
 ft_store_room		assigned name to room
 ft_store_room		assigned x to room
 ft_store_room		assigned y to room
-ft_calc_heuridian	calculating heuridian
-heuridian: 0
----
-ft_store_room		calculated euclidian distance if possible
----
-ft_free_char_array		free string in array 6
+ft_free_char_array		free string in array ROOM5
 ---
 ft_free_char_array		free string in array 0
 ---
 ft_free_char_array		free string in array 6
 ---
-ft_create_lists		file->str:7 0 7
-ft_room_check		arr[0]:7
+ft_calc_heuridian	calculating heuridian
+ft_store_room		calculated euclidian distance if possible
+---
+ft_store_room		RESET STATUS TEMP: ROOM5
+PRINTING LEMIN LISTS 
+
+Amount of ants:		 1
+Starting room name:	 STARTROOM
+End room name:		 ENDROOM
+Total amount of rooms:	 8
+Position in list: 0
+INITIALR ROOM: ROOM3
+Room name:		 ROOM3
+Room coordinates:	 0,4
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM3
+Position in list: 1
+INITIALR ROOM: ROOM4
+Room name:		 ROOM4
+Room coordinates:	 0,5
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM4
+Position in list: 2
+INITIALR ROOM: ROOM5
+Room name:		 ROOM5
+Room coordinates:	 0,6
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM5
+Position in list: 3
+Position in list: 4
+Position in list: 5
+INITIALR ROOM: STARTROOM
+Room name:		 STARTROOM
+Room coordinates:	 0,0
+SHOULD RESET ROOM: STARTROOM
+Position in list: 6
+INITIALR ROOM: ENDROOM
+Room name:		 ENDROOM
+Room coordinates:	 8,8
+Room name:		 ROOM1
+Room coordinates:	 0,2
+SHOULD RESET ROOM: ENDROOM
+Position in list: 7
+INITIALR ROOM: ROOM2
+Room name:		 ROOM2
+Room coordinates:	 0,3
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM2
+ft_create_lists		file->str:ROOM6 0 7
+ft_room_check		arr[0]:ROOM6
 ft_room_check		arr[1]:0
 ft_room_check		arr[2]:7
-ft_store_room		hash: 7
+ft_store_room		hash: 3 | NAME: ROOM6
 ft_store_room		going into null
-ft_store_room		assigned new room to list->room[hashnum]
+ft_store_room		assigned new room to lemin->room[hashnum]
 ft_store_room		set temp to current new room
-ft_store_room		set all variables of new room
 ft_store_room		assigned name to room
 ft_store_room		assigned x to room
 ft_store_room		assigned y to room
-ft_calc_heuridian	calculating heuridian
-heuridian: 0
----
-ft_store_room		calculated euclidian distance if possible
----
-ft_free_char_array		free string in array 7
+ft_free_char_array		free string in array ROOM6
 ---
 ft_free_char_array		free string in array 0
 ---
 ft_free_char_array		free string in array 7
 ---
+ft_calc_heuridian	calculating heuridian
+ft_store_room		calculated euclidian distance if possible
+---
+ft_store_room		RESET STATUS TEMP: ROOM6
+PRINTING LEMIN LISTS 
+
+Amount of ants:		 1
+Starting room name:	 STARTROOM
+End room name:		 ENDROOM
+Total amount of rooms:	 8
+Position in list: 0
+INITIALR ROOM: ROOM3
+Room name:		 ROOM3
+Room coordinates:	 0,4
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM3
+Position in list: 1
+INITIALR ROOM: ROOM4
+Room name:		 ROOM4
+Room coordinates:	 0,5
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM4
+Position in list: 2
+INITIALR ROOM: ROOM5
+Room name:		 ROOM5
+Room coordinates:	 0,6
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM5
+Position in list: 3
+INITIALR ROOM: ROOM6
+Room name:		 ROOM6
+Room coordinates:	 0,7
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM6
+Position in list: 4
+Position in list: 5
+INITIALR ROOM: STARTROOM
+Room name:		 STARTROOM
+Room coordinates:	 0,0
+SHOULD RESET ROOM: STARTROOM
+Position in list: 6
+INITIALR ROOM: ENDROOM
+Room name:		 ENDROOM
+Room coordinates:	 8,8
+Room name:		 ROOM1
+Room coordinates:	 0,2
+SHOULD RESET ROOM: ENDROOM
+Position in list: 7
+INITIALR ROOM: ROOM2
+Room name:		 ROOM2
+Room coordinates:	 0,3
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM2
 ft_create_lists		file->str:1-2
 ft_create_lists		file->str:2-3
 ft_create_lists		file->str:3-4
@@ -294,38 +498,56 @@ ft_create_lists		file->str:5-6
 ft_create_lists		file->str:6-7
 ft_create_lists		file->str:7-8
 ft_create_lists		file->str:1-8
-start: 1, end: 8, ants: 1
+start: STARTROOM, end: ENDROOM, ants: 1
+PRINTING LEMIN LISTS 
+
 Amount of ants:		 1
-Starting room name:	 1
-End room name:		 8
+Starting room name:	 STARTROOM
+End room name:		 ENDROOM
 Total amount of rooms:	 8
 Position in list: 0
-Room name:		 8
-Room coordinates:	 8,8
-Position in list: 1
-Room name:		 1
-Room coordinates:	 0,0
-Room name:		 1
-Room coordinates:	 0,0
-Position in list: 2
-Room name:		 2
-Room coordinates:	 0,2
-Euclidian distance to the end:	 -1
-Position in list: 3
-Room name:		 3
-Room coordinates:	 0,3
-Position in list: 4
-Room name:		 4
+INITIALR ROOM: ROOM3
+Room name:		 ROOM3
 Room coordinates:	 0,4
-Position in list: 5
-Room name:		 5
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM3
+Position in list: 1
+INITIALR ROOM: ROOM4
+Room name:		 ROOM4
 Room coordinates:	 0,5
-Position in list: 6
-Room name:		 6
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM4
+Position in list: 2
+INITIALR ROOM: ROOM5
+Room name:		 ROOM5
 Room coordinates:	 0,6
-Position in list: 7
-Room name:		 7
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM5
+Position in list: 3
+INITIALR ROOM: ROOM6
+Room name:		 ROOM6
 Room coordinates:	 0,7
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM6
+Position in list: 4
+Position in list: 5
+INITIALR ROOM: STARTROOM
+Room name:		 STARTROOM
+Room coordinates:	 0,0
+SHOULD RESET ROOM: STARTROOM
+Position in list: 6
+INITIALR ROOM: ENDROOM
+Room name:		 ENDROOM
+Room coordinates:	 8,8
+Room name:		 ROOM1
+Room coordinates:	 0,2
+SHOULD RESET ROOM: ENDROOM
+Position in list: 7
+INITIALR ROOM: ROOM2
+Room name:		 ROOM2
+Room coordinates:	 0,3
+Euclidian distance to the end:	 -1
+SHOULD RESET ROOM: ROOM2
 ft_free_rstr		 start
 
 --
@@ -339,7 +561,7 @@ list->str free'd: (null)
 --
 
 --
-list->str to be free'd: 1 0 0
+list->str to be free'd: STARTROOM 0 0
 list->str free'd: (null)
 --
 
@@ -349,37 +571,37 @@ list->str free'd: (null)
 --
 
 --
-list->str to be free'd: 8 8 8
+list->str to be free'd: ENDROOM 8 8
 list->str free'd: (null)
 --
 
 --
-list->str to be free'd: 2 0 2
+list->str to be free'd: ROOM1 0 2
 list->str free'd: (null)
 --
 
 --
-list->str to be free'd: 3 0 3
+list->str to be free'd: ROOM2 0 3
 list->str free'd: (null)
 --
 
 --
-list->str to be free'd: 4 0 4
+list->str to be free'd: ROOM3 0 4
 list->str free'd: (null)
 --
 
 --
-list->str to be free'd: 5 0 5
+list->str to be free'd: ROOM4 0 5
 list->str free'd: (null)
 --
 
 --
-list->str to be free'd: 6 0 6
+list->str to be free'd: ROOM5 0 6
 list->str free'd: (null)
 --
 
 --
-list->str to be free'd: 7 0 7
+list->str to be free'd: ROOM6 0 7
 list->str free'd: (null)
 --
 
@@ -427,47 +649,42 @@ ft_free_lemin		free list->start
 ft_free_lemin		free list->end
 ft_free_lemin		free list->room
 ft_free_room		 start
-ft_free_room		free'ing room->name [8]
+ft_free_room		free'ing room->name [ROOM3]
 ft_free_room		 the end
 ---
 ft_free_lemin		free list->room
 ft_free_room		 start
-ft_free_room		free'ing room->name [1]
-room_array_len		4
+ft_free_room		free'ing room->name [ROOM4]
+ft_free_room		 the end
+---
+ft_free_lemin		free list->room
 ft_free_room		 start
-ft_free_room		free'ing room->name [1]
+ft_free_room		free'ing room->name [ROOM5]
+ft_free_room		 the end
+---
+ft_free_lemin		free list->room
+ft_free_room		 start
+ft_free_room		free'ing room->name [ROOM6]
+ft_free_room		 the end
+---
+ft_free_lemin		free list->room
+ft_free_room		 start
+ft_free_room		free'ing room->name [STARTROOM]
+ft_free_room		 the end
+---
+ft_free_lemin		free list->room
+ft_free_room		 start
+ft_free_room		free'ing room->name [ENDROOM]
+room_array_len		1
+ft_free_room		 start
+ft_free_room		free'ing room->name [ROOM1]
 ft_free_room		 the end
 ---
 ft_free_room		 the end
 ---
 ft_free_lemin		free list->room
 ft_free_room		 start
-ft_free_room		free'ing room->name [2]
-ft_free_room		 the end
----
-ft_free_lemin		free list->room
-ft_free_room		 start
-ft_free_room		free'ing room->name [3]
-ft_free_room		 the end
----
-ft_free_lemin		free list->room
-ft_free_room		 start
-ft_free_room		free'ing room->name [4]
-ft_free_room		 the end
----
-ft_free_lemin		free list->room
-ft_free_room		 start
-ft_free_room		free'ing room->name [5]
-ft_free_room		 the end
----
-ft_free_lemin		free list->room
-ft_free_room		 start
-ft_free_room		free'ing room->name [6]
-ft_free_room		 the end
----
-ft_free_lemin		free list->room
-ft_free_room		 start
-ft_free_room		free'ing room->name [7]
+ft_free_room		free'ing room->name [ROOM2]
 ft_free_room		 the end
 ---
 ft_free_lemin		free list

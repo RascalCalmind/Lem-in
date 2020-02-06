@@ -1,16 +1,16 @@
 1
 ##start
 #comment fu
-start 0 0
+STARTROOM 0 0
 ##end
-abc 8 8
-this 0 2
-is 0 3
-a 0 4
+ENDROOM 8 8
+ROOM1 0 2
+ROOM2 0 3
+ROOM3 0 4
 #commentttsss
-disas 0 5
-ter 0 6
-Oho 0 7
+ROOM4 0 5
+ROOM5 0 6
+ROOM6 0 7
 1-2
 2-3
 3-4

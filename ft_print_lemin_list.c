@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/03 18:00:11 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/03 18:03:58 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/06 18:28:02 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void		ft_print_lemin(t_lemin *lemin)
 {
+	ft_printf("PRINTING LEMIN LISTS \n\n");
 	unsigned int	i;
 	t_room			*temp;
 
@@ -31,11 +32,12 @@ void		ft_print_lemin(t_lemin *lemin)
 	{
 		while (i < lemin->rooms)
 		{
+			ft_printf("Position in list: %i\n", i);
 			if (lemin->room[i] != NULL)
 			{
 				temp = lemin->room[i];
-				ft_printf("Position in list: %i\n", i);
-				while (lemin->room[i]->next != NULL)
+				ft_printf("INITIALR ROOM: %s\n", lemin->room[i]->name);
+				while (lemin->room[i] != NULL)
 				{
 					if (lemin->room[i]->name)
 						ft_printf("Room name:\t\t %s\n", lemin->room[i]->name);
@@ -43,16 +45,10 @@ void		ft_print_lemin(t_lemin *lemin)
 						ft_printf("Room coordinates:\t %i,%i\n", lemin->room[i]->x, lemin->room[i]->y);
 					if (lemin->room[i]->h)
 						ft_printf("Euclidian distance to the end:\t %i\n", lemin->room[i]->h);
-					if (lemin->room[i]->next)
-						lemin->room[i] = lemin->room[i]->next;
+					lemin->room[i] = lemin->room[i]->next;
 				}
-				if (lemin->room[i]->name)
-					ft_printf("Room name:\t\t %s\n", lemin->room[i]->name);
-				if (lemin->room[i]->x >= 0 && lemin->room[i]->y >= 0)
-					ft_printf("Room coordinates:\t %i,%i\n", lemin->room[i]->x, lemin->room[i]->y);
-				if (lemin->room[i]->h)
-					ft_printf("Euclidian distance to the end:\t %i\n", lemin->room[i]->h);
 				lemin->room[i] = temp;
+				ft_printf("SHOULD RESET ROOM: %s\n", lemin->room[i]->name);
 			}
 			i += 1;
 		}
