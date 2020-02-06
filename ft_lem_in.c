@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:34:10 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/04 21:02:36 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/06 17:05:22 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int		ft_handle_command_line(t_lemin *list, t_rstr *file)
 			list->end = ft_strdup(args[0]);
 		ft_free_char_arr(args, 4);
 		free(command);
-		return (ft_store_room(list, file));
+		return (1);
 	}
 	return (0);
 }
@@ -64,8 +64,9 @@ int		ft_create_lists(t_lemin *list, t_rstr *file)
 		{
 			if (ft_handle_command_line(list, file) == -1)
 				return (-1);
+			file = file->next;
 		}
-		else if (ft_contains(file->str, ' ') == 2)
+		if (ft_contains(file->str, ' ') == 2)
 		{
 			if (!ft_store_room(list, file))
 				return (-1);
