@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/04 19:48:39 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/06 14:22:23 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ typedef struct		s_lemin
 {
 	char			*start;
 	char			*end;
-	t_room			**room;
 	unsigned int	rooms;
 	unsigned int	ants;
+	t_room			**room;
 }					t_lemin;
 
 typedef struct		s_rstr

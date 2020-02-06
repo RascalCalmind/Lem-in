@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 14:01:47 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/04 20:59:38 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/06 16:10:21 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ int		ft_store_room(t_lemin *list, t_rstr *file)
 	list->room[hash]->x = ft_atoi(args[1]);
 	ft_printf("ft_store_room\t\tassigned x to room\n");
 	list->room[hash]->y = ft_atoi(args[2]);
-	ft_free_char_arr(args, 4);
 	ft_printf("ft_store_room\t\tassigned y to room\n");
+	ft_free_char_arr(args, 4);
 	if (list->end != NULL)
 		list->room[hash]->h = ft_calc_heuridian(list, list->room[hash], list->end);
 	ft_printf("ft_store_room\t\tcalculated euclidian distance if possible\n---\n");

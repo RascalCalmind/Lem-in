@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 13:09:54 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/04 20:59:53 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/06 14:29:42 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,7 @@ void	ft_free_rstr(t_rstr *list)
 	while (list->next != NULL)
 	{
 		temp = list->next;
-		if(list)
+		if (list)
 		{
 			if (list->str)
 			{
