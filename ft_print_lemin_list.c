@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/03 18:00:11 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/07 14:30:16 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/07 16:45:11 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void		ft_print_lemin(t_lemin *lemin)
 		ft_printf("Total amount of rooms:\t %i\n", lemin->rooms);
 	if (lemin->room)
 	{
-		while (i < lemin->rooms)
+		while (i < MAX_HASHTABLE)
 		{
-			ft_printf("Position in list: %i\n", i);
 			if (lemin->room[i] != NULL)
 			{
+				ft_printf("Position in list: %i\n", i);
 				temp = lemin->room[i];
 				ft_printf("INITIALR ROOM: %s\n", lemin->room[i]->name);
 				while (lemin->room[i] != NULL)

@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/07 14:12:03 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/07 21:04:12 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@
 # include "libft/ft_printf.h"
 # include "./errors/ft_error.h"
 
-#define MAX_HASHTABLE 9999
+#define MAX_HASHTABLE 10
 
 typedef struct		s_room
 {
 	char			*name;
 	unsigned int	x;
 	unsigned int	y;
-	unsigned int	h;
+	double			h;
 	struct s_room	**links;
+	unsigned int	link_count;
 	struct s_room	*next;
 	unsigned int	visited : 1;
 }					t_room;
@@ -39,7 +40,7 @@ typedef struct		s_lemin
 	char			*end;
 	unsigned int	rooms;
 	unsigned int	ants;
-	t_room			**room;
+	t_room			*room[MAX_HASHTABLE];
 }					t_lemin;
 
 typedef struct		s_rstr
@@ -53,7 +54,7 @@ unsigned int		ft_hash_sdbm(char *str, unsigned int max_int);
 void				ft_free_rstr(t_rstr *list);
 
 int					ft_create_room(t_room *room);
-int					ft_create_lemin(t_lemin *list, int rooms);
+t_lemin				*ft_create_lemin(t_rstr *file);
 char				**ft_room_check(char *str);
 int					ft_store_room(t_lemin *list, t_rstr *file);
 void				ft_free_room(t_room *room);
@@ -64,5 +65,8 @@ int					ft_contains(char *str, char c);
 int					ft_connection(char *str, t_lemin *list);
 
 int					ft_free_error_lem_rstr(t_lemin *list, t_rstr *file);
+
+int					ft_is_command(char *str);
+t_rstr				*ft_read_file(void);
 
 #endif

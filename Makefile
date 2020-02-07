@@ -6,14 +6,14 @@
 #    By: lhageman <lhageman@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/13 17:45:16 by lhageman       #+#    #+#                 #
-#    Updated: 2020/02/07 14:05:39 by lhageman      ########   odam.nl          #
+#    Updated: 2020/02/07 20:58:25 by wmisiedj      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 LEM = lem-in
 LIBFT = libft/libft.a
 
-CCC = gcc -gc -Wall -Wextra
+CCC = gcc -gc -Wall -Wextra -fsanitize=address -fno-omit-frame-pointer
 CCO = gcc -g -Wall -Wextra -o
 
 SRC =	ft_lem_in.c \
@@ -25,7 +25,8 @@ SRC =	ft_lem_in.c \
 		ft_room_check.c \
 		ft_contains.c \
 		ft_print_lemin_list.c \
-		ft_connection.c
+		ft_connection.c \
+		ft_file.c
 		
 
 OBJ = $(SRC:%.c=%.o)

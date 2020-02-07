@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 14:29:05 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/04 17:31:01 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/07 21:04:12 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 /**
  * Checks if room line is valid, returns arumgents (name / x / y)
  */
+int		ft_is_command(char *str)
+{
+	return (ft_strcmp(str, "##start") == 0 || ft_strcmp(str, "##end") == 0);
+}
 
 char	**ft_room_check(char *str)
 {

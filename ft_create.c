@@ -6,39 +6,48 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/20 13:55:12 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/04 20:58:38 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/07 21:04:12 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lem_in.h"
 
-int			ft_create_room(t_room *room)
+static int	ft_room_count(t_rstr *file)
 {
-	if (!room)
-		return (-1);
-	room->name = NULL;
-	room->x = 0;
-	room->y = 0;
-	room->h = 0;
-	room->links = NULL;
-	room->next = NULL;
-	return (0);
+	int		cnt;
+	char	**arr;
+
+	cnt = 0;
+	while (file->next != NULL)
+	{
+		if (file->str && ft_contains(file->str, ' ') == 2)
+		{
+			arr = ft_strsplit(file->str, ' ');
+			if (ft_check_int(arr[1]) == 0 && ft_check_int(arr[2]) == 0)
+				cnt += 1;
+			if (arr)
+				ft_free_char_arr(arr, 4);
+		}
+		file = file->next;
+	}
+	if (file->str && ft_contains(file->str, ' ') == 2)
+	{
+		arr = ft_strsplit(file->str, ' ');
+		if (ft_check_int(arr[1]) == 0 && ft_check_int(arr[2]) == 0)
+			cnt += 1;
+		if (arr)
+			ft_free_char_arr(arr, 4);
+	}
+	return (cnt);
 }
 
-int			ft_create_lemin(t_lemin *list, int size)
+t_lemin		*ft_create_lemin(t_rstr *file)
 {
-	t_room	**rooms;
-	int i;
+	t_lemin *lemin;
 
-	i = 0;
-	rooms = ft_memalloc(sizeof(t_room **) * size);
-	if (!rooms)
-		return (-1);
-	list->start = NULL;
-	list->end = NULL;
-	list->room = rooms;
-	list->ants = 0;
-	list->rooms = size;
-	ft_printf("end:[%s]\tstart:[%s]\n---\n", list->end, list->start);
-	return (0);
+	lemin = (t_lemin *)ft_memalloc(sizeof(t_lemin));
+	if (lemin == NULL)
+		return (NULL);
+	lemin->rooms = ft_room_count(file);
+	return (lemin);
 }

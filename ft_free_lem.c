@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 13:09:54 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/07 14:38:11 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/07 21:07:53 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,48 +55,32 @@ int			ft_room_array_len(t_room **room)
 void		ft_free_room(t_room *room)
 {
 	unsigned int	i;
-	t_room			*temp;
 
 	i = 0;
 	ft_printf("-ft_free_room\t\t start\n");
-	temp = NULL;
-	ft_printf("coordinates\t\t\t%i,%i\n", room->x, room->y);
+	// ft_printf("coordinates\t\t\t%i,%i\n", room->x, room->y);
 	if (room == NULL)
 		return ;
+
 	if (room->name != NULL)
 	{
-		ft_printf("ft_free_room\t\tfree'ing room->name [%s]\n", room->name);
+		ft_printf("ft_free_room\t\tfree'ing room->name\n");
 		free(room->name);
 		room->name = NULL;
 	}
 	if (room->links != NULL)
 	{
-		ft_printf("ft_free_room\t\tfree'ing room->links\n");
-		while (room->links[i])
-		{
-			ft_printf("freeing links in %i\n", i);
-			if (room->links[i] != NULL)
-			{
-				free(room->links[i]);
-				room->links[i] = NULL;
-			}
-			else
-				break;
-			i += 1;
-		}
-		if (room->links)
-		{
-			free(room->links);
-			room->links = NULL;
-		}
+		free(room->links);
+		room->links = NULL;
 	}
 	if (room->next != NULL)
-		ft_free_room(room->next);
-	if (room != NULL)
 	{
-		free(room);
-		room = NULL;
+		ft_printf("freeing next->rooms\n");
+		ft_free_room(room->next);
 	}
+	ft_printf("freeing room\n");
+	free(room);
+	room = NULL;
 	ft_printf("-ft_free_room\t\t the end\n---\n");
 }
 
@@ -106,36 +90,33 @@ void		ft_free_lemin(t_lemin *list)
 
 	i = 0;
 	ft_printf("ft_free_lemin\t\tstart\n");
-	if (!list)
+	if (list == NULL)
 		return ;
-	if (list->start)
+	if (list->start != NULL)
 	{
 		ft_printf("ft_free_lemin\t\tfree list->start\n");
 		free(list->start);
 		list->start = NULL;
 	}
-	if (list->end)
+	if (list->end != NULL)
 	{
 		ft_printf("ft_free_lemin\t\tfree list->end\n");
 		free(list->end);
 		list->end = NULL;
 	}
-	while (i < list->rooms)
+	while (i < MAX_HASHTABLE)
 	{
 		if (list->room[i] != NULL)
 		{
-			ft_printf("ft_free_lemin\t\tfree list->room\n");
+			ft_printf("ft_free_lemin\t\tfree list->room %s\n", list->room[i]->name);
 			ft_free_room(list->room[i]);
+			list->room[i] = NULL;
 			// free(list->room[i]);
 			// list->room[i] = NULL;
 		}
 		i++;
 	}
-	if (list->room) {
-		free(list->room);
-		list->room = NULL;
-	}
-	if (list)
+	if (list != NULL)
 	{
 		ft_printf("ft_free_lemin\t\tfree list\n");
 		free(list);

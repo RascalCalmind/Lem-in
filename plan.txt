@@ -31,3 +31,20 @@
 	[0] All rooms with coordinates
 	[0] All connections between rooms
 	[0] All room coordinates of moving ants that are not in start/end
+
+		[ - The Algorithm - ]
+
+	typedef struct		s_path
+	{
+		t_room			**open;
+		t_room			*closed;
+	}					t_path;
+
+	give rooms (perhaps a copy? or the originals?):
+	g value -> shortest length to get from start to this specific room following the path
+	h value -> euclidian distance from this specific room to the end room
+	f value -> g + h
+
+	The room with the lowest f value will be at the top of the open list.
+	Write a fast sorting algorithm to sort the open list, sorting on the f value.
+	g is a sum of all the distances between the rooms to this room, preferably the shortest.

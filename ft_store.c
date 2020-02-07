@@ -6,22 +6,22 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 14:01:47 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/06 18:41:20 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/07 21:04:12 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lem_in.h"
 
-int		ft_calc_heuridian(t_lemin *list, t_room *room, char *str)
+double		ft_calc_heuridian(t_lemin *list, t_room *room, char *str)
 {
-	int h;
-	int end;
-	int x;
-	int y;
-	t_room *temp;
+	double	h;
+	int		end;
+	int		x;
+	int		y;
+	t_room	*temp;
 
 	h = 0;
-	end = ft_hash_sdbm(str, 8);
+	end = ft_hash_sdbm(str, MAX_HASHTABLE);
 	x = 0;
 	y = 0;
 	ft_printf("ft_calc_heuridian\tcalculating heuridian\n");
@@ -52,7 +52,7 @@ int		ft_calc_heuridian(t_lemin *list, t_room *room, char *str)
 	return (h);
 }
 
-int		ft_store_room(t_lemin *lemin, t_rstr *file)
+int			ft_store_room(t_lemin *lemin, t_rstr *file)
 {
 	char	**args;
 	int		i;
@@ -66,9 +66,9 @@ int		ft_store_room(t_lemin *lemin, t_rstr *file)
 	args = ft_room_check(file->str);
 	if (args == NULL)
 		return (ft_free_error_lem_rstr(lemin, file));
-	hash = ft_hash_sdbm(args[0], 8);
+	hash = ft_hash_sdbm(args[0], MAX_HASHTABLE);
 	ft_printf("ft_store_room\t\thash: %i | NAME: %s\n", hash, args[0]);
-	room = ft_memalloc(sizeof(t_room));
+	room = (t_room *)ft_memalloc(sizeof(t_room));
 	if (lemin->room[hash] != NULL)
 	{
 		ft_printf("ft_store_room\t\t EXISTING ROOM STATUS TEMP: %s\n", lemin->room[hash]->name);

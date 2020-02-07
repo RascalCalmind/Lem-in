@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:34:10 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/07 14:02:38 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/07 21:00:51 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int		ft_free_error_lem_rstr(t_lemin *list, t_rstr *file)
 	ft_free_lemin(list);
 	return (-1);
 }
-
-// TODO: Handle errors for already existing start / end room.
 
 int		ft_handle_command_line(t_lemin *list, t_rstr *file)
 {
@@ -81,122 +79,35 @@ int		ft_create_lists(t_lemin *list, t_rstr *file)
 	return (1);
 }
 
- // Performance: maybe add ft_strnlen to not loop through entire string.
- 
-int	ft_read(t_rstr *file)
-{
-	char	*line;
-	int		i;
 
-	i = 0;
-	while (get_next_line(STDIN_FILENO, &line))
-	{
-		if (ft_strlen(line) > 0)
-		{
-			file->str = ft_strdup(line);
-			if (ft_strlen(file->str) > 1 && file->str[0] == '#'
-				&& file->str[1] != '#')
-			{
-				free(file->str);
-				file->str = NULL;
-			}
-			else if (ft_strlen(file->str) > 1 && file->str[0] == '#'
-				&& file->str[1] == '#')
-			{
-				if (ft_strcmp(file->str, "##start") != 0 &&
-					ft_strcmp(file->str, "##end") != 0)
-				{
-					free(file->str);
-					file->str = NULL;
-				}
-			}
-			if (file->str != NULL)
-			{
-				file->next = malloc(sizeof(t_rstr));
-				file = file->next;
-				file->str = NULL;
-				file->next = NULL;
-			}
-		}
-		free(line);
-		line = NULL;
-	}
-	return (0);
-}
-
-int	ft_room_count(t_rstr *file)
-{
-	int		cnt;
-	char	**arr;
-
-	cnt = 0;
-	while (file->next != NULL)
-	{
-		if (file->str && ft_contains(file->str, ' ') == 2)
-		{
-			arr = ft_strsplit(file->str, ' ');
-			if (ft_check_int(arr[1]) == 0 && ft_check_int(arr[2]) == 0)
-				cnt += 1;
-			if (arr)
-				ft_free_char_arr(arr, 4);
-		}
-		file = file->next;
-	}
-	if (file->str && ft_contains(file->str, ' ') == 2)
-	{
-		arr = ft_strsplit(file->str, ' ');
-		if (ft_check_int(arr[1]) == 0 && ft_check_int(arr[2]) == 0)
-			cnt += 1;
-		if (arr)
-			ft_free_char_arr(arr, 4);
-	}
-	return (cnt);
-}
 
 int	main(int argc, char **argv)
 {
-	int		ret;
-	int		j;
 	t_rstr	*file;
-	t_lemin *list;
-
-	j = 0;
-	argv[0] = NULL;
-	file = ft_memalloc(sizeof(t_rstr));
+	t_lemin *lemin;
+	int rooms;
+	ft_printf("START");
+	rooms = 0;
+	// if (argv && argc > 1)
+	// 	return (ft_error(ERR_PARAMS));
+	file = ft_read_file();
 	if (!file)
 		return (ft_error(ERR_MEM));
-	if (argc > 1)
-		return (ft_error(ERR_PARAMS));
-	ret = ft_read(file);
-	list = ft_memalloc(sizeof(t_lemin));
-	if (!list)
+	lemin = ft_create_lemin(file);
+	rooms = lemin->rooms;
+	if (lemin == NULL || rooms < 2)
 	{
 		ft_free_rstr(file);
+		ft_free_lemin(lemin);
+		return (ft_error(rooms < 2 ? ERR_INVALID_ROOM_COUNT : ERR_MEM));
+	}
+	if (ft_create_lists(lemin, file) == -1)
 		return (ft_error(ERR_MEM));
-	}
-	ret = ft_room_count(file);
-	if (ret < 2)
-	{
-		free(list);
-		list = NULL;
-		ft_free_rstr(file);
-		return (ft_error(ERR_PARAMS));
-	}
-	ret = ft_create_lemin(list, ret);
-	if (list == NULL || ret == -1)
-	{
-		ft_free_rstr(file);
-		return (ft_error(3));
-	}
-	ret = ft_create_lists(list, file);
-	if (ret == -1)
-		return (ft_error(4));
-	ft_printf("start: %s, end: %s, ants: %i\n", list->start, list->end, list->ants);
-	ft_print_lemin(list);
+	ft_print_lemin(lemin);
 	ft_free_rstr(file);
-	ft_free_lemin(list);
-
+	ft_free_lemin(lemin);
+	ft_printf("STRUCT SIZE %d", sizeof(t_rstr));
 	while (1)
-		;
+		continue;
 	return (0);
 }
