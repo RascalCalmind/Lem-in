@@ -6,7 +6,7 @@
 #    By: lhageman <lhageman@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/13 17:45:16 by lhageman       #+#    #+#                 #
-#    Updated: 2020/02/03 18:00:22 by lhageman      ########   odam.nl          #
+#    Updated: 2020/02/07 14:05:39 by lhageman      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRC =	ft_lem_in.c \
 		ft_store.c \
 		ft_room_check.c \
 		ft_contains.c \
-		ft_print_lemin_list.c
+		ft_print_lemin_list.c \
+		ft_connection.c
 		
 
 OBJ = $(SRC:%.c=%.o)

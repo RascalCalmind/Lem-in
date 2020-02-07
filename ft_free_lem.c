@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 13:09:54 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/06 14:29:42 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/07 14:38:11 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@ int			ft_free_char_arr(char **arr, int len)
 	int i;
 
 	i = 0;
+	ft_printf("---\n");
 	while (i < len)
 	{
 		if (arr[i])
 		{
-			ft_printf("ft_free_char_array\t\tfree string in array %s\n---\n", arr[i]);
+			ft_printf("ft_free_char_array\t\tfree string in array %s\n", arr[i]);
 			free(arr[i]);
 			arr[i] = NULL;
 		}
@@ -32,6 +33,7 @@ int			ft_free_char_arr(char **arr, int len)
 		free(arr);
 		arr = NULL;
 	}
+	ft_printf("---\n");
 	return (0);
 }
 
@@ -50,14 +52,15 @@ int			ft_room_array_len(t_room **room)
 	return (i);
 }
 
-void		ft_free_room(t_room *room, unsigned int rooms)
+void		ft_free_room(t_room *room)
 {
 	unsigned int	i;
 	t_room			*temp;
 
 	i = 0;
-	ft_printf("ft_free_room\t\t start\n");
+	ft_printf("-ft_free_room\t\t start\n");
 	temp = NULL;
+	ft_printf("coordinates\t\t\t%i,%i\n", room->x, room->y);
 	if (room == NULL)
 		return ;
 	if (room->name != NULL)
@@ -69,17 +72,32 @@ void		ft_free_room(t_room *room, unsigned int rooms)
 	if (room->links != NULL)
 	{
 		ft_printf("ft_free_room\t\tfree'ing room->links\n");
-		free(room->links);
-		room->links = NULL;
+		while (room->links[i])
+		{
+			ft_printf("freeing links in %i\n", i);
+			if (room->links[i] != NULL)
+			{
+				free(room->links[i]);
+				room->links[i] = NULL;
+			}
+			else
+				break;
+			i += 1;
+		}
+		if (room->links)
+		{
+			free(room->links);
+			room->links = NULL;
+		}
 	}
 	if (room->next != NULL)
-		ft_free_room(room->next, ft_room_array_len(&room->next));
+		ft_free_room(room->next);
 	if (room != NULL)
 	{
 		free(room);
 		room = NULL;
 	}
-	ft_printf("ft_free_room\t\t the end\n---\n");
+	ft_printf("-ft_free_room\t\t the end\n---\n");
 }
 
 void		ft_free_lemin(t_lemin *list)
@@ -107,7 +125,7 @@ void		ft_free_lemin(t_lemin *list)
 		if (list->room[i] != NULL)
 		{
 			ft_printf("ft_free_lemin\t\tfree list->room\n");
-			ft_free_room(list->room[i], list->rooms);
+			ft_free_room(list->room[i]);
 			// free(list->room[i]);
 			// list->room[i] = NULL;
 		}

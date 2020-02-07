@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/03 18:00:11 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/06 18:28:02 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/07 14:30:16 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ void		ft_print_lemin(t_lemin *lemin)
 {
 	ft_printf("PRINTING LEMIN LISTS \n\n");
 	unsigned int	i;
+	int				j;
 	t_room			*temp;
 
 	i = 0;
+	j = 0;
 	temp = NULL;
 	if (lemin->ants)
 		ft_printf("Amount of ants:\t\t %i\n", lemin->ants);
@@ -45,6 +47,17 @@ void		ft_print_lemin(t_lemin *lemin)
 						ft_printf("Room coordinates:\t %i,%i\n", lemin->room[i]->x, lemin->room[i]->y);
 					if (lemin->room[i]->h)
 						ft_printf("Euclidian distance to the end:\t %i\n", lemin->room[i]->h);
+					if (lemin->room[i]->links != NULL)
+					{
+						ft_printf("room links: ");
+						while (lemin->room[i]->links[j] != NULL)
+						{
+							ft_printf("%s, ", lemin->room[i]->links[j]->name);
+							j += 1;
+						}
+						j = 0;
+						ft_printf("\n");
+					}
 					lemin->room[i] = lemin->room[i]->next;
 				}
 				lemin->room[i] = temp;
