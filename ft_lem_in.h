@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/07 21:04:12 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/08 14:47:13 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,20 @@ typedef struct		s_room
 	char			*name;
 	unsigned int	x;
 	unsigned int	y;
+	double			f;
+	double			g;
 	double			h;
 	struct s_room	**links;
 	unsigned int	link_count;
 	struct s_room	*next;
 	unsigned int	visited : 1;
 }					t_room;
+
+typedef struct	s_path
+{
+	t_room		**open;
+	t_room		**closed;
+}				t_path;
 
 typedef struct		s_lemin
 {
@@ -68,5 +76,7 @@ int					ft_free_error_lem_rstr(t_lemin *list, t_rstr *file);
 
 int					ft_is_command(char *str);
 t_rstr				*ft_read_file(void);
+
+int					ft_quicksort(t_room **open, int low, int high);
 
 #endif

@@ -37,7 +37,7 @@
 	typedef struct		s_path
 	{
 		t_room			**open;
-		t_room			*closed;
+		t_room			**closed;
 	}					t_path;
 
 	give rooms (perhaps a copy? or the originals?):
@@ -48,3 +48,34 @@
 	The room with the lowest f value will be at the top of the open list.
 	Write a fast sorting algorithm to sort the open list, sorting on the f value.
 	g is a sum of all the distances between the rooms to this room, preferably the shortest.
+
+	quicksort:
+
+	list of rooms with their f g and h'es
+	lowest = 0
+	highest = list->rooms
+	if (low < high)
+	{
+		pivot = low;
+		i = low;
+		j = high;
+		while (i < j)
+		{
+			while ((list[i] <= list[pivot]) && (i < high))
+				i += 1;
+			while (list[j] > list[pivot])
+				j -= 1;
+			if (i < j)
+			{
+				temp = list[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
+		}
+		temp = list[pivot];
+		list[pivot] = list[j];
+		list[j] = temp;
+		quicksort(list, low, j - 1);
+		quicksort(list, j + 1, high);
+	}
+	
