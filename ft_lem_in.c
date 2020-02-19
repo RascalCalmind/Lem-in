@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:34:10 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/07 21:00:51 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/19 10:10:47 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		ft_create_lists(t_lemin *list, t_rstr *file)
 	}
 	while (file->next != NULL)
 	{
-		ft_printf("ft_create_lists\t\tfile->str:%s\n", file->str);
+		//ft_printf("ft_create_lists\t\tfile->str:%s\n", file->str);
 		if (ft_strncmp(file->str, "##", 2) == 0)
 		{
 			if (ft_handle_command_line(list, file) == -1)
@@ -86,7 +86,7 @@ int	main(int argc, char **argv)
 	t_rstr	*file;
 	t_lemin *lemin;
 	int rooms;
-	ft_printf("START");
+	//ft_printf("START");
 	rooms = 0;
 	// if (argv && argc > 1)
 	// 	return (ft_error(ERR_PARAMS));
@@ -106,7 +106,7 @@ int	main(int argc, char **argv)
 	ft_print_lemin(lemin);
 	ft_free_rstr(file);
 	ft_free_lemin(lemin);
-	ft_printf("STRUCT SIZE %d", sizeof(t_rstr));
+	//ft_printf("STRUCT SIZE %d", sizeof(t_rstr));
 	while (1)
 		continue;
 	return (0);

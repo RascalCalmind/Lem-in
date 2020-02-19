@@ -6,7 +6,7 @@
 #    By: lhageman <lhageman@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/07/24 22:50:24 by lhageman       #+#    #+#                 #
-#    Updated: 2020/01/29 18:41:21 by lhageman      ########   odam.nl          #
+#    Updated: 2020/02/12 19:28:19 by lhageman      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,8 @@ SRCC =	ft_itoa.c \
 	ft_char_arr_len.c \
 	ft_int_arr_len.c \
 	ft_strncmp.c \
-	ft_strisint.c
+	ft_strisint.c \
+	ft_sqrt.c
 
 SRCO	= $(SRCC:%.c=%.o)
 TRASH	= $(SRCC:%.c=%.c~)

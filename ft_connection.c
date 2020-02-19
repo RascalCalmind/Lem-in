@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/07 13:00:40 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/07 20:50:00 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/19 10:09:15 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ int		ft_assign_connection(char **arr, t_lemin *list)
 	i = 0;
 	a = NULL;
 	b = NULL;
-	ft_printf("---Assigning connections---\n");
+	//ft_printf("---Assigning connections---\n");
 	indexa = ft_hash_sdbm(arr[0], MAX_HASHTABLE);
 	indexb = ft_hash_sdbm(arr[1], MAX_HASHTABLE);
-	ft_printf("-calculated indexes-\n");
+	//ft_printf("-calculated indexes-\n");
 	a = ft_pointer_room(arr[0], indexa, list, a);
 	b = ft_pointer_room(arr[1], indexb, list, b);
-	ft_printf("-created pointers to rooms-\n");
+//	ft_printf("-created pointers to rooms-\n");
 	// if (a->links[indexb] == NULL)
 	// 	a->links[indexb] = b;
 	// if (a->links[indexb] != NULL)
@@ -93,7 +93,7 @@ int		ft_assign_connection(char **arr, t_lemin *list)
 		i += 1;
 	b->links[i] = a;
 	b->link_count = i;
-	ft_printf("-assigned pointers to links-\n---\n");
+	//ft_printf("-assigned pointers to links-\n---\n");
 	return (0);
 }
 
@@ -102,13 +102,13 @@ int		ft_connection(char *str, t_lemin *list)
 	int		i;
 	char	**arr;
 
-	ft_printf("MAKING CONNECTIONS with %s\t\t\n", str);
+	//ft_printf("MAKING CONNECTIONS with %s\t\t\n", str);
 	i = 0;
 	if (!str)
 		return (-1);
 	if (ft_contains(str, '-') == 1)
 	{
-		ft_printf("Correct amount of '-' characters\n");
+		//ft_printf("Correct amount of '-' characters\n");
 		arr = ft_strsplit(str, '-');
 		if (!arr)
 			return (-1);
@@ -119,11 +119,11 @@ int		ft_connection(char *str, t_lemin *list)
 		}
 		else
 		{
-			ft_printf("Rooms both exist in database\n");
+			//ft_printf("Rooms both exist in database\n");
 			if (ft_assign_connection(arr, list) == 0)
 			{
 				ft_free_char_arr(arr, 2);
-				ft_printf("CONNECTIONS ASSIGNED \t\t\n---\n");
+				//ft_printf("CONNECTIONS ASSIGNED \t\t\n---\n");
 				return (0);
 			}
 			ft_free_char_arr(arr, 2);

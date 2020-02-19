@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/08 14:47:13 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/13 15:27:51 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ typedef struct		s_room
 
 typedef struct	s_path
 {
-	t_room		**open;
-	t_room		**closed;
+	t_room		**queue;
 }				t_path;
 
 typedef struct		s_lemin

@@ -6,7 +6,7 @@
 /*   By: lhageman <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/07/24 22:17:20 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/29 18:41:12 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/12 19:27:00 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ char				*ft_strchr(const char *s, int c);
 int					ft_strncmp(const char *s1, const char *s2, size_t n);
 
 int					ft_check_int(char *str);
+double				ft_sqrt(double n);
 
 #endif
