@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/07 13:00:40 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/19 10:09:15 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/19 13:19:05 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_room	*ft_pointer_room(char *str, int index, t_lemin *list, t_room *pointer)
 	temp = list->room[index];
 	while (list->room[index])
 	{
-		if (ft_strcmp(list->room[index]->name, str)== 0)
+		if (ft_strcmp(list->room[index]->name, str) == 0)
 		{
 			pointer = list->room[index];
 			list->room[index] = temp;

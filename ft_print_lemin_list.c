@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/03 18:00:11 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/19 10:19:20 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/19 17:49:05 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		ft_print_lemin(t_lemin *lemin)
 {
-	ft_printf("PRINTING LEMIN LISTS \n\n");
+	//ft_printf("PRINTING LEMIN LISTS \n\n");
 	unsigned int	i;
 	int				j;
 	t_room			*temp;
@@ -68,4 +68,19 @@ void		ft_print_lemin(t_lemin *lemin)
 			i += 1;
 		}
 	}
+}
+
+void	ft_print_arr_room(t_room **rooms)
+{
+	int i;
+
+	i = 0;
+	while (rooms[i] != NULL)
+	{
+		ft_printf("%s", rooms[i]->name);
+		if (rooms[i + 1] != NULL)
+			ft_printf("->");
+		i += 1;
+	}
+	ft_printf("\n");
 }

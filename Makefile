@@ -6,7 +6,7 @@
 #    By: lhageman <lhageman@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/13 17:45:16 by lhageman       #+#    #+#                 #
-#    Updated: 2020/02/08 14:47:45 by lhageman      ########   odam.nl          #
+#    Updated: 2020/02/19 17:42:28 by lhageman      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,10 @@ SRC =	ft_lem_in.c \
 		ft_print_lemin_list.c \
 		ft_connection.c \
 		ft_file.c \
-		./sorting/quick_sort.c
+		./sorting/quick_sort.c \
+		./sorting/ft_bfs.c \
+		./sorting/ft_paths.c \
+		./sorting/ft_find_room.c
 		
 
 OBJ = $(SRC:%.c=%.o)

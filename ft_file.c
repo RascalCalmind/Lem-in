@@ -6,27 +6,26 @@
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/07 17:29:34 by wmisiedj       #+#    #+#                */
-/*   Updated: 2020/02/07 20:55:22 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/19 13:23:20 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./ft_lem_in.h"
 
-static void ft_read(t_rstr *file)
+static void	ft_read(t_rstr *file)
 {
-	char *line;
-
-	int fd;
+	char	*line;
+	int		fd;
 
 	fd = open("./testmaps/map2.txt");
-
 	while (get_next_line(fd, &line))
 	{
 		if (line != NULL && line[0])
 		{
 			file->str = ft_strdup(line);
 			if ((file->str[0] == '#' && file->str[1] != '#') ||
-				(file->str[0] == '#' && file->str[1] == '#' && !ft_is_command(file->str)))
+				(file->str[0] == '#' && file->str[1] == '#' &&
+				!ft_is_command(file->str)))
 			{
 				free(file->str);
 				file->str = NULL;
@@ -43,7 +42,7 @@ static void ft_read(t_rstr *file)
 	}
 }
 
-t_rstr *ft_read_file(void)
+t_rstr		*ft_read_file(void)
 {
 	t_rstr *file;
 

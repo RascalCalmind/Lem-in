@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 13:09:54 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/19 10:10:24 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/19 13:23:46 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void		ft_free_room(t_room *room)
 	// ft_printf("coordinates\t\t\t%i,%i\n", room->x, room->y);
 	if (room == NULL)
 		return ;
-
 	if (room->name != NULL)
 	{
 		//ft_printf("ft_free_room\t\tfree'ing room->name\n");
@@ -125,34 +124,7 @@ void		ft_free_lemin(t_lemin *list)
 //	ft_printf("ft_free_lemin\t\tthe end\n---\n");
 }
 
-// void	ft_free_rstr(t_rstr *list)
-// {
-// 	t_rstr *temp;
-
-// 	ft_printf("ft_free_rstr\t\t start\n");
-// 	if (!list)
-// 		return ;
-// 	while (list->next != NULL)
-// 	{
-// 		temp = list->next;
-// 		if (list->str)
-// 		{
-// 			ft_printf("ft_free_rstr\t\t free str %s\n", list->str);			
-// 			free(list->str);
-// 			list->str = NULL;
-// 		}
-// 		list = temp;
-// 	}
-// 	if (list)
-// 	{
-// 		ft_printf("ft_free_rstr\t\t free list\n");	
-// 		free(list);
-// 		list = NULL;
-// 	}
-// 	ft_printf("ft_free_rstr\t\t the end\n---\n");
-// }
-
-void	ft_free_rstr(t_rstr *list)
+void		ft_free_rstr(t_rstr *list)
 {
 	t_rstr *temp;
 

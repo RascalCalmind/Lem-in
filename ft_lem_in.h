@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/13 15:27:51 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/19 17:47:13 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,11 @@ int					ft_store_room(t_lemin *list, t_rstr *file);
 void				ft_free_room(t_room *room);
 void				ft_free_lemin(t_lemin *list);
 void				ft_print_lemin(t_lemin *lemin);
+void				ft_print_arr_room(t_room **rooms);
 
 int					ft_contains(char *str, char c);
 int					ft_connection(char *str, t_lemin *list);
+t_room				*ft_find_room(t_lemin *list, char *name);
 
 int					ft_free_error_lem_rstr(t_lemin *list, t_rstr *file);
 
@@ -77,5 +79,7 @@ int					ft_is_command(char *str);
 t_rstr				*ft_read_file(void);
 
 int					ft_quicksort(t_room **open, int low, int high);
+int					ft_bfs(t_lemin *list);
+t_room				**ft_rec_path(t_room *start, t_room *end, t_room **rev);
 
 #endif
