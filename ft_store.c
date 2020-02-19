@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 14:01:47 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/19 10:08:40 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/19 11:55:30 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ double		ft_calc_heuridian(t_lemin *list, t_room *room, char *str)
 	end = ft_hash_sdbm(str, MAX_HASHTABLE);
 	x = 0;
 	y = 0;
-	//ft_printf("ft_calc_heuridian\tcalculating heuridian, end int: [%i] for [%s]\n", end, str);
+	//ft_printf("ft_calc_heuridian\tcalculating heuridian, end int: [%i] for [%s]\n", end, room->name);
 	if (list->room[end] != NULL)
 	{
 		temp = list->room[end];
+		//ft_printf("node to check:%s\n", list->room[end]->name);
 		while (list->room[end] != NULL && ft_strcmp(list->room[end]->name, str) != 0 &&
 			list->room[end]->next)
 		{
@@ -61,15 +62,15 @@ double		ft_calc_heuridian(t_lemin *list, t_room *room, char *str)
 	}
 	// else
 	// {
-	// 	//ft_printf("heuridian end does not exist\n");
+	// 	ft_printf("heuridian end does not exist\n");
 	// 	if (list->room[end] != NULL)
-	// 		//ft_printf("endroom is null\n");
+	// 		ft_printf("endroom is null\n");
 	// 	if (ft_strcmp(list->room[end]->name, str) != 0)
-	// 	//	ft_printf("name is not equal to str\n");
+	// 		ft_printf("name is not equal to str\n");
 	// 	if (list->room[end]->next != NULL)
-	// 		//ft_printf("next is not equal to null\n");
+	// 		ft_printf("next is not equal to null\n");
 	// }
-	//ft_printf("heuridian: %f\n---\n", h);
+	// ft_printf("heuridian: %f\n---\n", h);
 	return (h);
 }
 
@@ -80,6 +81,7 @@ int			ft_store_room(t_lemin *lemin, t_rstr *file)
 	int		hash;
 	int		ret;
 	t_room	*temp;
+	t_room	*p;
 	t_room	*room;
 
 	i = 0;
@@ -119,10 +121,11 @@ int			ft_store_room(t_lemin *lemin, t_rstr *file)
 //	ft_printf("ft_store_room\t\tassigned x to room\n");
 	lemin->room[hash]->y = ft_atoi(args[2]);
 //	ft_printf("ft_store_room\t\tassigned y to room\n");
-	ft_free_char_arr(args, 4);	
+	ft_free_char_arr(args, 4);
+	p = lemin->room[hash];
 	lemin->room[hash] = temp;
 	if (lemin->end != NULL)
-		lemin->room[hash]->h = ft_calc_heuridian(lemin, lemin->room[hash], lemin->end);
+		p->h = ft_calc_heuridian(lemin, p, lemin->end);
 //	ft_printf("ft_store_room\t\tcalculated Heuridian distance if possible\n---\n");
 
 //	ft_printf("ft_store_room\t\tRESET STATUS TEMP: %s\n", lemin->room[hash]->name);
