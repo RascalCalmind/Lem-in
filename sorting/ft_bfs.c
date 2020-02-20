@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/13 15:14:06 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/20 16:58:33 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/20 17:01:48 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int		ft_bfs(t_lemin *list)
 	t_room	**rev;
 	// t_room	**fp;
 
-	queue = ft_memmalloc(sizeof(t_queue *));
+	queue = ft_memalloc(sizeof(t_queue *));
 	if (!queue)
 		return (-1);
 	queue->list = ft_memalloc(sizeof(t_room *) * (list->rooms + 1));
