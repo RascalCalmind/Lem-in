@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:34:10 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/19 17:52:36 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/20 15:20:57 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,12 @@ int		main(int argc, char **argv)
 		return (ft_error(ERR_MEM));
 	ft_print_lemin(lemin);
 	ft_bfs(lemin);
-	ft_free_rstr(file);
-	ft_free_lemin(lemin);
+	if (file)
+		ft_free_rstr(file);
+	if (lemin)
+		ft_free_lemin(lemin);
 	//ft_printf("STRUCT SIZE %d", sizeof(t_rstr));
-	// while (1)
-	// 	continue;
+	while (1)
+		continue;
 	return (0);
 }

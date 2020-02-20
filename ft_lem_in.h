@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/19 17:47:13 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/20 16:27:37 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct		s_room
 	double			f;
 	double			g;
 	double			h;
+	int				level;
 	struct s_room	**links;
 	unsigned int	link_count;
 	struct s_room	*next;
@@ -39,6 +40,8 @@ typedef struct		s_room
 typedef struct	s_path
 {
 	t_room		**queue;
+	int			len;
+	int			tlen;
 }				t_path;
 
 typedef struct		s_lemin
@@ -67,7 +70,7 @@ int					ft_store_room(t_lemin *list, t_rstr *file);
 void				ft_free_room(t_room *room);
 void				ft_free_lemin(t_lemin *list);
 void				ft_print_lemin(t_lemin *lemin);
-void				ft_print_arr_room(t_room **rooms);
+void				ft_print_arr_room(t_room **rooms, int len);
 
 int					ft_contains(char *str, char c);
 int					ft_connection(char *str, t_lemin *list);
@@ -80,6 +83,6 @@ t_rstr				*ft_read_file(void);
 
 int					ft_quicksort(t_room **open, int low, int high);
 int					ft_bfs(t_lemin *list);
-t_room				**ft_rec_path(t_room *start, t_room *end, t_room **rev);
+t_room				**ft_rec_path(t_room *start, t_room *end, t_room **rev, int len);
 
 #endif
