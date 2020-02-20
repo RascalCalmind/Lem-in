@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/20 16:58:01 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/20 19:38:41 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct		s_room
 typedef struct	s_queue
 {
 	t_room		**list; // list?
+	t_room		**prev;
 	int			len; // index queue / list length?
 }				t_queue;
 

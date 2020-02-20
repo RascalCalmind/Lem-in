@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/03 18:00:11 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/20 16:58:06 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/20 19:33:30 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	ft_print_arr_room(t_room **rooms)
 	i = 0;
 	while (rooms[i] != NULL)
 	{
-		ft_printf("%s, %i", rooms[i]->name, rooms[i]->level);
+		ft_printf("Room: '%s' - Level: %i", rooms[i]->name, rooms[i]->level);
 		if (rooms[i + 1] != NULL)
-			ft_printf("->");
+			ft_printf("->\n");
 		i += 1;
 	}
 	ft_printf("\n");
