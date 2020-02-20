@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/20 16:27:37 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/20 16:58:01 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@ typedef struct		s_room
 	unsigned int	visited : 1;
 }					t_room;
 
-typedef struct	s_path
+typedef struct	s_queue
 {
-	t_room		**queue;
-	int			len;
-	int			tlen;
-}				t_path;
+	t_room		**list; // list?
+	int			len; // index queue / list length?
+}				t_queue;
 
 typedef struct		s_lemin
 {
@@ -70,7 +69,7 @@ int					ft_store_room(t_lemin *list, t_rstr *file);
 void				ft_free_room(t_room *room);
 void				ft_free_lemin(t_lemin *list);
 void				ft_print_lemin(t_lemin *lemin);
-void				ft_print_arr_room(t_room **rooms, int len);
+void				ft_print_arr_room(t_room **rooms);
 
 int					ft_contains(char *str, char c);
 int					ft_connection(char *str, t_lemin *list);

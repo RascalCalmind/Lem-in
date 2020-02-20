@@ -1,3 +1,6 @@
 *.o
 output.txt
 lem-in
+*.dSYM
+*.gch*
+*.a

@@ -6,71 +6,70 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/13 15:14:06 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/20 16:26:33 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/20 16:58:33 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_lem_in.h"
 
-int		ft_enqueue(t_path *paths, t_room *room)
+int		ft_enqueue(t_queue *queue, t_room *room)
 {
-	if (!paths || !room)
+	if (!queue || !room)
 		return (-1);
-	ft_printf("----\nFT_ENQUEUE ---- enqueueing: %s on place %i\n", room->name, paths->len);
-	paths->queue[paths->len] = room;
+	ft_printf("----\nFT_ENQUEUE ---- enqueueing: %s on place %i\n", room->name, queue->len);
+	queue->list[queue->len] = room;
 	room->visited = 1;
-	paths->len += 1;
-	paths->tlen += 1;
+	queue->len += 1;
 	return (0);
 }
 
-int		ft_dequeue(t_path *paths)
+int		ft_dequeue(t_queue *queue)
 {
 	int i;
 
 	i = 1;
-	if (!paths || paths->len < 1)
+	if (!queue || queue->len < 1)
 		return (-1);
-	if (paths->queue[0] != NULL)
+	if (queue->list[0] != NULL)
 	{
-		ft_printf("---\nFT_DEQUEUE ---- dequeueing: %s\n", paths->queue[0]->name);
+		ft_printf("---\nFT_DEQUEUE ---- dequeueing: %s\n", queue->list[0]->name);
 
-		paths->queue[0] = NULL;
+		queue->list[0] = NULL;
 	}
-	if (paths->len > 1 && paths->queue[i] != NULL)
+	if (queue->len > 1 && queue->list[i] != NULL)
 	{
-		while (i <= paths->len + 1 && paths->queue[i] != NULL)
+		while (i <= queue->len + 1 && queue->list[i] != NULL)
 		{
-			ft_printf("FT_DEQUEUE ---- rooms in queue %i and i %i\n", paths->len, i);
-			ft_printf("FT_DEQUEUE ---- moving %s from %i to %i\n", paths->queue[i]->name, i, (i - 1));
-			paths->queue[i - 1] = paths->queue[i];
-			paths->queue[i] = NULL;
+			ft_printf("FT_DEQUEUE ---- rooms in queue %i and i %i\n", queue->len, i);
+			ft_printf("FT_DEQUEUE ---- moving %s from %i to %i\n", queue->list[i]->name, i, (i - 1));
+			queue->list[i - 1] = queue->list[i];
+			queue->list[i] = NULL;
 			i += 1;
 		}
 	}
-	paths->len -= 1;
+	queue->len -= 1;
 	return (0);
 }
 
-int		ft_inqueue(t_path *paths, t_room *room)
+int		ft_inqueue(t_queue *queue, t_room *room)
 {
 	int i;
 
 	i = 0;
-	if (!paths)
+	if (!queue)
 		return (-1);
-	if (paths->queue[0] == NULL)
+	if (queue->list[0] == NULL)
 		return (0);
-	while (i <= paths->len && paths->queue[i] != NULL)
+	while (i <= queue->len && queue->list[i] != NULL)
 	{
-		if (paths->queue[i] == room)
+		if (queue->list[i] == room)
 			return (0);
 		i += 1;
 	}
 	return (1);
 }
 
-t_room		**ft_queueing(t_lemin *list, t_path *paths)
+t_room		**ft_queueing(t_lemin *list, t_queue *queue)
 {
 	int		i;
 	int		j;
@@ -82,55 +81,54 @@ t_room		**ft_queueing(t_lemin *list, t_path *paths)
 	j = 0;
 	level = 1;
 	prev = (t_room **)ft_memalloc(sizeof(t_room *) * (list->rooms + 1));
-	while (paths->queue[0] != NULL)
+	while (queue->list[0] != NULL)
 	{
-		if (paths->queue[0]->links)
+		if (queue->list[0]->links)
 		{
-			temp = paths->queue[0];
-			while (paths->queue[0]->links[i])
+			temp = queue->list[0];
+			while (queue->list[0]->links[i])
 			{
-				if (ft_inqueue(paths, paths->queue[0]->links[i]) == 1 && paths->queue[0]->links[i]->visited == 0)
+				if (ft_inqueue(queue, queue->list[0]->links[i]) == 1 && queue->list[0]->links[i]->visited == 0)
 				{
-					ft_printf("FT_ENQUEUEING ---- enqueueing path: %s\n", paths->queue[0]->links[i]->name);
-					ft_enqueue(paths, paths->queue[0]->links[i]);
-					prev[j] = paths->queue[0]->links[i];
-					paths->queue[0]->links[i]->level = level;
-					//prev[j] = paths->queue[0];
+					ft_printf("FT_ENQUEUEING ---- enqueueing path: %s\n", queue->list[0]->links[i]->name);
+					ft_enqueue(queue, queue->list[0]->links[i]);
+					prev[j] = queue->list[0]->links[i];
+					queue->list[0]->links[i]->level = level;
+					//prev[j] = queue->list[0];
 					j += 1;
 				}
 				i += 1;
 			}
 			level += 1;
 			i = 0;
-			paths->queue[0] = temp;
+			queue->list[0] = temp;
 		}
-		ft_printf("FT_ENQUEUEING ---- dequeueing path: %s\n", paths->queue[0]->name);
-		ft_dequeue(paths);
+		ft_printf("FT_ENQUEUEING ---- dequeueing path: %s\n", queue->list[0]->name);
+		ft_dequeue(queue);
 	}
 	return (prev);
 }
 
 int		ft_bfs(t_lemin *list)
 {
-	t_path	*paths;
+	t_queue	*queue;
 	t_room	*start;
 	t_room	*end;
 	t_room	**rev;
 	// t_room	**fp;
 
-	paths = malloc(sizeof(t_path *));
-	if (!paths)
+	queue = ft_memmalloc(sizeof(t_queue *));
+	if (!queue)
 		return (-1);
-	paths->queue = malloc(sizeof(t_room *) * list->rooms);
-	paths->len = 0;
-	paths->tlen = 0;
-	if (!paths->queue)
+	queue->list = ft_memalloc(sizeof(t_room *) * (list->rooms + 1));
+	queue->len = 0;
+	if (!queue->list)
 	{
-		free(paths);
-		paths = NULL;
+		free(queue);
+		queue = NULL;
 		return (-1);
 	}
-	ft_printf("FT_BFS ---- Created paths queue\n");
+	ft_printf("FT_BFS ---- Created queue queue\n");
 	end = ft_find_room(list, list->end);
 	if (end == NULL)
 		return (-1);
@@ -139,12 +137,15 @@ int		ft_bfs(t_lemin *list)
 	if (start == NULL)
 		return (-1);
 	ft_printf("FT_BFS ---- Found startroom %s\n", start->name);
-	ft_enqueue(paths, start);
+	ft_enqueue(queue, start);
 	ft_printf("FT_BFS ---- Enqueued endroom into queue\n");
-	rev = ft_queueing(list, paths);
-	ft_printf("FT_BFS ---- Created paths\n");
-	ft_print_arr_room(rev, paths->tlen);
-	// fp = ft_rec_path(start, end, rev, paths->tlen);
+	rev = ft_queueing(list, queue);
+	ft_printf("FT_BFS ---- Created queue\n");
+	ft_print_arr_room(rev);
+	free(rev);
+	free(queue->list);
+	free(queue);
+	// fp = ft_rec_path(start, end, rev, queue->tlen);
 	// ft_printf("FT_BFS ---- Recreated path from end to start\n");
 	// free(fp);
 	// fp = NULL;
