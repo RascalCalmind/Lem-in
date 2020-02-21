@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/20 19:38:41 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/21 14:46:54 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@
 # include "./errors/ft_error.h"
 
 #define MAX_HASHTABLE 10
+
+typedef struct		s_edge
+{
+	char			*from;
+	char			*to;
+	int				flow;
+	int				capacity;
+	int				rev;
+
+}					t_edge;
 
 typedef struct		s_room
 {
@@ -84,5 +94,11 @@ t_rstr				*ft_read_file(void);
 int					ft_quicksort(t_room **open, int low, int high);
 int					ft_bfs(t_lemin *list);
 t_room				**ft_rec_path(t_room *start, t_room *end, t_room **rev, int len);
+
+t_queue				*ft_queue(int size);
+t_room				*ft_dequeue(t_queue *queue);
+int					ft_enqueue(t_queue *queue, t_room *room);
+int					ft_inqueue(t_queue *queue, t_room *room);
+int					ft_free_queue(t_queue *queue);
 
 #endif
