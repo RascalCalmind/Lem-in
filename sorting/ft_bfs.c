@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/13 15:14:06 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/20 19:46:45 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/21 13:23:14 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	ft_queueing(t_queue *queue)
 	{
 		while (room->links && room->links[i] != NULL)
 		{
-			if (ft_inqueue(queue, room->links[i]) == 1 && room->links[i]->visited == 0)
+			if (ft_inqueue(queue, room->links[i]) == 1 &&
+				room->links[i]->visited == 0)
 			{
 				ft_printf("FT_ENQUEUEING ---- enqueueing path: %s\n", room->links[i]->name);
 				ft_enqueue(queue, room->links[i]);
