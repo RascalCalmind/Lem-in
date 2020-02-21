@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/13 15:14:06 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/21 13:23:14 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/21 13:27:59 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,13 @@ int		ft_enqueue(t_queue *queue, t_room *room)
 t_room		*ft_dequeue(t_queue *queue)
 {
 	int i;
+	t_room *room;
 
 	i = 1;
 	if (!queue || !queue->len || queue->list[0] == NULL)
 		return (NULL);
-	while (i <= queue->len + 1 && queue->list[i] != NULL)
+	room = queue->list[0];
+	while (i <= queue->len && queue->list[i] != NULL)
 	{
 		ft_printf("FT_DEQUEUE ---- rooms in queue %i and i %i\n", queue->len, i);
 		ft_printf("FT_DEQUEUE ---- moving %s from %i to %i\n", queue->list[i]->name, i, (i - 1));
@@ -39,7 +41,7 @@ t_room		*ft_dequeue(t_queue *queue)
 		i += 1;
 	}
 	queue->len -= 1;
-	return (queue->list[0]);
+	return (room);
 }
 
 int		ft_inqueue(t_queue *queue, t_room *room)
