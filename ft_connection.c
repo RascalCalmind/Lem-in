@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/07 13:00:40 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/22 14:33:13 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/22 14:59:58 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,26 +73,6 @@ int		ft_assign_connection(char **arr, t_lemin *list)
 	a = ft_pointer_room(arr[0], indexa, list, a);
 	b = ft_pointer_room(arr[1], indexb, list, b);
 //	ft_printf("-created pointers to rooms-\n");
-	// if (a->links[indexb] == NULL)
-	// 	a->links[indexb] = b;
-	// if (a->links[indexb] != NULL)
-	// {
-	// 	temp = a->links[indexb];
-	// 	while ()
-	// }
-	// if (a->links == NULL)
-	// 	a->links = (t_room **)ft_memalloc(sizeof(t_room *) * (list->rooms + 1));
-	// while (a->links[i] != NULL)
-	// 	i += 1;
-	// a->links[i] = b;
-	// a->link_count = i;
-	// i = 0;
-	// if (b->links == NULL)
-	// 	b->links = (t_room **)ft_memalloc(sizeof(t_room *) * (list->rooms + 1));
-	// while (b->links[i] != NULL)
-	// 	i += 1;
-	// b->links[i] = a;
-	// b->link_count = i;
 	if (a->edges == NULL)
 		a->edges = (t_edge **)ft_memalloc(sizeof(t_edge *) * (list->rooms + 1));
 	ft_printf("FT_ASS_CONN --- allocated edges for a \n");

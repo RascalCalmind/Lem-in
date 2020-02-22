@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 13:09:54 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/21 15:36:40 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/22 15:02:10 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,6 @@ void		ft_free_room(t_room *room)
 		free(room->name);
 		room->name = NULL;
 	}
-	// if (room->links != NULL)
-	// {
-	// 	free(room->links);
-	// 	room->links = NULL;
-	// }
 	if (room->edges != NULL)
 	{
 		free(room->edges);
