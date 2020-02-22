@@ -6,7 +6,7 @@
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/21 14:35:04 by wmisiedj       #+#    #+#                */
-/*   Updated: 2020/02/22 14:40:21 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/22 19:48:26 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,16 @@ t_queue	*ft_queue(int size)
 		free(queue);
 		return (NULL);
 	}
+	queue->dequeue = (t_room **)ft_memalloc(sizeof(t_room *) * (size + 1));
+	if (queue->dequeue == NULL)
+	{
+		free(queue->list);
+		free (queue->prev);
+		free(queue);
+		return (NULL);
+	}
 	queue->len = 0;
+	queue->dlen = 0;
 	return (queue);
 }
 
@@ -63,6 +72,8 @@ t_room	*ft_dequeue(t_queue *queue)
 		i += 1;
 	}
 	queue->len -= 1;
+	queue->dequeue[queue->dlen] = room;
+	queue->dlen += 1;
 	return (room);
 }
 
