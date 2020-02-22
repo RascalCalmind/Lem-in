@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/13 15:14:06 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/21 14:48:55 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/21 15:46:22 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ static void	ft_bfs_queueing(t_queue *queue)
 	room = ft_dequeue(queue);
 	while (room != NULL)
 	{
-		while (room->links && room->links[i] != NULL)
+		while (room->edges && room->edges[i] != NULL)
 		{
-			if (ft_inqueue(queue, room->links[i]) == 1 &&
-				room->links[i]->visited == 0)
+			if (ft_inqueue(queue, room->edges[i]->to) == 1 &&
+				room->visited == 0)
 			{
-				ft_printf("FT_ENQUEUEING ---- enqueueing path: %s\n", room->links[i]->name);
-				ft_enqueue(queue, room->links[i]);
-				queue->prev[j] = room->links[i];
-				room->links[i]->level = room->level + 1;
+				ft_printf("FT_ENQUEUEING ---- enqueueing path: %s\n", room->edges[i]->to->name);
+				ft_enqueue(queue, room->edges[i]->to);
+				queue->prev[j] = room->edges[i]->to;
+				room->level = room->level + 1;
 				j += 1;
 			}
 			i += 1;
