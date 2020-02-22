@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/13 15:14:06 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/22 14:54:15 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/22 15:51:12 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,12 @@ static void	ft_bfs_queueing(t_queue *queue)
 	}
 }
 
-int		ft_bfs(t_lemin *list)
+int		ft_bfs(t_lemin *list, t_room *start, t_room *end)
 {
 	t_queue	*queue;
-	t_room	*start;
-	t_room	*end;
 
 	queue = ft_queue(list->rooms);
 	ft_printf("FT_BFS ---- Created queue queue\n");
-	end = ft_find_room(list, list->end);
-	if (end == NULL)
-		return (-1);
-	ft_printf("FT_BFS ---- Found endroom %s\n", end->name);
-	start = ft_find_room(list, list->start);
-	if (start == NULL)
-		return (-1);
 	ft_printf("FT_BFS ---- Found startroom %s\n", start->name);
 	ft_enqueue(queue, start);
 	ft_printf("FT_BFS ---- Enqueued endroom into queue\n");

@@ -138,3 +138,16 @@ exit\
 <2/3 == great, 9 == mediocre, 15+ == :(\
 
 
+# NOTES:
+ - Why do we need quick sort?
+ - Should we create a seperate queue folder?
+ - room->visited?
+ - NUMBER OF NOTES
+ - UNWEIGHTED graph
+ - START NODE / END NODE
+ - SOLVE:
+   - INIT queue
+   - ENQUEUE firt node
+     - mark first node as visited
+   - while queue is not empty
+   - 

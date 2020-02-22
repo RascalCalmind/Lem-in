@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/21 15:35:17 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/22 15:52:10 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct		s_edge
 	struct s_room	*to;
 	unsigned int	available : 1;
 	// int				flow;
-	// int				capacity;
+	int				capacity;
 	// int				rev;
 }					t_edge;
 
@@ -94,8 +94,10 @@ int					ft_is_command(char *str);
 t_rstr				*ft_read_file(void);
 
 int					ft_quicksort(t_room **open, int low, int high);
-int					ft_bfs(t_lemin *list);
+int					ft_bfs(t_lemin *list, t_room *start, t_room *end);
 t_room				**ft_rec_path(t_room *start, t_room *end, t_room **rev, int len);
+int					ft_dfs(t_lemin *list, t_room *start, t_room *end);
+int					ft_max_flow(t_lemin *list);
 
 t_queue				*ft_queue(int size);
 t_room				*ft_dequeue(t_queue *queue);
