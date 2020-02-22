@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/13 15:14:06 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/21 14:48:55 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/22 14:54:15 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,25 @@ static void	ft_bfs_queueing(t_queue *queue)
 	room = ft_dequeue(queue);
 	while (room != NULL)
 	{
-		while (room->links && room->links[i] != NULL)
+		ft_printf("FT_BFS-- CURRENT ROOM %s - visited %d - LEVEL\n", room->name, room->visited, room->level);
+		while (room->edges && room->edges[i] != NULL)
 		{
-			if (ft_inqueue(queue, room->links[i]) == 1 &&
-				room->links[i]->visited == 0)
+			ft_printf("FT_BFS--edges exist room: %s\n", room->edges[i]->to->name);
+			ft_printf("ft inqueue return: %i\n", ft_inqueue(queue, room->edges[i]->to));
+			ft_printf("visited = %i\n", room->edges[i]->to->visited);
+			if (ft_inqueue(queue, room->edges[i]->to) == 1 &&
+				room->edges[i]->to->visited == 0)
 			{
-				ft_printf("FT_ENQUEUEING ---- enqueueing path: %s\n", room->links[i]->name);
-				ft_enqueue(queue, room->links[i]);
-				queue->prev[j] = room->links[i];
-				room->links[i]->level = room->level + 1;
+				ft_printf("FT_ENQUEUEING ---- enqueueing path: %s\n", room->edges[i]->to->name);
+				ft_enqueue(queue, room->edges[i]->to);
+				queue->prev[j] = room->edges[i]->to;
+				room->edges[i]->to->level = room->level + 1;
 				j += 1;
 			}
 			i += 1;
 		}
 		i = 0;
-		ft_printf("FT_ENQUEUEING ---- dequeueing path: %s\n", queue->list[0]->name);
+		ft_printf("FT_dEQUEUEING ---- dequeueing path: %s\n", queue->list[0]->name);
 		room = ft_dequeue(queue);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/07 13:00:40 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/19 13:19:05 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/22 14:33:13 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,40 @@ int		ft_assign_connection(char **arr, t_lemin *list)
 	// 	temp = a->links[indexb];
 	// 	while ()
 	// }
-	if (a->links == NULL)
-		a->links = (t_room **)ft_memalloc(sizeof(t_room *) * (list->rooms + 1));
-	while (a->links[i] != NULL)
+	// if (a->links == NULL)
+	// 	a->links = (t_room **)ft_memalloc(sizeof(t_room *) * (list->rooms + 1));
+	// while (a->links[i] != NULL)
+	// 	i += 1;
+	// a->links[i] = b;
+	// a->link_count = i;
+	// i = 0;
+	// if (b->links == NULL)
+	// 	b->links = (t_room **)ft_memalloc(sizeof(t_room *) * (list->rooms + 1));
+	// while (b->links[i] != NULL)
+	// 	i += 1;
+	// b->links[i] = a;
+	// b->link_count = i;
+	if (a->edges == NULL)
+		a->edges = (t_edge **)ft_memalloc(sizeof(t_edge *) * (list->rooms + 1));
+	ft_printf("FT_ASS_CONN --- allocated edges for a \n");
+	while (a->edges[i] != NULL)
 		i += 1;
-	a->links[i] = b;
+	ft_printf("FT_ASS_CONN --- i to assign: %i\n", i);
+	a->edges[i] = (t_edge *)ft_memalloc(sizeof(t_edge *));
+	//a->edges[i]->to = (t_room *)ft_memalloc(sizeof(t_room *));
+	a->edges[i]->to = b;
+	a->edges[i]->available = 1;
 	a->link_count = i;
 	i = 0;
-	if (b->links == NULL)
-		b->links = (t_room **)ft_memalloc(sizeof(t_room *) * (list->rooms + 1));
-	while (b->links[i] != NULL)
+	if (b->edges == NULL)
+		b->edges = (t_edge **)ft_memalloc(sizeof(t_edge *) * (list->rooms + 1));
+	ft_printf("FT_ASS_CONN --- allocated edges for b\n");
+	while (b->edges[i] != NULL)
 		i += 1;
-	b->links[i] = a;
+	b->edges[i] = (t_edge *)ft_memalloc(sizeof(t_edge *));
+	//b->edges[i]->to = (t_room *)ft_memalloc(sizeof(t_room *));
+	b->edges[i]->to = a;
+	b->edges[i]->available = 1;
 	b->link_count = i;
 	//ft_printf("-assigned pointers to links-\n---\n");
 	return (0);

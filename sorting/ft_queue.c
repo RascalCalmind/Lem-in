@@ -6,7 +6,7 @@
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/21 14:35:04 by wmisiedj       #+#    #+#                */
-/*   Updated: 2020/02/21 14:46:18 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/22 14:40:21 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_queue	*ft_queue(int size)
 
 int		ft_enqueue(t_queue *queue, t_room *room)
 {
+	ft_printf("FT_ENQUEUEUEUEUEUEU-----\n");
 	if (!queue || !room)
 		return (-1);
 	queue->list[queue->len] = room;
