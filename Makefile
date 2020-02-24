@@ -6,7 +6,7 @@
 #    By: lhageman <lhageman@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/13 17:45:16 by lhageman       #+#    #+#                 #
-#    Updated: 2020/02/21 14:48:27 by wmisiedj      ########   odam.nl          #
+#    Updated: 2020/02/22 15:43:56 by wmisiedj      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,9 @@ SRC =	ft_lem_in.c \
 		./sorting/ft_bfs.c \
 		./sorting/ft_paths.c \
 		./sorting/ft_find_room.c \
-		./sorting/ft_queue.c
+		./sorting/ft_queue.c \
+		./sorting/ft_max_flow.c \
+		./sorting/ft_dfs.c
 		
 
 OBJ = $(SRC:%.c=%.o)

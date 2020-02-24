@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/24 16:38:34 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/24 16:43:19 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct		s_edge
 	struct s_room	*to;
 	unsigned int	available : 1;
 	// int				flow;
-	// int				capacity;
+	int				capacity;
 	// int				rev;
 }					t_edge;
 
@@ -57,6 +57,7 @@ typedef struct		s_room
 	double			g;
 	double			h;
 	int				level;
+	int				dfs_iter;
 //	struct s_room	**links;
 	struct s_edge	**edges;
 	unsigned int	link_count;
@@ -68,7 +69,9 @@ typedef struct	s_queue
 {
 	t_room		**list; // list?
 	t_room		**prev;
+	t_room		**dequeue;
 	int			len; // index queue / list length?
+	int			dlen;
 }				t_queue;
 
 typedef struct		s_lemin
@@ -77,6 +80,7 @@ typedef struct		s_lemin
 	char			*end;
 	unsigned int	rooms;
 	unsigned int	ants;
+	unsigned int	*iter;
 	t_room			*room[MAX_HASHTABLE];
 }					t_lemin;
 
@@ -109,8 +113,10 @@ int					ft_is_command(char *str);
 t_rstr				*ft_read_file(void);
 
 int					ft_quicksort(t_room **open, int low, int high);
-int					ft_bfs(t_lemin *list);
+int					ft_bfs(t_lemin *list, t_room *start, t_room *end);
 t_room				**ft_rec_path(t_room *start, t_room *end, t_room **rev, int len);
+int					ft_dfs(t_lemin *list, t_room *start, t_room *end);
+int					ft_max_flow(t_lemin *list);
 
 t_queue				*ft_queue(int size);
 t_room				*ft_dequeue(t_queue *queue);
@@ -118,4 +124,5 @@ int					ft_enqueue(t_queue *queue, t_room *room);
 int					ft_inqueue(t_queue *queue, t_room *room);
 int					ft_free_queue(t_queue *queue);
 
+void				*ft_room_map(t_lemin *lemin, void (*func)(t_room *));
 #endif
