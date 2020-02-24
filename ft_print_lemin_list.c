@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/03 18:00:11 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/24 16:37:49 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/24 16:39:54 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,6 @@ void		ft_print_lemin(t_lemin *lemin)
 					if (lemin->room[i]->h)
 						ft_printf("Heuridian distance to the end:\t%f\n", lemin->room[i]->h);
 					ft_printf("Visited = %i\n", lemin->room[i]->visited);
-					// if (lemin->room[i]->links != NULL)
-					// {
-					// 	ft_printf("room links:\t\t\t");
-					// 	while (lemin->room[i]->links[j] != NULL)
-					// 	{
-					// 		ft_printf("%s, ", lemin->room[i]->links[j]->name);
-					// 		j += 1;
-					// 	}
-					// 	j = 0;
-					// 	ft_printf("\n");
-					// }
 					if (lemin->room[i]->edges != NULL)
 					{
 						ft_printf("room links:\t\t\t");
