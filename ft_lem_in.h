@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/21 15:35:17 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/24 16:38:34 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,21 @@
 # include "./errors/ft_error.h"
 
 #define MAX_HASHTABLE 10
+
+typedef struct		s_path
+{
+	struct s_room	**room;
+	// char			*start;
+	// char			*end;
+	int				len;
+}					t_path;
+
+typedef struct		s_ant
+{
+	char			*name;
+	struct s_path	*path;
+	int				cur;
+}					t_ant;
 
 typedef struct		s_edge
 {
