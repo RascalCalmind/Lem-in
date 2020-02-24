@@ -75,14 +75,15 @@ int dinic::dfs(int node, int end, int flow)
     for (int &i = iter[node]; i < (int)nodes[node].size(); i++)
     {
         edge &e = nodes[node][i];
-        if (e.capacity > 0 && level[node] < level[e.to])
-        {
-            int d = dfs(e.to, end, std::min(flow, e.capacity));
-            if (d > 0)
-            {
-                e.capacity -= d;
-                nodes[e.to][e.rev].capacity += d;
-                return d;
+        if (e.capacity > 0 && level[node] < level[e.to])			//as long as there's a possibility to push through the capacity
+        {															// and the level of the next to is bigger than the current node
+            int d = dfs(e.to, end, std::min(flow, e.capacity));		//search all neighbors recursively to find the end node
+            if (d > 0)												//if we find a way to end node give back
+            {														//the flow capacity to max-flow while-loop
+				printf("from %d to %d\n", e.rev, e.to);				//find routes!!! it will recursively give back a path from end to start if it finds capacity
+			    e.capacity -= d;									//d is the capacity used in the end and will be taken off the edges used
+                printf("d=%i\n", d);
+				return d;
             }
         }
     }
@@ -101,11 +102,7 @@ int dinic::maximum_flow(int start, int end)
         std::memset(iter, 0, sizeof(iter));
         int f;
         while ((f = dfs(start, end, INF)) > 0) {
-			printf("ITER %d\n", flow);
-			for(int i = 0; iter[i]; i++)
-			{
-				printf("%i\n", iter[i]);
-			}
+			printf("%i\n", f);
             flow += f;
 		}
     }
