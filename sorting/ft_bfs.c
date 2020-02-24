@@ -6,11 +6,19 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/13 15:14:06 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/22 19:49:08 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/24 16:31:40 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_lem_in.h"
+
+static void	reset_levels(t_room *room)
+{
+	if (room != NULL)
+	{
+		room->level = -1;
+	}
+}
 
 static void	ft_bfs_queueing(t_queue *queue)
 {
@@ -51,6 +59,8 @@ int		ft_bfs(t_lemin *list, t_room *start, t_room *end)
 	t_queue	*queue;
 
 	queue = ft_queue(list->rooms);
+	ft_room_map(list, reset_levels);
+	start->level = 0;
 	ft_printf("FT_BFS ---- Created queue queue\n");
 	ft_printf("FT_BFS ---- Found startroom %s\n", start->name);
 	ft_enqueue(queue, start);

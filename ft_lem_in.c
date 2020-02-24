@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:34:10 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/22 19:35:54 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/24 15:59:32 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,8 @@ int		main(int argc, char **argv)
 	if (ft_create_lists(lemin, file) == -1)
 		return (ft_error(ERR_MEM));
 	ft_print_lemin(lemin);
-	ft_bfs(lemin, ft_find_room(lemin, lemin->start), ft_find_room(lemin, lemin->end));
-	//max_flow = ft_max_flow(lemin);
+	// ft_bfs(lemin, ft_find_room(lemin, lemin->start), ft_find_room(lemin, lemin->end));
+	max_flow = ft_max_flow(lemin);
 	ft_printf(" -- MAX FLOW --: %d\n", max_flow);
 	if (file)
 		ft_free_rstr(file);

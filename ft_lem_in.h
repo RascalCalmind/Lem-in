@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/22 19:46:14 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/24 16:22:14 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct		s_room
 	double			g;
 	double			h;
 	int				level;
+	int				dfs_iter;
 //	struct s_room	**links;
 	struct s_edge	**edges;
 	unsigned int	link_count;
@@ -64,6 +65,7 @@ typedef struct		s_lemin
 	char			*end;
 	unsigned int	rooms;
 	unsigned int	ants;
+	unsigned int	*iter;
 	t_room			*room[MAX_HASHTABLE];
 }					t_lemin;
 
@@ -107,4 +109,5 @@ int					ft_enqueue(t_queue *queue, t_room *room);
 int					ft_inqueue(t_queue *queue, t_room *room);
 int					ft_free_queue(t_queue *queue);
 
+void				*ft_room_map(t_lemin *lemin, void (*func)(t_room *));
 #endif

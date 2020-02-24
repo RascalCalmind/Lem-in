@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/20 13:55:12 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/07 21:04:12 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/24 16:04:06 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ t_lemin		*ft_create_lemin(t_rstr *file)
 	if (lemin == NULL)
 		return (NULL);
 	lemin->rooms = ft_room_count(file);
+	lemin->iter = (unsigned int *)ft_memalloc(sizeof(unsigned int) * lemin->rooms);
 	return (lemin);
 }
