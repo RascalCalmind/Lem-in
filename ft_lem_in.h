@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/24 16:43:19 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/24 18:07:29 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct		s_path
 
 typedef struct		s_ant
 {
-	char			*name;
+	int				name;
 	struct s_path	*path;
 	int				cur;
 }					t_ant;
@@ -82,6 +82,7 @@ typedef struct		s_lemin
 	unsigned int	ants;
 	unsigned int	*iter;
 	t_room			*room[MAX_HASHTABLE];
+	t_path			**paths;
 }					t_lemin;
 
 typedef struct		s_rstr

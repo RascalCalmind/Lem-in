@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:34:10 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/24 15:59:32 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/24 17:59:45 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,23 @@ int		main(int argc, char **argv)
 	// ft_bfs(lemin, ft_find_room(lemin, lemin->start), ft_find_room(lemin, lemin->end));
 	max_flow = ft_max_flow(lemin);
 	ft_printf(" -- MAX FLOW --: %d\n", max_flow);
+	int j = 0;
+	ft_printf("hello :D\n");
+	for (int i = 0; i < lemin->rooms; i++)
+	{
+		ft_printf("this is i: %i\n", i);
+		if (lemin->paths[i])
+		{
+			ft_printf("this is i ho: %i\n", i);
+			while (j < lemin->paths[i]->len)
+			{
+				ft_printf("%s\n", lemin->paths[i]->room[j]->name);
+				j += 1;
+			}
+			j = 0;
+		}
+	}
+	ft_printf("printed done\n");
 	if (file)
 		ft_free_rstr(file);
 	if (lemin)
