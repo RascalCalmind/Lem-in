@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "ft_lem_in.h": "c"
+        "ft_lem_in.h": "c",
+        "sstream": "c"
     }
 }

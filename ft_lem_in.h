@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/26 16:13:13 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/26 18:28:19 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct		s_edge
 	unsigned int	available : 1;
 	// int				flow;
 	int				capacity;
-	// int				rev;
+	int				rev;
 }					t_edge;
 
 typedef struct		s_room
@@ -60,7 +60,7 @@ typedef struct		s_room
 	int				dfs_iter;
 //	struct s_room	**links;
 	struct s_edge	**edges;
-	unsigned int	link_count;
+	int				link_count;
 	struct s_room	*next;
 	unsigned int	visited : 1;
 }					t_room;

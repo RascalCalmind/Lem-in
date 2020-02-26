@@ -91,7 +91,7 @@ int dinic::dfs(int node, int end, int flow)
             if (d > 0)
             {
                 e.capacity -= d;
-                nodes[e.to][e.rev].capacity += d;
+                nodes[e.to][e.rev].capacity += d; // TODO
                 return d;
             }
         }
