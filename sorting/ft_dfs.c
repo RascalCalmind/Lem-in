@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/13 15:14:06 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/24 18:10:42 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/26 13:33:22 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	ft_dfs_queueing(t_lemin *lemin, t_room *current, t_room *end, int flo
 			if (curflow > 0)
 			{
 				printf("To -> %s\n", current->edges[current->dfs_iter]->to->name);
-				ft_add_room(lemin, current->edges[current->dfs_iter]->to, flow);
+				//ft_add_room(lemin, current->edges[current->dfs_iter]->to, flow);
 				current->edges[current->dfs_iter]->available = 0;
 				return (curflow);
 			}
@@ -61,7 +61,7 @@ int		ft_dfs(t_lemin *list, t_room *start, t_room *end)
 	int inf;
 	int dfs;
 
-	inf = -1;
+	inf = 0x7fffffff;
 	dfs = ft_dfs_queueing(list, start, end, inf);
 	ft_printf("FT_DFS ---- DONE DFS: %d\n", dfs);
 	return (dfs);

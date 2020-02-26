@@ -6,7 +6,7 @@
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/07 17:29:34 by wmisiedj       #+#    #+#                */
-/*   Updated: 2020/02/24 15:58:11 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/26 15:28:43 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@ static void	ft_read(t_rstr *file)
 	char	*line;
 	int		fd;
 
-	fd = open("./testmaps/map4.txt");
-		// fd = open("../test_superpos.txt");
+	//fd = open("./testmaps/map4.txt");
+	fd = open("./testmaps/map5.txt");
+	// fd = open("../test_one.txt");
+	//fd = open("../test_ten.txt");
+//fd = open("../test_superpos.txt");
+	//fd = open("../test_thousand.txt");
+	// fd = open("../test_big.txt");
 	while (get_next_line(fd, &line))
 	{
 		if (line != NULL && line[0])
