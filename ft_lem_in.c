@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:34:10 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/26 15:00:08 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/26 16:34:36 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,20 +109,20 @@ int		main(int argc, char **argv)
 	ft_printf(" -- MAX FLOW --: %d\n", max_flow);
 	int j = 0;
 	ft_printf("hello :D\n");
-	// for (int i = 0; i < lemin->rooms; i++)
-	// {
-	// 	ft_printf("this is i: %i\n", i);
-	// 	if (lemin->paths[i])
-	// 	{
-	// 		ft_printf("this is i ho: %i\n", i);
-	// 		while (j < lemin->paths[i]->len)
-	// 		{
-	// 			ft_printf("%s\n", lemin->paths[i]->room[j]->name);
-	// 			j += 1;
-	// 		}
-	// 		j = 0;
-	// 	}
-	// }
+	for (int i = 0; i < max_flow; i++)
+	{
+		if (lemin->paths[i] && lemin->paths[i]->room != NULL)
+		{
+			ft_printf("FOUND A PATH [%i]: ", i);
+			while (j <= lemin->paths[i]->len)
+			{
+				ft_printf("%s->", lemin->paths[i]->room[j]->name);
+				j += 1;
+			}
+			ft_printf("\n");
+			j = 0;
+		}
+	}
 	ft_printf("printed done, ants: %i\n", lemin->ants);
 	if (file)
 		ft_free_rstr(file);
