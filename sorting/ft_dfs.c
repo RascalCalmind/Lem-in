@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/13 15:14:06 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/26 18:26:05 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/27 19:04:34 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static int	ft_dfs_queueing(t_lemin *lemin, t_room *current, t_room *end, int flo
 			printf("FOUND END OF PATH\n");
 			lemin->path_count++;
 		}
-		if (edge->available && current->level < edge->to->level)
+		ft_printf("edgecheck dfs-queueing %s, cl[%i] el[%i]\n", current->name, current->level, edge->to->level);
+		if (edge->available && current->level <= edge->to->level)
 		{
 			curflow = ft_dfs_queueing(lemin, edge->to, end, edge->available);
 			if (curflow > 0)
@@ -56,7 +57,8 @@ static int	ft_dfs_queueing(t_lemin *lemin, t_room *current, t_room *end, int flo
 				printf("To -> %s\n", edge->to->name);
 				ft_add_room(lemin, edge->to, lemin->path_count);
 				edge->available = 0;
-				edge->to->edges[edge->rev]->available = 1;
+				if (ft_strcmp(edge->to->name, lemin->start) != 0)
+					edge->to->edges[edge->rev]->available = 1;
 				return (curflow);
 			}
 		}

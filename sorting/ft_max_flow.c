@@ -6,7 +6,7 @@
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/22 15:35:02 by wmisiedj       #+#    #+#                */
-/*   Updated: 2020/02/26 15:39:39 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/27 18:52:55 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ int	ft_max_flow(t_lemin *lemin)
 	{
 		//ft_bfs(lemin, start, end);
 		ft_bfs(lemin, end, start);
+		dfs_flow = 1;
 		// if (end->level < 0)
 		// 	return (flow);
+		ft_printf("start->level: %s after bfs [%i]\n", start->name, start->level);
 		if (start->level < 0)
 			return (flow);
 		ft_room_map(lemin, reset_iter);

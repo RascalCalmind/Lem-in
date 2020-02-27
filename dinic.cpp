@@ -111,14 +111,13 @@ int dinic::maximum_flow(int start, int end)
 int main() {
   dinic d;
   int max_flow = 0;
-    d.add_edge(0, 1, 1);
-    d.add_edge(0, 2, 1);
-    d.add_edge(1, 3, 1);
-    d.add_edge(2, 4, 1);
-    d.add_edge(3, 7, 1);
-    d.add_edge(4, 7, 1);
-    d.add_edge(5, 6, 1);
-    max_flow = d.maximum_flow(0, 7);
+    d.add_edge(5, 1, 1);
+    d.add_edge(2, 1, 1);
+    d.add_edge(5, 2, 1);
+    d.add_edge(3, 1, 1);
+    d.add_edge(4, 3, 1);
+    d.add_edge(5, 4, 1);
+    max_flow = d.maximum_flow(5, 1);
 
     printf("MAX FLOW: %d", max_flow);
   return 0;

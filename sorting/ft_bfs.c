@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/13 15:14:06 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/26 16:03:54 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/27 18:50:18 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,39 @@ static void	reset_levels(t_room *room)
 	{
 		room->level = -1;
 	}
+}
+
+static void	reset_visit(t_room *room, t_path **paths, int cpath)
+{
+	int p;
+	int r;
+
+	p = 0;
+	r = 0;
+	ft_printf("RESET VISIT ------\n");
+	if (room->visited == 1)
+	{
+		while (p <= cpath)
+		{
+			while (r <= paths[p]->len)
+			{
+				if (paths[p]->room[r] == room)
+				{
+					if (r == 0)
+						break;
+					ft_printf("RESET_VISIT in path: %s\n", room->name);
+					return ;
+				}
+				r += 1;
+			}
+			p += 1;
+			r = 0;
+		}
+		ft_printf("RESET_VISIT for room: %s\n", room->name);
+		room->visited = 0;
+	}
+	// while (1)
+	// 	;
 }
 
 static void	ft_bfs_queueing(t_queue *queue)
@@ -63,11 +96,14 @@ int		ft_bfs(t_lemin *list, t_room *start, t_room *end)
 	start->level = 0;
 	ft_printf("FT_BFS ---- Created queue queue\n");
 	ft_printf("FT_BFS ---- Found startroom %s\n", start->name);
-	ft_enqueue(queue, start);
+	ft_enqueue(queue, start);	
+	if (list->path_count > 0)
+		ft_room_map_v(list, reset_visit);
 	ft_printf("FT_BFS ---- Enqueued endroom into queue\n");
 	ft_bfs_queueing(queue);
 	ft_printf("FT_BFS ---- Created queue\n");
 	ft_print_arr_room(queue->prev);
 	ft_free_queue(queue);
+
 	return (0);
 }

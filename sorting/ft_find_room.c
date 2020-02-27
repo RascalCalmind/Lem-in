@@ -6,11 +6,36 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/19 14:19:42 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/26 15:53:38 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/27 18:49:41 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_lem_in.h"
+
+void	*ft_room_map_v(t_lemin *lemin, void (*func)(t_room *, t_path **paths, int cpath))
+{
+	int		i;
+	int 	j;
+	t_room 	*temp;
+
+	i = 0;
+	j = 0;
+	temp = NULL;
+	while (lemin->room && i < MAX_HASHTABLE)
+	{
+		if (lemin->room[i] != NULL)
+		{
+			temp = lemin->room[i];
+			while (lemin->room[i] != NULL)
+			{
+				func(lemin->room[i], lemin->paths, lemin->path_count);
+				lemin->room[i] = lemin->room[i]->next;
+			}
+			lemin->room[i] = temp;
+		}
+		i += 1;
+	}
+}
 
 void	*ft_room_map(t_lemin *lemin, void (*func)(t_room *))
 {

@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/26 18:28:19 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/27 18:13:30 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,4 +127,6 @@ int					ft_inqueue(t_queue *queue, t_room *room);
 int					ft_free_queue(t_queue *queue);
 
 void				*ft_room_map(t_lemin *lemin, void (*func)(t_room *));
+void				*ft_room_map_v(t_lemin *lemin, void (*func)(t_room *, t_path **paths, int cpath));
+
 #endif
