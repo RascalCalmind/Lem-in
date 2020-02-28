@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/13 15:14:06 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/27 18:50:18 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/28 16:49:24 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	ft_bfs_queueing(t_queue *queue)
 	room = ft_dequeue(queue);
 	while (room != NULL)
 	{
-		ft_printf("FT_BFS-- CURRENT ROOM %s - visited %d - LEVEL\n", room->name, room->visited, room->level);
+		ft_printf("FT_BFS-- CURRENT ROOM %s - visited %d - LEVEL %i\n", room->name, room->visited, room->level);
 		while (room->edges && room->edges[i] != NULL)
 		{
 			ft_printf("FT_BFS--edges exist room: %s\n", room->edges[i]->to->name);
@@ -104,6 +104,6 @@ int		ft_bfs(t_lemin *list, t_room *start, t_room *end)
 	ft_printf("FT_BFS ---- Created queue\n");
 	ft_print_arr_room(queue->prev);
 	ft_free_queue(queue);
-
+	start->level = 0;
 	return (0);
 }

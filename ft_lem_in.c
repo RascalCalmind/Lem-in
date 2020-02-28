@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:34:10 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/26 16:34:36 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/02/28 16:54:01 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ int		main(int argc, char **argv)
 				ft_printf("%s->", lemin->paths[i]->room[j]->name);
 				j += 1;
 			}
-			ft_printf("\n");
+			ft_printf("%s\n", lemin->end);
 			j = 0;
 		}
 	}
