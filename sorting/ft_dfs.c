@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/13 15:14:06 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/28 17:06:02 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/02/29 09:19:17 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static int	ft_dfs_queueing(t_lemin *lemin, t_room *current, t_room *end, int flo
 		{
 			printf("FOUND END OF PATH\n");
 			lemin->path_count++;
+			ft_printf("increased path count to: %i\n", lemin->path_count);
 		}
 		ft_printf("edgecheck dfs-queueing %s, cl[%i] el[%i]\n", current->name, current->level, edge->to->level);
 		if (edge->available && current->level < edge->to->level)
