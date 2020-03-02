@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/19 14:19:42 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/27 18:49:41 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/02 13:43:44 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	*ft_room_map(t_lemin *lemin, void (*func)(t_room *))
 	i = 0;
 	j = 0;
 	temp = NULL;
-	while (lemin->room && i < MAX_HASHTABLE)
+	while (i < MAX_HASHTABLE)
 	{
 		if (lemin->room[i] != NULL)
 		{
