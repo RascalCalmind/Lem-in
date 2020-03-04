@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:34:10 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/28 16:54:01 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/04 15:12:17 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int		main(int argc, char **argv)
 	{
 		if (lemin->paths[i] && lemin->paths[i]->room != NULL)
 		{
+			ft_printf("paths length: %i\n", lemin->paths[i]->len);
 			ft_printf("FOUND A PATH [%i]: ", i);
 			while (j <= lemin->paths[i]->len)
 			{
@@ -124,12 +125,14 @@ int		main(int argc, char **argv)
 		}
 	}
 	ft_printf("printed done, ants: %i\n", lemin->ants);
+	place_ants(lemin);
+	ft_printf("PLACED ALL ANTS, WHOOOOOOHOOOO\n");
 	if (file)
 		ft_free_rstr(file);
 	if (lemin)
 		ft_free_lemin(lemin);
 	//ft_printf("STRUCT SIZE %d", sizeof(t_rstr));
-	while (1)
-		continue;
+	// while (1)
+	// 	continue;
 	return (0);
 }

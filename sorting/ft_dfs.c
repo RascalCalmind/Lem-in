@@ -17,6 +17,8 @@ void		ft_add_room(t_lemin *lemin, t_room *room, int flow)
 	int i;
 
 	i = flow - 1;
+	if (i > 0 && lemin->paths[i - 1]->room[0] == NULL)
+		i -= 1;
 	if (lemin->paths[i] == NULL)
 		ft_printf("[ADD PATH] OH NO. ID %i\n", i);
 	else
@@ -45,7 +47,7 @@ static int	ft_dfs_queueing(t_lemin *lemin, t_room *current, t_room *end, int flo
 		edge = current->edges[current->dfs_iter];
 
 		ft_printf("edgecheck dfs-queueing %s, cl[%i] el[%i]\n", current->name, current->level, edge->to->level);
-		if (ft_strcmp(edge->to->name, lemin->start) == 0)
+		if (edge->available && current->level < edge->to->level && ft_strcmp(edge->to->name, lemin->start) == 0)
 		{
 			printf("FOUND END OF PATH\n");
 			lemin->path_count++;

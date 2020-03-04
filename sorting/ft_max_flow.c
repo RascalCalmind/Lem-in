@@ -6,7 +6,7 @@
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/22 15:35:02 by wmisiedj       #+#    #+#                */
-/*   Updated: 2020/03/02 13:56:02 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/04 15:21:31 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	ft_max_flow(t_lemin *lemin)
 	{
 		lemin->paths[i] = (t_path *)ft_memalloc(sizeof(t_path));
 		lemin->paths[i]->room = (t_room **)ft_memalloc(sizeof(t_room *) * lemin->rooms);
+		lemin->paths[i]->ants = (t_ant **)ft_memalloc(sizeof(t_ant *) * lemin->ants);
 		i += 1;
 	}
 	flow = 0;

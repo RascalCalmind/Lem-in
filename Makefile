@@ -6,7 +6,7 @@
 #    By: lhageman <lhageman@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/13 17:45:16 by lhageman       #+#    #+#                 #
-#    Updated: 2020/02/22 15:43:56 by wmisiedj      ########   odam.nl          #
+#    Updated: 2020/03/04 15:14:11 by lhageman      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC =	ft_lem_in.c \
 		ft_print_lemin_list.c \
 		ft_connection.c \
 		ft_file.c \
+		ft_ants.c \
 		./sorting/quick_sort.c \
 		./sorting/ft_bfs.c \
 		./sorting/ft_paths.c \

@@ -9441,7 +9441,7 @@ Sgf2-Jtx5
 Ijc5-Pld5
 Zvr1-Rph1
 Cde1-Nja2
-Nja2-Idg4
+Nja2-  g4
 Idg4-U_h7
 U_h7-Yri9
 Yri9-Yua5

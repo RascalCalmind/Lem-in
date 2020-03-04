@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/27 18:13:30 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/04 15:28:27 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,21 @@
 
 #define MAX_HASHTABLE 10
 
+typedef struct		s_ant
+{
+	int				num;
+	int				cur;
+}					t_ant;
+
 typedef struct		s_path
 {
 	struct s_room	**room;
 	// char			*start;
 	// char			*end;
 	int				len;
+	int				ants_len;
+	t_ant			**ants;
 }					t_path;
-
-typedef struct		s_ant
-{
-	int				name;
-	struct s_path	*path;
-	int				cur;
-}					t_ant;
 
 typedef struct		s_edge
 {
@@ -129,4 +130,6 @@ int					ft_free_queue(t_queue *queue);
 void				*ft_room_map(t_lemin *lemin, void (*func)(t_room *));
 void				*ft_room_map_v(t_lemin *lemin, void (*func)(t_room *, t_path **paths, int cpath));
 
+
+int					place_ants(t_lemin *lemin);
 #endif
