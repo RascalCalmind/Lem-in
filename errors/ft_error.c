@@ -6,7 +6,7 @@
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 15:25:41 by wmisiedj       #+#    #+#                */
-/*   Updated: 2020/02/04 19:34:33 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/03/05 14:34:07 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	ft_error(int i)
 	else if (i == ERR_DOUBLE_COMMANDS)
 		ft_dprintf(STDERR_FILENO, "Detected double commands, either \
 ##start or ##end is double.\n");
+	else if (i == ERR_NO_PATHS)
+		ft_dprintf(STDERR_FILENO, "No paths available!\n");
 	else
 		ft_dprintf(STDERR_FILENO, "Error number: %d\n", i);
 	return (-1);

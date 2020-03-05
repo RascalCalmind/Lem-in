@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:34:10 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/04 15:12:17 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/05 14:34:35 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,14 @@ int		main(int argc, char **argv)
 	ft_printf(" -- MAX FLOW --: %d\n", max_flow);
 	int j = 0;
 	ft_printf("hello :D\n");
+	if (max_flow <= 0)
+	{
+		if (file)
+			ft_free_rstr(file);
+		if (lemin)
+			ft_free_lemin(lemin);
+		return (ft_error(ERR_NO_PATHS));
+	}
 	for (int i = 0; i < max_flow; i++)
 	{
 		if (lemin->paths[i] && lemin->paths[i]->room != NULL)

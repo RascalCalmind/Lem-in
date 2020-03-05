@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/03 18:00:11 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/24 16:39:54 by wmisiedj      ########   odam.nl         */
+/*   Updated: 2020/03/05 14:36:35 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void		ft_print_lemin(t_lemin *lemin)
 	if (lemin->rooms)
 		ft_printf("Total amount of rooms:\t %i\n", lemin->rooms);
 	ft_printf("--------------------------------------------\n");
-	if (lemin->room)
+	if (lemin->room != NULL)
 	{
 		while (i < MAX_HASHTABLE)
 		{

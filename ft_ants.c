@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/24 15:53:03 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/04 17:30:02 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/05 14:25:03 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static int		ft_print_ants(t_lemin *lemin)
 
 			cur = lemin->paths[p]->ants[a]->cur;
 			//ft_printf("current location for ant %i on path %i is %i\n", a, p, cur);
-			if (prev != cur && cur < lemin->paths[p]->len)
+			if (prev != cur && cur <= lemin->paths[p]->len)
 			{
 				ft_printf("L%i-%s",lemin->paths[p]->ants[a]->num, lemin->paths[p]->room[cur]->name);
 				lemin->paths[p]->ants[a]->cur += 1;
@@ -99,7 +99,7 @@ static int		ft_print_ants(t_lemin *lemin)
 					ft_printf(" ");
 				test = 0;
 			}
-			else if (prev != cur && cur == lemin->paths[p]->len)
+			else if (prev != cur && cur == lemin->paths[p]->len + 1)
 			{
 				ft_printf("L%i-%s",lemin->paths[p]->ants[a]->num, lemin->end);
 				lemin->paths[p]->ants[a]->cur += 1;
@@ -145,9 +145,11 @@ int				place_ants(t_lemin *lemin)
 	t_ant	*ant;
 	int		i;
 	int		ret;
+	int		lines;
 
 	i = 0;
 	ret = -1;
+	lines = -1;
 	while (i < lemin->ants)
 	{
 		printf("[PLACE ANTS] Placing ant: %i\n", i + 1);
@@ -160,9 +162,13 @@ int				place_ants(t_lemin *lemin)
 		path->ants_len++;
 		i++;
 	}
-	ft_printf("Calculated all routes for ants! now printing:\n");
+	ft_printf("---\nCalculated all routes for ants! now printing:\n\n");
 	while (ret != 1)
+	{
 		ret = ft_print_ants(lemin);
+		lines += 1;
+	}
+	ft_printf("lines: %i\n\n---\n", lines);
 	return (0);
 }
 
