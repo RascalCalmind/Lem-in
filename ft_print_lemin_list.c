@@ -6,15 +6,38 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/03 18:00:11 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/05 14:36:35 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/07 16:24:08 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lem_in.h"
 
+void		ft_print_paths(t_lemin *lemin, int max_flow)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < max_flow)
+	{
+		if (lemin->paths[i] && lemin->paths[i]->room != NULL)
+		{
+			ft_printf("PATH[%i]: ", i);
+			while (j <= lemin->paths[i]->len)
+			{
+				ft_printf("%s->", lemin->paths[i]->room[j]->name);
+				j += 1;
+			}
+			ft_printf("%s\n", lemin->end);
+			j = 0;
+		}
+		i += 1;
+	}
+}
+
 void		ft_print_lemin(t_lemin *lemin)
 {
-	//ft_printf("PRINTING LEMIN LISTS \n\n");
 	unsigned int	i;
 	int				j;
 	t_room			*temp;
@@ -38,7 +61,6 @@ void		ft_print_lemin(t_lemin *lemin)
 			if (lemin->room[i] != NULL)
 			{
 				temp = lemin->room[i];
-				//ft_printf("INITIALR ROOM: %s\n", lemin->room[i]->name);
 				while (lemin->room[i] != NULL)
 				{
 					ft_printf("Position in list:\t\t%i\n", i);
@@ -64,14 +86,13 @@ void		ft_print_lemin(t_lemin *lemin)
 					ft_printf("--------------------------------------------\n");
 				}
 				lemin->room[i] = temp;
-				//ft_printf("SHOULD RESET ROOM: %s\n", lemin->room[i]->name);
 			}
 			i += 1;
 		}
 	}
 }
 
-void	ft_print_arr_room(t_room **rooms)
+void		ft_print_arr_room(t_room **rooms)
 {
 	int i;
 

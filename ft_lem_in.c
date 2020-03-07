@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:34:10 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/05 14:34:35 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/07 16:23:22 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int		ft_create_lists(t_lemin *list, t_rstr *file)
 	}
 	while (file->next != NULL)
 	{
-		//ft_printf("ft_create_lists\t\tfile->str:%s\n", file->str);
 		if (ft_strncmp(file->str, "##", 2) == 0)
 		{
 			if (ft_handle_command_line(list, file) == -1)
@@ -81,15 +80,13 @@ int		ft_create_lists(t_lemin *list, t_rstr *file)
 
 int		main(int argc, char **argv)
 {
-	t_rstr	*file;
-	t_lemin *lemin;
-	int		rooms;
-	int		max_flow;
+	t_rstr		*file;
+	t_lemin		*lemin;
+	int			rooms;
+	int			max_flow;
+	int			j;
 
-	//ft_printf("START");
 	rooms = 0;
-	// if (argv && argc > 1)
-	// 	return (ft_error(ERR_PARAMS));
 	file = ft_read_file();
 	if (!file)
 		return (ft_error(ERR_MEM));
@@ -104,11 +101,8 @@ int		main(int argc, char **argv)
 	if (ft_create_lists(lemin, file) == -1)
 		return (ft_error(ERR_MEM));
 	ft_print_lemin(lemin);
-	// ft_bfs(lemin, ft_find_room(lemin, lemin->start), ft_find_room(lemin, lemin->end));
 	max_flow = ft_max_flow(lemin);
-	ft_printf(" -- MAX FLOW --: %d\n", max_flow);
-	int j = 0;
-	ft_printf("hello :D\n");
+	j = 0;
 	if (max_flow <= 0)
 	{
 		if (file)
@@ -117,29 +111,12 @@ int		main(int argc, char **argv)
 			ft_free_lemin(lemin);
 		return (ft_error(ERR_NO_PATHS));
 	}
-	for (int i = 0; i < max_flow; i++)
-	{
-		if (lemin->paths[i] && lemin->paths[i]->room != NULL)
-		{
-			ft_printf("paths length: %i\n", lemin->paths[i]->len);
-			ft_printf("FOUND A PATH [%i]: ", i);
-			while (j <= lemin->paths[i]->len)
-			{
-				ft_printf("%s->", lemin->paths[i]->room[j]->name);
-				j += 1;
-			}
-			ft_printf("%s\n", lemin->end);
-			j = 0;
-		}
-	}
-	ft_printf("printed done, ants: %i\n", lemin->ants);
+	ft_print_paths(lemin, max_flow);
 	place_ants(lemin);
-	ft_printf("PLACED ALL ANTS, WHOOOOOOHOOOO\n");
 	if (file)
 		ft_free_rstr(file);
 	if (lemin)
 		ft_free_lemin(lemin);
-	//ft_printf("STRUCT SIZE %d", sizeof(t_rstr));
 	// while (1)
 	// 	continue;
 	return (0);

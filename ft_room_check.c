@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 14:29:05 by lhageman       #+#    #+#                */
-/*   Updated: 2020/02/19 13:22:06 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/07 16:25:06 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ char	**ft_room_check(char *str)
 			if (ret != 0)
 				return (NULL);
 		}
-		//ft_printf("ft_room_check\t\tarr[%i]:%s\n", i, arr[i]);
 		i += 1;
 	}
 	return (arr);

@@ -6,17 +6,18 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/19 14:19:42 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/04 15:13:43 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/07 16:10:28 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_lem_in.h"
 
-void	*ft_room_map_v(t_lemin *lemin, void (*func)(t_room *, t_path **paths, int cpath))
+void		*ft_room_map_v(t_lemin *lemin, void (*func)\
+			(t_room *, t_path **paths, int cpath))
 {
 	int		i;
-	int 	j;
-	t_room 	*temp;
+	int		j;
+	t_room	*temp;
 
 	i = 0;
 	j = 0;
@@ -37,11 +38,11 @@ void	*ft_room_map_v(t_lemin *lemin, void (*func)(t_room *, t_path **paths, int c
 	}
 }
 
-void	*ft_room_map(t_lemin *lemin, void (*func)(t_room *))
+void		*ft_room_map(t_lemin *lemin, void (*func)(t_room *))
 {
 	int		i;
-	int 	j;
-	t_room 	*temp;
+	int		j;
+	t_room	*temp;
 
 	i = 0;
 	j = 0;
