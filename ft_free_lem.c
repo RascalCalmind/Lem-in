@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 13:09:54 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/07 16:01:59 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/09 15:57:45 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int			ft_free_char_arr(char **arr, int len)
 	int i;
 
 	i = 0;
-	while (i < len)
+	while (i < len && arr[i])
 	{
-		if (arr[i])
+		if (arr[i] != NULL)
 		{
 			free(arr[i]);
 			arr[i] = NULL;

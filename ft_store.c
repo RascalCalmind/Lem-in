@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 14:01:47 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/07 16:06:32 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/09 17:37:23 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int			ft_store_room(t_lemin *lemin, t_rstr *file)
 	ret = 0;
 	args = ft_room_check(file->str);
 	if (args == NULL)
-		return (ft_free_error_lem_rstr(lemin, file));
+		return (ft_free_error_lem_rstr(lemin, file, 3));
 	hash = ft_hash_sdbm(args[0], MAX_HASHTABLE);
 	room = (t_room *)ft_memalloc(sizeof(t_room));
 	if (lemin->room[hash] != NULL)
@@ -85,7 +85,5 @@ int			ft_store_room(t_lemin *lemin, t_rstr *file)
 	ft_free_char_arr(args, 4);
 	p = lemin->room[hash];
 	lemin->room[hash] = temp;
-	if (lemin->end != NULL)
-		p->h = ft_calc_heuridian(lemin, p, lemin->end);
 	return (1);
 }

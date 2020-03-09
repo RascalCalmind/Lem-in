@@ -6,7 +6,7 @@
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 15:25:41 by wmisiedj       #+#    #+#                */
-/*   Updated: 2020/03/05 14:34:07 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/09 13:28:28 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_error(int i)
 {
 	if (i == ERR_PARAMS)
 		ft_dprintf(STDERR_FILENO, "Too many arguments given!\n");
+	else if (i == ERR_EMPTY_FILE || i == ERR_INVALID_ROOM_COUNT)
+		ft_dprintf(STDERR_FILENO, "Empty file or not enough rooms\n");
 	else if (i == ERR_ROOM_NAME)
 		ft_dprintf(STDERR_FILENO, "Invalid roomname! Can't start with 'L'\n");
 	else if (i == ERR_MEM)

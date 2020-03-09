@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/13 15:14:06 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/07 16:09:36 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/09 15:45:02 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int			ft_bfs(t_lemin *list, t_room *start, t_room *end)
 	if (list->path_count > 0)
 		ft_room_map_v(list, reset_visit);
 	ft_bfs_queueing(queue);
-	ft_print_arr_room(queue->prev);
+	// ft_print_arr_room(queue->prev);
 	ft_free_queue(queue);
 	start->level = 0;
 	return (0);

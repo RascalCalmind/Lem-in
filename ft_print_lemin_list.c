@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/03 18:00:11 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/07 16:24:08 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/09 17:37:17 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,24 @@ void		ft_print_paths(t_lemin *lemin, int max_flow)
 
 	i = 0;
 	j = 0;
+	if (i < max_flow)
+		ft_printf(ANSI_OCEAN_BLUE"\n-----\n\nPATHS FOUND:\n\n"ANSI_RESET);
 	while (i < max_flow)
 	{
 		if (lemin->paths[i] && lemin->paths[i]->room != NULL)
 		{
-			ft_printf("PATH[%i]: ", i);
+			ft_printf(ANSI_GREY_PURPLE"PATH[%i] WITH THE LENGTH OF %i:\n"ANSI_RESET, i, lemin->paths[i]->len);
 			while (j <= lemin->paths[i]->len)
 			{
-				ft_printf("%s->", lemin->paths[i]->room[j]->name);
+				ft_printf(ANSI_GREY_PINK"%s->"ANSI_RESET, lemin->paths[i]->room[j]->name);
 				j += 1;
 			}
-			ft_printf("%s\n", lemin->end);
+			ft_printf(ANSI_GREY_PINK"%s\n"ANSI_RESET, lemin->end);
 			j = 0;
 		}
 		i += 1;
 	}
+	ft_printf(ANSI_OCEAN_BLUE"\n-----\n\n"ANSI_RESET);
 }
 
 void		ft_print_lemin(t_lemin *lemin)
@@ -68,8 +71,6 @@ void		ft_print_lemin(t_lemin *lemin)
 						ft_printf("Room name:\t\t\t%s\n", lemin->room[i]->name);
 					if (lemin->room[i]->x >= 0 && lemin->room[i]->y >= 0)
 						ft_printf("Room coordinates:\t\t(%i,%i)\n", lemin->room[i]->x, lemin->room[i]->y);
-					if (lemin->room[i]->h)
-						ft_printf("Heuridian distance to the end:\t%f\n", lemin->room[i]->h);
 					ft_printf("Visited = %i\n", lemin->room[i]->visited);
 					if (lemin->room[i]->edges != NULL)
 					{
@@ -90,6 +91,19 @@ void		ft_print_lemin(t_lemin *lemin)
 			i += 1;
 		}
 	}
+}
+
+void		ft_print_rstr(t_rstr *file)
+{
+	t_rstr *temp;
+
+	temp = file;
+	while (file->next != NULL)
+	{
+		ft_printf("%s\n", file->str);
+		file = file->next;
+	}
+	file = temp;
 }
 
 void		ft_print_arr_room(t_room **rooms)

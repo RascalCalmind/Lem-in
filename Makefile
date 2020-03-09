@@ -6,7 +6,7 @@
 #    By: lhageman <lhageman@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/13 17:45:16 by lhageman       #+#    #+#                 #
-#    Updated: 2020/03/04 15:14:11 by lhageman      ########   odam.nl          #
+#    Updated: 2020/03/09 16:14:03 by lhageman      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,6 @@ SRC =	ft_lem_in.c \
 		ft_ants.c \
 		./sorting/quick_sort.c \
 		./sorting/ft_bfs.c \
-		./sorting/ft_paths.c \
 		./sorting/ft_find_room.c \
 		./sorting/ft_queue.c \
 		./sorting/ft_max_flow.c \

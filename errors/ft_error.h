@@ -6,7 +6,7 @@
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 15:24:11 by wmisiedj       #+#    #+#                */
-/*   Updated: 2020/03/05 14:34:57 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/09 12:23:45 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #define ERR_DOUBLE_COMMANDS 4
 #define ERR_INVALID_ROOM_COUNT 5
 #define	ERR_NO_PATHS 6
+#define ERR_EMPTY_FILE 7
 #define ERR_OTHER -1
 
 int     ft_error(int i);

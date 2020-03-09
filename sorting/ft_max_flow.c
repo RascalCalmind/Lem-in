@@ -6,7 +6,7 @@
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/22 15:35:02 by wmisiedj       #+#    #+#                */
-/*   Updated: 2020/03/07 16:16:34 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/09 16:10:46 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void		reset_iter(t_room *room)
 
 int			ft_max_flow(t_lemin *lemin)
 {
-	int		flow;
-	int		dfs_flow;
-	t_room	*start;
-	t_room	*end;
-	int		i;
+	int				flow;
+	int				dfs_flow;
+	t_room			*start;
+	t_room			*end;
+	unsigned int	i;
 
 	i = 0;
 	end = ft_find_room(lemin, lemin->end);

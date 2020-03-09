@@ -6,13 +6,13 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/19 14:19:42 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/07 16:10:28 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/09 16:17:08 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_lem_in.h"
 
-void		*ft_room_map_v(t_lemin *lemin, void (*func)\
+void		ft_room_map_v(t_lemin *lemin, void (*func)\
 			(t_room *, t_path **paths, int cpath))
 {
 	int		i;
@@ -38,7 +38,7 @@ void		*ft_room_map_v(t_lemin *lemin, void (*func)\
 	}
 }
 
-void		*ft_room_map(t_lemin *lemin, void (*func)(t_room *))
+void		ft_room_map(t_lemin *lemin, void (*func)(t_room *))
 {
 	int		i;
 	int		j;

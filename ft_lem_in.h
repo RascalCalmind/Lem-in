@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/07 16:22:57 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/09 17:24:00 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@
 # include "libft/libft.h"
 # include "libft/ft_printf.h"
 # include "./errors/ft_error.h"
+
+# define ANSI_OCEAN_BLUE "\033[38;5;39m"
+# define ANSI_GREY_PINK "\033[38;5;182m"
+# define ANSI_GREY_PURPLE "\033[38;5;111m"
+# define ANSI_RESET "\033[0m"
 
 # define MAX_HASHTABLE 10
 
@@ -104,10 +109,11 @@ int					ft_contains(char *str, char c);
 int					ft_connection(char *str, t_lemin *list);
 t_room				*ft_find_room(t_lemin *list, char *name);
 
-int					ft_free_error_lem_rstr(t_lemin *list, t_rstr *file);
+int					ft_free_error_lem_rstr(t_lemin *list, t_rstr *file, int i);
 
 int					ft_is_command(char *str);
 t_rstr				*ft_read_file(void);
+void				ft_print_rstr(t_rstr *file);
 
 int					ft_quicksort(t_room **open, int low, int high);
 int					ft_bfs(t_lemin *list, t_room *start, t_room *end);
@@ -122,8 +128,8 @@ int					ft_enqueue(t_queue *queue, t_room *room);
 int					ft_inqueue(t_queue *queue, t_room *room);
 int					ft_free_queue(t_queue *queue);
 
-void				*ft_room_map(t_lemin *lemin, void (*func)(t_room *));
-void				*ft_room_map_v(t_lemin *lemin, void (*func)\
+void				ft_room_map(t_lemin *lemin, void (*func)(t_room *));
+void				ft_room_map_v(t_lemin *lemin, void (*func)\
 					(t_room *, t_path **paths, int cpath));
 void				ft_print_paths(t_lemin *lemin, int max_flow);
 

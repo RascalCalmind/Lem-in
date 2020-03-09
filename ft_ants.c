@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/24 15:53:03 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/07 15:58:36 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/09 17:32:09 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static int		ft_print_ants(t_lemin *lemin)
 {
-	int p;
-	int a;
-	int cur;
-	int prev;
-	int test;
+	unsigned int	p;
+	int				a;
+	int 			cur;
+	int 			prev;
+	int 			test;
 
 	p = 0;
 	prev = -1;
@@ -31,7 +31,7 @@ static int		ft_print_ants(t_lemin *lemin)
 			cur = lemin->paths[p]->ants[a]->cur;
 			if (prev != cur && cur <= lemin->paths[p]->len)
 			{
-				ft_printf("L%i-%s", lemin->paths[p]->ants[a]->num,\
+				ft_printf(ANSI_OCEAN_BLUE"L%i-%s", lemin->paths[p]->ants[a]->num,\
 				lemin->paths[p]->room[cur]->name);
 				lemin->paths[p]->ants[a]->cur += 1;
 				prev = cur;
@@ -41,7 +41,7 @@ static int		ft_print_ants(t_lemin *lemin)
 			}
 			else if (prev != cur && cur == lemin->paths[p]->len + 1)
 			{
-				ft_printf("L%i-%s", lemin->paths[p]->ants[a]->num, lemin->end);
+				ft_printf(ANSI_OCEAN_BLUE"L%i-%s", lemin->paths[p]->ants[a]->num, lemin->end);
 				lemin->paths[p]->ants[a]->cur += 1;
 				prev = cur;
 				if (p + 1 < lemin->path_count)
@@ -54,7 +54,7 @@ static int		ft_print_ants(t_lemin *lemin)
 		p += 1;
 	}
 	if (p > 0)
-		ft_printf("\n");
+		ft_printf("\n"ANSI_RESET);
 	if (test == 0)
 		return (0);
 	return (1);
@@ -62,8 +62,8 @@ static int		ft_print_ants(t_lemin *lemin)
 
 static t_path	*find_best_path(t_lemin *lemin)
 {
-	int		i;
-	t_path	*shortest;
+	unsigned int	i;
+	t_path			*shortest;
 
 	i = 0;
 	shortest = lemin->paths[0];
@@ -79,11 +79,11 @@ static t_path	*find_best_path(t_lemin *lemin)
 
 int				place_ants(t_lemin *lemin)
 {
-	t_path	*path;
-	t_ant	*ant;
-	int		i;
-	int		ret;
-	int		lines;
+	t_path			*path;
+	t_ant			*ant;
+	unsigned int	i;
+	int				ret;
+	int				lines;
 
 	i = 0;
 	ret = -1;
@@ -98,10 +98,13 @@ int				place_ants(t_lemin *lemin)
 		path->ants_len++;
 		i++;
 	}
+	if (ret != 1)
+		ft_printf(ANSI_GREY_PINK"\n\n-----\n\nSOLUTION ANTS:\n\n"ANSI_RESET);
 	while (ret != 1)
 	{
 		ret = ft_print_ants(lemin);
 		lines += 1;
 	}
-	return (0);
+	ft_printf(ANSI_GREY_PINK"-----\n\n"ANSI_RESET);
+	return (lines);
 }
