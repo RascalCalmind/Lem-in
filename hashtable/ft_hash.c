@@ -6,20 +6,11 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 14:50:43 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/29 19:29:30 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/11 17:44:55 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-
-// TODO: Fix comment
-/**
- * Hashing algorithm based on SDBM.
- * 
- * Code: hash(i) = hash(i - 1) * 65599 + str[i];
- * 
- * @ref: http://www.cse.yorku.ca/~oz/hash.html
- */
 
 unsigned int	ft_hash_sdbm(char *str, unsigned int max_int)
 {

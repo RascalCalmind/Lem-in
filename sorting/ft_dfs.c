@@ -6,13 +6,13 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/13 15:14:06 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/07 16:16:08 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/11 15:57:05 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_lem_in.h"
 
-void		ft_add_room(t_lemin *lemin, t_room *room, int flow)
+static void	ft_add_room(t_lemin *lemin, t_room *room, int flow)
 {
 	int i;
 
@@ -28,15 +28,11 @@ void		ft_add_room(t_lemin *lemin, t_room *room, int flow)
 }
 
 static int	ft_dfs_queueing(t_lemin *lemin, t_room *current,\
-			t_room *end, int flow)
+			t_room *start, int flow)
 {
-	int		curflow;
 	t_edge	*edge;
 
-	curflow = 1;
-	if (ft_strcmp(current->name, end->name) == 0)
-		return (flow);
-	if (flow == 0)
+	if (flow == 0 || ft_strcmp(current->name, start->name) == 0)
 		return (flow);
 	while (current->edges[current->dfs_iter] != NULL)
 	{
@@ -46,14 +42,14 @@ static int	ft_dfs_queueing(t_lemin *lemin, t_room *current,\
 			lemin->path_count++;
 		if (edge->available && current->level < edge->to->level)
 		{
-			curflow = ft_dfs_queueing(lemin, edge->to, end, edge->available);
-			if (curflow > 0)
+			flow = ft_dfs_queueing(lemin, edge->to, start, edge->available);
+			if (flow > 0)
 			{
 				ft_add_room(lemin, edge->to, lemin->path_count);
 				edge->available = 0;
 				if (edge->to->edges[edge->rev])
 					edge->to->edges[edge->rev]->available = 1;
-				return (curflow);
+				return (flow);
 			}
 		}
 		current->dfs_iter++;
@@ -61,12 +57,12 @@ static int	ft_dfs_queueing(t_lemin *lemin, t_room *current,\
 	return (0);
 }
 
-int			ft_dfs(t_lemin *list, t_room *start, t_room *end)
+int			ft_dfs(t_lemin *list, t_room *end, t_room *start)
 {
 	int inf;
 	int dfs;
 
 	inf = 0x7fffffff;
-	dfs = ft_dfs_queueing(list, start, end, inf);
+	dfs = ft_dfs_queueing(list, end, start, inf);
 	return (dfs);
 }

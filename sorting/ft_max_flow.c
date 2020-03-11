@@ -6,7 +6,7 @@
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/22 15:35:02 by wmisiedj       #+#    #+#                */
-/*   Updated: 2020/03/09 16:10:46 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/11 17:35:40 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,28 @@ void		reset_iter(t_room *room)
 		room->dfs_iter = 0;
 }
 
+static t_path	**ft_create_paths(int rooms, int ants)
+{
+	t_path		**paths;
+	int			i;
+
+	i = 0;
+	paths = (t_path **)ft_memalloc(sizeof(t_path *) * rooms + 1);
+	while (i < rooms)
+	{
+		paths[i] = (t_path *)ft_memalloc(sizeof(t_path));
+		paths[i]->room = (t_room **)\
+		ft_memalloc(sizeof(t_room *) * rooms);
+		paths[i]->ants = (t_ant **)\
+		ft_memalloc(sizeof(t_ant *) * ants);
+		i++;
+	}
+	return (paths);
+}
+
 int			ft_max_flow(t_lemin *lemin)
 {
+	printf("MAX FLOW START!\n");
 	int				flow;
 	int				dfs_flow;
 	t_room			*start;
@@ -29,25 +49,18 @@ int			ft_max_flow(t_lemin *lemin)
 	i = 0;
 	end = ft_find_room(lemin, lemin->end);
 	start = ft_find_room(lemin, lemin->start);
-	lemin->paths = (t_path **)ft_memalloc(sizeof(t_path *) * lemin->rooms + 1);
-	while (i < lemin->rooms)
-	{
-		lemin->paths[i] = (t_path *)ft_memalloc(sizeof(t_path));
-		lemin->paths[i]->room = (t_room **)\
-		ft_memalloc(sizeof(t_room *) * lemin->rooms);
-		lemin->paths[i]->ants = (t_ant **)\
-		ft_memalloc(sizeof(t_ant *) * lemin->ants);
-		i += 1;
-	}
+	lemin->paths = ft_create_paths(lemin->rooms, lemin->ants);
 	flow = 0;
-	dfs_flow = 1;
 	while (start != NULL && end != NULL)
 	{
-		ft_bfs(lemin, end, start);
-		dfs_flow = 1;
+		i += 1;
+		if (i == 500)
+			return (flow);
+		ft_bfs(lemin, end);
 		if (start->level < 0)
 			return (flow);
 		ft_room_map(lemin, reset_iter);
+		dfs_flow = 1;
 		while (dfs_flow > 0)
 		{
 			dfs_flow = ft_dfs(lemin, end, start);

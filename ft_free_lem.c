@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 13:09:54 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/09 15:57:45 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/11 11:55:27 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,12 @@ void		ft_free_lemin(t_lemin *list)
 			list->room[i] = NULL;
 		}
 		i++;
+	}
+	if (list->iter)
+	{
+		free(list->iter);
+		list->iter = NULL;
+
 	}
 	if (list != NULL)
 	{

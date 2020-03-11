@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/09 17:24:00 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/11 15:57:04 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ typedef struct		s_lemin
 	t_room			*room[MAX_HASHTABLE];
 	t_path			**paths;
 	unsigned int	path_count;
+	int				max_flow;
+	int				lines;
 }					t_lemin;
 
 typedef struct		s_rstr
@@ -116,9 +118,7 @@ t_rstr				*ft_read_file(void);
 void				ft_print_rstr(t_rstr *file);
 
 int					ft_quicksort(t_room **open, int low, int high);
-int					ft_bfs(t_lemin *list, t_room *start, t_room *end);
-t_room				**ft_rec_path(t_room *start, t_room *end,\
-					t_room **rev, int len);
+int					ft_bfs(t_lemin *list, t_room *end);
 int					ft_dfs(t_lemin *list, t_room *start, t_room *end);
 int					ft_max_flow(t_lemin *list);
 
