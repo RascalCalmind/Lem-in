@@ -21,9 +21,10 @@ static int		ft_handle_command_line(t_lemin *list, t_rstr *file)
 		ft_strcmp(file->str, "##end") == 0)
 	{
 		command = ft_strdup(file->str);
-		file = file->next;
 		if (!file->str)
 			return (ft_free_error_lem_rstr(list, file, 4));
+		while (file->str[0] == '#')
+			file = file->next;
 		args = ft_strsplit(file->str, ' ');
 		if ((ft_strcmp(command, "##start") == 0 && list->start != NULL) ||
 			(ft_strcmp(command, "##end") == 0 && list->end != NULL))
@@ -32,6 +33,8 @@ static int		ft_handle_command_line(t_lemin *list, t_rstr *file)
 			list->start = ft_strdup(args[0]);
 		else if (ft_strcmp(command, "##end") == 0)
 			list->end = ft_strdup(args[0]);
+		if (list->start && list->end && ft_strcmp(list->start, list->end) == 0)
+			ft_error(ERR_DOUBLE_COMMANDS);
 		ft_free_char_arr(args, 4);
 		free(command);
 		return (1);
@@ -41,18 +44,15 @@ static int		ft_handle_command_line(t_lemin *list, t_rstr *file)
 
 static int		ft_create_lists(t_lemin *list, t_rstr *file)
 {
-	if (ft_check_int(file->str) != 0)
+	list->ants = ft_atoi(file->str);
+	if (list->ants <= 0 || ft_check_int(file->str) != 0)
 		return (ft_free_error_lem_rstr(list, file, 1));
-	else
-	{
-		list->ants = ft_atoi(file->str);
-		if (list->ants <= 0)
-			return (ft_free_error_lem_rstr(list, file, 1));
-		file = file->next;
-	}
+	file = file->next;
 	while (file->next != NULL)
 	{
-		if (ft_is_command(file->str))
+		if (file->str[0] == '#' && file->str[1] != '#')
+			;
+		else if (ft_is_command(file->str))
 			ft_handle_command_line(list, file);
 		else if (ft_contains(file->str, ' ') == 2)
 		{

@@ -21,14 +21,14 @@ static void	ft_read(t_rstr *file, int fd)
 	{
 		if (line != NULL && line[0])
 		{
-			if (!((line[0] == '#' && line[1] != '#') ||
-				(line[0] == '#' && line[1] == '#' &&
-				!ft_is_command(line))))
-			{
+			// if (!((line[0] == '#' && line[1] != '#') ||
+			// 	(line[0] == '#' && line[1] == '#' &&
+			// 	!ft_is_command(line))))
+			// {
 				file->str = ft_strdup(line);
 				file->next = ft_memalloc(sizeof(t_rstr));
 				file = file->next;
-			}
+			// }
 		}
 		if (line != NULL)
 			free(line);
@@ -41,10 +41,10 @@ t_rstr		*ft_read_file(void)
 	t_rstr	*file;
 	int		fd;
 
-	fd = STDIN_FILENO;
+	// fd = STDIN_FILENO;
 	// fd = open("./testmaps/err_noant2.txt");
 	// fd = open("./testmaps/err_noant.txt");
-	// fd = open("/Users/lhageman/Desktop/11.Lem-in/Github/testmaps/map1.txt", O_RDONLY);
+	fd = open("./testmaps/err_nostart.txt", O_RDONLY);
 	// ft_printf("hi wendell\n");
 	// fd = open("./testmaps/map7.txt");
 	// fd = open("./testmaps/test_one.txt");

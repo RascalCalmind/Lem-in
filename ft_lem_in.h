@@ -25,7 +25,7 @@
 # define ANSI_GREY_PURPLE "\033[38;5;111m"
 # define ANSI_RESET "\033[0m"
 
-# define MAX_HASHTABLE 9999
+# define MAX_HASHTABLE 10
 
 typedef struct		s_ant
 {
