@@ -12,48 +12,46 @@
 
 #include "ft_lem_in.h"
 
-static int			ft_do_path(t_path *path, int *prev, t_lemin *lemin, int has_moved)
+static int			ft_do_path(t_path *path, t_lemin *lemin)
 {
 	unsigned int	i;
 	t_ant			*ant;
-
-	i = 0;
-	while (i < path->ants_len)
-	{
-		ant = path->ants[i];
-		if (*prev != ant->cur && ant->cur <= path->len + 1)
-		{
-			ft_printf(ANSI_OCEAN_BLUE"L%i-%s", path->ants[i]->num, ant->cur == path->len + 1
-				? lemin->end : path->room[ant->cur]->name);
-			*prev = ant->cur;
-			ant->cur += 1;
-			if (i < path->ants_len)
-				ft_printf(" ");
-			has_moved = 1;
-		}
-		i += 1;
-	}
-	return (has_moved);
-}
-
-static int			ft_walk_ants(t_lemin *lemin)
-{
-	unsigned int	i;
-	int				has_moved;
 	int				prev;
 
 	i = 0;
-	has_moved = 0;
 	prev = -1;
+	while (i < path->ants_len)
+	{
+		ant = path->ants[i];
+		if (prev != ant->cur && ant->cur <= path->len + 1)
+		{
+			ft_printf(ANSI_OCEAN_BLUE"L%i-%s", path->ants[i]->num, ant->cur == path->len + 1
+				? lemin->end : path->room[ant->cur]->name);
+			prev = ant->cur;
+			ant->cur += 1;
+			if (i < path->ants_len)
+				ft_printf(" ");
+		}
+		i += 1;
+	}
+	return (prev);
+}
+
+static int			ft_walk_line(t_lemin *lemin)
+{
+	unsigned int	i;
+	int				ret;
+
+	i = 0;
+	ret = -1;
 	while (i < lemin->path_count)
 	{
-		has_moved = ft_do_path(lemin->paths[i], &prev, lemin, has_moved);
-		prev = -1;
+		ret = ft_do_path(lemin->paths[i], lemin);
 		i++;
 	}
 	if (i > 0)
 		ft_printf("\n"ANSI_RESET);
-	return (has_moved);
+	return (ret != -1);
 }
 
 static t_path		*find_best_path(t_lemin *lemin)
@@ -73,7 +71,7 @@ static t_path		*find_best_path(t_lemin *lemin)
 	return (shortest);
 }
 
-int					ft_move_ants(t_lemin *lemin)
+static int					ft_place_ants(t_lemin *lemin)
 {
 	t_path			*path;
 	t_ant			*ant;
@@ -91,9 +89,19 @@ int					ft_move_ants(t_lemin *lemin)
 		path->ants_len++;
 		i++;
 	}
-	ft_printf(ANSI_GREY_PINK"\n\n-----\n\nSOLUTION ANTS:\n\n"ANSI_RESET);
-	while (ft_walk_ants(lemin))
-		lemin->lines += 1;
-	ft_printf(ANSI_GREY_PINK"-----\n\n"ANSI_RESET);
+	return (1);
+}
+
+int					ft_move_ants(t_lemin *lemin)
+{
+	if (ft_place_ants(lemin)) {
+		ft_printf(ANSI_GREY_PINK"\n\n-----\n\nSOLUTION ANTS:\n\n"ANSI_RESET);
+		while (ft_walk_line(lemin))
+			lemin->lines += 1;
+		ft_printf(ANSI_GREY_PINK"-----\n\n"ANSI_RESET);
+	} else {
+		ft_error(ERR_OTHER);
+	}
+
 	return (lemin->lines);
 }

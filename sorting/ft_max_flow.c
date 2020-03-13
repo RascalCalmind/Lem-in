@@ -39,7 +39,6 @@ static t_path	**ft_create_paths(int rooms, int ants)
 
 int			ft_max_flow(t_lemin *lemin)
 {
-	printf("MAX FLOW START!\n");
 	int				flow;
 	int				dfs_flow;
 	t_room			*start;
@@ -54,8 +53,6 @@ int			ft_max_flow(t_lemin *lemin)
 	while (start != NULL && end != NULL)
 	{
 		i += 1;
-		if (i == 500)
-			return (flow);
 		ft_bfs(lemin, end);
 		if (start->level < 0)
 			return (flow);
@@ -64,8 +61,7 @@ int			ft_max_flow(t_lemin *lemin)
 		while (dfs_flow > 0)
 		{
 			dfs_flow = ft_dfs(lemin, end, start);
-			if (dfs_flow > 0)
-				flow += dfs_flow;
+			flow += dfs_flow;
 		}
 	}
 	return (flow);

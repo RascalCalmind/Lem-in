@@ -25,7 +25,7 @@
 # define ANSI_GREY_PURPLE "\033[38;5;111m"
 # define ANSI_RESET "\033[0m"
 
-# define MAX_HASHTABLE 10
+# define MAX_HASHTABLE 9999
 
 typedef struct		s_ant
 {
@@ -133,5 +133,5 @@ void				ft_room_map_v(t_lemin *lemin, void (*func)\
 					(t_room *, t_path **paths, int cpath));
 void				ft_print_paths(t_lemin *lemin, int max_flow);
 
-int					place_ants(t_lemin *lemin);
+int					ft_move_ants(t_lemin *lemin);
 #endif

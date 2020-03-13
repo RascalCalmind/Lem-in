@@ -16,27 +16,21 @@ static int	ft_room_count(t_rstr *file)
 {
 	int		cnt;
 	char	**arr;
+	t_rstr	*str;
 
 	cnt = 0;
-	while (file->next != NULL)
+	str = file;
+	while (str != NULL)
 	{
-		if (file->str && ft_contains(file->str, ' ') == 2)
+		if (str->str && ft_contains(str->str, ' ') == 2)
 		{
-			arr = ft_strsplit(file->str, ' ');
+			arr = ft_strsplit(str->str, ' ');
 			if (ft_check_int(arr[1]) == 0 && ft_check_int(arr[2]) == 0)
 				cnt += 1;
 			if (arr)
 				ft_free_char_arr(arr, 4);
 		}
-		file = file->next;
-	}
-	if (file->str && ft_contains(file->str, ' ') == 2)
-	{
-		arr = ft_strsplit(file->str, ' ');
-		if (ft_check_int(arr[1]) == 0 && ft_check_int(arr[2]) == 0)
-			cnt += 1;
-		if (arr)
-			ft_free_char_arr(arr, 4);
+		str = str->next;
 	}
 	return (cnt);
 }
@@ -51,6 +45,6 @@ t_lemin		*ft_create_lemin(t_rstr *file)
 	lemin->rooms = ft_room_count(file);
 	lemin->iter = (unsigned int *)ft_memalloc(sizeof(unsigned int)\
 	* lemin->rooms);
-	lemin->lines = -3;
+	lemin->lines = 0;
 	return (lemin);
 }

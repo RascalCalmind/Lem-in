@@ -77,35 +77,18 @@ void		ft_free_lemin(t_lemin *list)
 	if (list == NULL)
 		return ;
 	if (list->start != NULL)
-	{
 		free(list->start);
-		list->start = NULL;
-	}
 	if (list->end != NULL)
-	{
 		free(list->end);
-		list->end = NULL;
-	}
 	while (i < MAX_HASHTABLE)
 	{
 		if (list->room[i] != NULL)
-		{
 			ft_free_room(list->room[i]);
-			list->room[i] = NULL;
-		}
 		i++;
 	}
 	if (list->iter)
-	{
 		free(list->iter);
-		list->iter = NULL;
-
-	}
-	if (list != NULL)
-	{
-		free(list);
-		list = NULL;
-	}
+	free(list);
 }
 
 void		ft_free_rstr(t_rstr *list)
@@ -117,26 +100,19 @@ void		ft_free_rstr(t_rstr *list)
 	while (list->next != NULL)
 	{
 		temp = list->next;
-		if (list)
-		{
-			if (list->str)
-			{
-				free(list->str);
-				list->str = NULL;
-			}
-			free(list);
-			list = NULL;
-		}
-		list = temp;
-	}
-	if (list)
-	{
-		if (list->str)
+		if (list && list->str)
 		{
 			free(list->str);
 			list->str = NULL;
 		}
 		free(list);
-		list = NULL;
+		list = temp;
 	}
+	if (list && list->str)
+	{
+		free(list->str);
+		list->str = NULL;
+	}
+	free(list);
+	list = NULL;
 }

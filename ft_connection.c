@@ -98,6 +98,7 @@ int		ft_assign_connection(char **arr, t_lemin *list)
 	from = ft_pointer_room(arr[0], from_index, list);
 	to = ft_pointer_room(arr[1], to_index, list);
 
+	// TODO: Double check if this makes sense
 	from_index = add_edge(from, to, list);
 	to_index = add_edge(to, from, list);
 	from->edges[from_index]->rev = to->link_count;

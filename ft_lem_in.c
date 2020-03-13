@@ -12,7 +12,7 @@
 
 #include "ft_lem_in.h"
 
-int		ft_handle_command_line(t_lemin *list, t_rstr *file)
+static int		ft_handle_command_line(t_lemin *list, t_rstr *file)
 {
 	char **args;
 	char *command;
@@ -39,7 +39,7 @@ int		ft_handle_command_line(t_lemin *list, t_rstr *file)
 	return (0);
 }
 
-int		ft_create_lists(t_lemin *list, t_rstr *file)
+static int		ft_create_lists(t_lemin *list, t_rstr *file)
 {
 	if (ft_check_int(file->str) != 0)
 		return (ft_free_error_lem_rstr(list, file, 1));
@@ -68,7 +68,7 @@ int		ft_create_lists(t_lemin *list, t_rstr *file)
 	return (1);
 }
 
-void	ft_lem_flags(int argc, char **argv, t_lemin *lemin, int maxflow, int lines)
+static void	ft_lem_flags(int argc, char **argv, t_lemin *lemin, int maxflow, int lines)
 {
 	if (argc <= 1)
 		return ;	
@@ -82,7 +82,7 @@ void	ft_lem_flags(int argc, char **argv, t_lemin *lemin, int maxflow, int lines)
 		ft_print_paths(lemin, maxflow);
 }
 
-t_lemin	*ft_lem_in(t_rstr *file)
+static t_lemin	*ft_lem_in(t_rstr *file)
 {
 	t_lemin	*lemin;
 
@@ -113,18 +113,18 @@ t_lemin	*ft_lem_in(t_rstr *file)
 
 int		main(int argc, char **argv)
 {
-	t_rstr		*file;
 	t_lemin		*lemin;
-	
-	file = ft_read_file();
+	t_rstr		*file;
+
 	lemin = NULL;
+	file = ft_read_file();
 	if (!file)
 		return (ft_error(ERR_FILE));
 	lemin = ft_lem_in(file);
 	if (lemin == NULL)
 		return (-1);
 	ft_lem_flags(argc, argv, lemin, lemin->max_flow, lemin->lines);
-	lemin->lines = place_ants(lemin);
+	lemin->lines = ft_move_ants(lemin);
 	ft_lem_flags(argc, argv, lemin, lemin->max_flow, lemin->lines);
 	if (file)
 		ft_free_rstr(file);
