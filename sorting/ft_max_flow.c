@@ -12,7 +12,7 @@
 
 #include "../ft_lem_in.h"
 
-void		reset_iter(t_room *room)
+void			reset_iter(t_room *room)
 {
 	if (room != NULL)
 		room->dfs_iter = 0;
@@ -37,22 +37,19 @@ static t_path	**ft_create_paths(int rooms, int ants)
 	return (paths);
 }
 
-int			ft_max_flow(t_lemin *lemin)
+int				ft_max_flow(t_lemin *lemin)
 {
 	int				flow;
 	int				dfs_flow;
 	t_room			*start;
 	t_room			*end;
-	unsigned int	i;
 
-	i = 0;
 	end = ft_find_room(lemin, lemin->end);
 	start = ft_find_room(lemin, lemin->start);
 	lemin->paths = ft_create_paths(lemin->rooms, lemin->ants);
 	flow = 0;
 	while (start != NULL && end != NULL)
 	{
-		i += 1;
 		ft_bfs(lemin, end);
 		if (start->level < 0)
 			return (flow);

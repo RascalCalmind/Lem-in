@@ -36,7 +36,7 @@ static void	ft_read(t_rstr *file, int fd)
 	}
 }
 
-t_rstr		*ft_read_file()
+t_rstr		*ft_read_file(void)
 {
 	t_rstr	*file;
 	int		fd;

@@ -14,8 +14,8 @@
 
 static int		ft_handle_command_line(t_lemin *list, t_rstr *file)
 {
-	char **args;
-	char *command;
+	char	**args;
+	char	*command;
 
 	if (ft_strcmp(file->str, "##start") == 0 ||
 		ft_strcmp(file->str, "##end") == 0)
@@ -60,26 +60,26 @@ static int		ft_create_lists(t_lemin *list, t_rstr *file)
 				return (-1);
 		}
 		else if (list->end == NULL || list->start == NULL)
-				return (ft_free_error_lem_rstr(list, file, 4));
+			return (ft_free_error_lem_rstr(list, file, 4));
 		else if (ft_connection(file->str, list) < 0)
-				return (ft_free_error_lem_rstr(list, file, 2));
+			return (ft_free_error_lem_rstr(list, file, 2));
 		file = file->next;
 	}
 	return (1);
 }
 
-static void	ft_lem_flags(int argc, char **argv, t_lemin *lemin, int maxflow, int lines)
+static void		ft_lem_flags(int argc, char **argv, t_lemin *lemin)
 {
 	if (argc <= 1)
-		return ;	
-	if ((ft_strcmp(argv[1], "-l") == 0 && lines > 0) ||\
-		(ft_strcmp(argv[1], "-pl") == 0 && lines > 0) ||\
-		(ft_strcmp(argv[1], "-lp") == 0 && lines > 0))
-		ft_printf("Amount of lines used: %i\n", lines);
-	if ((ft_strcmp(argv[1], "-p") == 0 && lines == -3) ||\
-		(ft_strcmp(argv[1], "-pl") == 0 && lines == -3) ||\
-		(ft_strcmp(argv[1], "-lp") == 0 && lines == -3))
-		ft_print_paths(lemin, maxflow);
+		return ;
+	if ((ft_strcmp(argv[1], "-l") == 0 && lemin->lines > 0) ||\
+		(ft_strcmp(argv[1], "-pl") == 0 && lemin->lines > 0) ||\
+		(ft_strcmp(argv[1], "-lp") == 0 && lemin->lines > 0))
+		ft_printf("Amount of lines used: %i\n", lemin->lines);
+	if ((ft_strcmp(argv[1], "-p") == 0 && lemin->lines == -3) ||\
+		(ft_strcmp(argv[1], "-pl") == 0 && lemin->lines == -3) ||\
+		(ft_strcmp(argv[1], "-lp") == 0 && lemin->lines == -3))
+		ft_print_paths(lemin, lemin->max_flow);
 }
 
 static t_lemin	*ft_lem_in(t_rstr *file)
@@ -96,7 +96,6 @@ static t_lemin	*ft_lem_in(t_rstr *file)
 	}
 	if (ft_create_lists(lemin, file) == -1)
 		return (NULL);
-	
 	lemin->max_flow = ft_max_flow(lemin);
 	if (lemin->max_flow <= 0)
 	{
@@ -111,7 +110,7 @@ static t_lemin	*ft_lem_in(t_rstr *file)
 	return (lemin);
 }
 
-int		main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	t_lemin		*lemin;
 	t_rstr		*file;
@@ -123,9 +122,9 @@ int		main(int argc, char **argv)
 	lemin = ft_lem_in(file);
 	if (lemin == NULL)
 		return (-1);
-	ft_lem_flags(argc, argv, lemin, lemin->max_flow, lemin->lines);
+	ft_lem_flags(argc, argv, lemin);
 	lemin->lines = ft_move_ants(lemin);
-	ft_lem_flags(argc, argv, lemin, lemin->max_flow, lemin->lines);
+	ft_lem_flags(argc, argv, lemin);
 	if (file)
 		ft_free_rstr(file);
 	if (lemin)

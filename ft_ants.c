@@ -12,7 +12,8 @@
 
 #include "ft_lem_in.h"
 
-static int			ft_do_path(t_path *path, int *prev, t_lemin *lemin, int has_moved)
+static int			ft_do_path(t_path *path, int *prev, t_lemin *lemin, \
+	int has_moved)
 {
 	unsigned int	i;
 	t_ant			*ant;
@@ -23,8 +24,8 @@ static int			ft_do_path(t_path *path, int *prev, t_lemin *lemin, int has_moved)
 		ant = path->ants[i];
 		if (*prev != ant->cur && ant->cur <= path->len + 1)
 		{
-			ft_printf(ANSI_OCEAN_BLUE"L%i-%s", path->ants[i]->num, ant->cur == path->len + 1
-				? lemin->end : path->room[ant->cur]->name);
+			ft_printf(ANSI_OCEAN_BLUE"L%i-%s", ant->num,
+ant->cur == path->len + 1 ? lemin->end : path->room[ant->cur]->name);
 			*prev = ant->cur;
 			ant->cur += 1;
 			if (i < path->ants_len)

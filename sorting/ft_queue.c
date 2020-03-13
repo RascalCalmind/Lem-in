@@ -20,28 +20,10 @@ t_queue	*ft_queue(int size)
 	if (queue == NULL)
 		return (NULL);
 	queue->list = ft_memalloc(sizeof(t_room *) * (size + 1));
-	if (queue->list == NULL)
-	{
-		free(queue);
-		return (NULL);
-	}
 	queue->prev = (t_room **)ft_memalloc(sizeof(t_room *) * (size + 1));
-	if (queue->prev == NULL)
-	{
-		free(queue->list);
-		free(queue);
-		return (NULL);
-	}
 	queue->dequeue = (t_room **)ft_memalloc(sizeof(t_room *) * (size + 1));
-	if (queue->dequeue == NULL)
-	{
-		free(queue->list);
-		free(queue->prev);
-		free(queue);
-		return (NULL);
-	}
-	queue->len = 0;
-	queue->dlen = 0;
+	if (queue->list == NULL || queue->prev == NULL || queue->dequeue == NULL)
+		ft_free_queue(queue);
 	return (queue);
 }
 
@@ -107,6 +89,11 @@ int		ft_free_queue(t_queue *queue)
 	{
 		free(queue->prev);
 		queue->prev = NULL;
+	}
+	if (queue->dequeue != NULL)
+	{
+		free(queue->dequeue);
+		queue->dequeue = NULL;
 	}
 	if (queue != NULL)
 	{

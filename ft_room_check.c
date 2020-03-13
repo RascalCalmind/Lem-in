@@ -12,10 +12,6 @@
 
 #include "ft_lem_in.h"
 
-/**
- * Checks if room line is valid, returns arumgents (name / x / y)
- */
-
 int		ft_is_command(char *str)
 {
 	return (ft_strcmp(str, "##start") == 0 || ft_strcmp(str, "##end") == 0);

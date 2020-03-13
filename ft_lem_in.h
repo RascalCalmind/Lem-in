@@ -104,8 +104,6 @@ char				**ft_room_check(char *str);
 int					ft_store_room(t_lemin *list, t_rstr *file);
 void				ft_free_room(t_room *room);
 void				ft_free_lemin(t_lemin *list);
-void				ft_print_lemin(t_lemin *lemin);
-void				ft_print_arr_room(t_room **rooms);
 
 int					ft_contains(char *str, char c);
 int					ft_connection(char *str, t_lemin *list);
