@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 13:09:54 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/11 11:55:27 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/28 20:06:51 by Lotte         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,22 @@ int			ft_free_char_arr(char **arr, int len)
 	return (0);
 }
 
-int			ft_room_array_len(t_room **room)
+void		ft_free_edges(t_room *room)
 {
 	int i;
 
 	i = 0;
-	if (!room)
-		return (0);
-	while (room[i])
-		i += 1;
-	return (i);
+	if (room->edges != NULL)
+	{
+		while (room->edges[i] != NULL)
+		{
+			free(room->edges[i]);
+			room->edges[i] = NULL;
+			i += 1;
+		}
+		free(room->edges);
+		room->edges = NULL;
+	}
 }
 
 void		ft_free_room(t_room *room)
@@ -60,8 +66,7 @@ void		ft_free_room(t_room *room)
 	}
 	if (room->edges != NULL)
 	{
-		free(room->edges);
-		room->edges = NULL;
+		ft_free_edges(room);
 	}
 	if (room->next != NULL)
 		ft_free_room(room->next);
@@ -86,6 +91,8 @@ void		ft_free_lemin(t_lemin *list)
 			ft_free_room(list->room[i]);
 		i++;
 	}
+	if (list->paths)
+		ft_free_paths(list);
 	if (list->iter)
 		free(list->iter);
 	free(list);

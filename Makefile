@@ -6,7 +6,7 @@
 #    By: lhageman <lhageman@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/13 17:45:16 by lhageman       #+#    #+#                 #
-#    Updated: 2020/03/11 17:16:53 by lhageman      ########   odam.nl          #
+#    Updated: 2020/03/28 20:08:11 by Lotte         ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ CCO = gcc -g -Wall -Wextra -o
 
 SRC =	ft_lem_in.c \
 		ft_free_lem.c \
+		ft_free_paths.c \
 		./hashtable/ft_hash.c \
 		./errors/ft_error.c \
 		ft_create.c \

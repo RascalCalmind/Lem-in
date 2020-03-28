@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/11 15:57:04 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/03/28 20:07:36 by Lotte         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ char				**ft_room_check(char *str);
 int					ft_store_room(t_lemin *list, t_rstr *file);
 void				ft_free_room(t_room *room);
 void				ft_free_lemin(t_lemin *list);
+int					ft_free_paths(t_lemin *lem);
 
 int					ft_contains(char *str, char c);
 int					ft_connection(char *str, t_lemin *list);
