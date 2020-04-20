@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/29 18:40:27 by lhageman       #+#    #+#                */
-/*   Updated: 2020/01/31 16:05:14 by lhageman      ########   odam.nl         */
+/*   Created: 2020/01/29 18:40:27 by lhageman      #+#    #+#                 */
+/*   Updated: 2020/04/20 15:25:35 by wmisiedjan    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ int		ft_check_int(char *str)
 		if (str[i] == '-')
 			s = -1;
 		i++;
+	}
+	if (!(str[0] >= '0' && str[0] <= '9'))
+	{
+		return (-1);
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
