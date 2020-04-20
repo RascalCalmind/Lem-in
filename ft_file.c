@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/07 17:29:34 by wmisiedj       #+#    #+#                */
-/*   Updated: 2020/03/28 19:23:38 by Lotte         ########   odam.nl         */
+/*   Created: 2020/02/07 17:29:34 by wmisiedj      #+#    #+#                 */
+/*   Updated: 2020/04/20 17:19:38 by wmisiedjan    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_rstr		*ft_read_file(void)
 	t_rstr	*file;
 	int		fd;
 
-	// fd = STDIN_FILENO;
+	fd = STDIN_FILENO;
 	// fd = open("./testmaps/err_noant2.txt");
 	// fd = open("./testmaps/err_noant.txt");
 	// fd = open("./testmaps/err_nostart.txt", O_RDONLY);
@@ -55,7 +55,7 @@ t_rstr		*ft_read_file(void)
 	// fd = open("./testmaps/test_thousand.txt");
 	// fd = open("./testmaps/test_thousand2.txt");
 	// fd = open("./testmaps/test_big.txt");
-	fd = open("./testmaps/test_superpos.txt", O_RDONLY);
+	// fd = open("./testmaps/test_superpos.txt", O_RDONLY);
 	if (read(fd, NULL, 1) == 0)
 		return (NULL);
 	file = ft_memalloc(sizeof(t_rstr));

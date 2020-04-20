@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/13 15:14:06 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/11 15:57:05 by lhageman      ########   odam.nl         */
+/*   Created: 2020/02/13 15:14:06 by lhageman      #+#    #+#                 */
+/*   Updated: 2020/04/20 17:22:57 by wmisiedjan    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,16 @@ static void	ft_bfs_queueing(t_queue *queue)
 	}
 }
 
-int			ft_bfs(t_lemin *list, t_room *end)
+int			ft_bfs(t_lemin *lemin, t_room *end)
 {
 	t_queue	*queue;
 
-	queue = ft_queue(list->rooms);
-	ft_room_map(list, reset_levels);
+	queue = ft_queue(lemin->rooms);
+	ft_room_map(lemin, reset_levels);
 	end->level = 0;
 	ft_enqueue(queue, end);
-	if (list->path_count > 0)
-		ft_room_map_v(list, reset_visit);
+	if (lemin->path_count > 0)
+		ft_room_map_v(lemin, reset_visit);
 	ft_bfs_queueing(queue);
 	ft_free_queue(queue);
 	end->level = 0;

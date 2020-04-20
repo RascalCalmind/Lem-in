@@ -5,14 +5,14 @@
 /*                                                     +:+                    */
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/15 15:34:10 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/28 20:10:09 by Lotte         ########   odam.nl         */
+/*   Created: 2020/01/15 15:34:10 by lhageman      #+#    #+#                 */
+/*   Updated: 2020/04/20 17:21:29 by wmisiedjan    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lem_in.h"
 
-static int		ft_handle_command_line(t_lemin *list, t_rstr *file)
+static int		ft_handle_command_line(t_lemin *lemin, t_rstr *file)
 {
 	char	**args;
 	char	*command;
@@ -22,18 +22,18 @@ static int		ft_handle_command_line(t_lemin *list, t_rstr *file)
 	{
 		command = ft_strdup(file->str);
 		if (!file->str)
-			return (ft_free_error_lem_rstr(list, file, 4));
+			return (ft_free_error_lem_rstr(lemin, file, 4));
 		while (file->str[0] == '#')
 			file = file->next;
 		args = ft_strsplit(file->str, ' ');
-		if ((ft_strcmp(command, "##start") == 0 && list->start != NULL) ||
-			(ft_strcmp(command, "##end") == 0 && list->end != NULL))
+		if ((ft_strcmp(command, "##start") == 0 && lemin->start != NULL) ||
+			(ft_strcmp(command, "##end") == 0 && lemin->end != NULL))
 			ft_error(ERR_DOUBLE_COMMANDS);
 		else if (ft_strcmp(command, "##start") == 0)
-			list->start = ft_strdup(args[0]);
+			lemin->start = ft_strdup(args[0]);
 		else if (ft_strcmp(command, "##end") == 0)
-			list->end = ft_strdup(args[0]);
-		if (list->start && list->end && ft_strcmp(list->start, list->end) == 0)
+			lemin->end = ft_strdup(args[0]);
+		if (lemin->start && lemin->end && ft_strcmp(lemin->start, lemin->end) == 0)
 			ft_error(ERR_DOUBLE_COMMANDS);
 		ft_free_char_arr(args, 4);
 		free(command);
@@ -42,27 +42,27 @@ static int		ft_handle_command_line(t_lemin *list, t_rstr *file)
 	return (0);
 }
 
-static int		ft_create_lists(t_lemin *list, t_rstr *file)
+static int		ft_create_lists(t_lemin *lemin, t_rstr *file)
 {
-	list->ants = ft_atoi(file->str);
-	if (list->ants <= 0 || ft_check_int(file->str) != 0)
-		return (ft_free_error_lem_rstr(list, file, 1));
+	lemin->ants = ft_atoi(file->str);
+	if (lemin->ants <= 0 || ft_check_int(file->str) != 0)
+		return (ft_free_error_lem_rstr(lemin, file, 1));
 	file = file->next;
 	while (file->next != NULL)
 	{
 		if (file->str[0] == '#' && file->str[1] != '#')
 			;
 		else if (ft_is_command(file->str))
-			ft_handle_command_line(list, file);
+			ft_handle_command_line(lemin, file);
 		else if (ft_contains(file->str, ' ') == 2)
 		{
-			if (!ft_store_room(list, file))
+			if (!ft_store_room(lemin, file))
 				return (-1);
 		}
-		else if (list->end == NULL || list->start == NULL)
-			return (ft_free_error_lem_rstr(list, file, 4));
-		else if (ft_connection(file->str, list) < 0)
-			return (ft_free_error_lem_rstr(list, file, 2));
+		else if (lemin->end == NULL || lemin->start == NULL)
+			return (ft_free_error_lem_rstr(lemin, file, 4));
+		else if (ft_connection(file->str, lemin) < 0)
+			return (ft_free_error_lem_rstr(lemin, file, 2));
 		file = file->next;
 	}
 	return (1);

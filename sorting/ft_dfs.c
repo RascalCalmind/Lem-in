@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/13 15:14:06 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/11 15:57:05 by lhageman      ########   odam.nl         */
+/*   Created: 2020/02/13 15:14:06 by lhageman      #+#    #+#                 */
+/*   Updated: 2020/04/20 17:23:03 by wmisiedjan    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ static int	ft_dfs_queueing(t_lemin *lemin, t_room *current,\
 	return (0);
 }
 
-int			ft_dfs(t_lemin *list, t_room *end, t_room *start)
+int			ft_dfs(t_lemin *lemin, t_room *end, t_room *start)
 {
 	int inf;
 	int dfs;
 
 	inf = 0x7fffffff;
-	dfs = ft_dfs_queueing(list, end, start, inf);
+	dfs = ft_dfs_queueing(lemin, end, start, inf);
 	return (dfs);
 }

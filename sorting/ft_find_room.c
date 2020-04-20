@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/19 14:19:42 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/11 10:59:05 by lhageman      ########   odam.nl         */
+/*   Created: 2020/02/19 14:19:42 by lhageman      #+#    #+#                 */
+/*   Updated: 2020/04/20 17:23:13 by wmisiedjan    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,28 +63,28 @@ void		ft_room_map(t_lemin *lemin, void (*func)(t_room *))
 	}
 }
 
-t_room		*ft_find_room(t_lemin *list, char *name)
+t_room		*ft_find_room(t_lemin *lemin, char *name)
 {
 	t_room	*p;
 	t_room	*temp;
 	int		index;
 
 	index = ft_hash_sdbm(name, MAX_HASHTABLE);
-	if (list->room[index] != NULL)
+	if (lemin->room[index] != NULL)
 	{
-		temp = list->room[index];
-		while (list->room[index] != NULL &&
-				ft_strcmp(list->room[index]->name, name) != 0 &&
-				list->room[index]->next)
-			list->room[index] = list->room[index]->next;
-		if (list->room[index] && ft_strcmp(list->room[index]->name, name) == 0)
+		temp = lemin->room[index];
+		while (lemin->room[index] != NULL &&
+				ft_strcmp(lemin->room[index]->name, name) != 0 &&
+				lemin->room[index]->next)
+			lemin->room[index] = lemin->room[index]->next;
+		if (lemin->room[index] && ft_strcmp(lemin->room[index]->name, name) == 0)
 		{
-			p = list->room[index];
-			list->room[index] = temp;
+			p = lemin->room[index];
+			lemin->room[index] = temp;
 			return (p);
 		}
 		else
-			list->room[index] = temp;
+			lemin->room[index] = temp;
 	}
 	return (NULL);
 }
