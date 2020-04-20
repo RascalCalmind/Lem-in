@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/29 15:25:41 by wmisiedj       #+#    #+#                */
-/*   Updated: 2020/03/11 17:22:38 by lhageman      ########   odam.nl         */
+/*   Created: 2020/01/29 15:25:41 by wmisiedj      #+#    #+#                 */
+/*   Updated: 2020/04/20 17:25:34 by wmisiedjan    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,14 @@ int		ft_free_error_lem_rstr(t_lemin *list, t_rstr *file, int i)
 {
 	if (i == 1)
 		ft_dprintf(STDERR_FILENO, "No ants :(\n");
-	if (i == 2)
+	else if (i == 2)
 		ft_dprintf(STDERR_FILENO, "No ants or connections are invalid!\n");
-	if (i == 3)
+	else if (i == 3)
 		ft_dprintf(STDERR_FILENO, "Error in coordinates of room\n");
-	if (i == 4)
+	else if (i == 4)
 		ft_dprintf(STDERR_FILENO, "Error in saving start or end room\n");
+	else
+		ft_dprintf(STDERR_FILENO, "Error code: %d\n", i);
 	ft_free_rstr(file);
 	ft_free_lemin(list);
 	return (-1);
