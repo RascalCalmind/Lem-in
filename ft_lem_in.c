@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:34:10 by lhageman      #+#    #+#                 */
-/*   Updated: 2020/04/20 17:21:29 by wmisiedjan    ########   odam.nl         */
+/*   Updated: 2020/04/20 17:46:56 by wmisiedjan    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int		ft_handle_command_line(t_lemin *lemin, t_rstr *file)
 	{
 		command = ft_strdup(file->str);
 		if (!file->str)
-			return (ft_free_error_lem_rstr(lemin, file, 4));
+			return (ft_free_error(lemin, file, 4));
 		while (file->str[0] == '#')
 			file = file->next;
 		args = ft_strsplit(file->str, ' ');
@@ -42,11 +42,32 @@ static int		ft_handle_command_line(t_lemin *lemin, t_rstr *file)
 	return (0);
 }
 
+static int		ft_read_ants(t_lemin *lemin, t_rstr *file)
+{
+	while (file->str[0] == '#' && file->str[1] != '#')
+		file = file->next;
+
+	if (!file->str || ft_contains(file->str, ' ') || ft_strcmp(file->str, "") == 0\
+	|| ft_check_int(file->str) != 0) {
+		return (ERR_FILE);
+	}
+	
+	lemin->ants = ft_atoi(file->str);
+	if (lemin->ants <= 0)
+		return (ERR_NO_ANTS);
+
+	return (1);
+}
+
 static int		ft_create_lists(t_lemin *lemin, t_rstr *file)
 {
-	lemin->ants = ft_atoi(file->str);
-	if (lemin->ants <= 0 || ft_check_int(file->str) != 0)
-		return (ft_free_error_lem_rstr(lemin, file, 1));
+	int ret;
+
+	ret = ft_read_ants(lemin, file);
+
+	if (ret <= 0) {
+		return(ft_free_error(lemin, file, ret));
+	}
 	file = file->next;
 	while (file->next != NULL)
 	{
@@ -60,9 +81,9 @@ static int		ft_create_lists(t_lemin *lemin, t_rstr *file)
 				return (-1);
 		}
 		else if (lemin->end == NULL || lemin->start == NULL)
-			return (ft_free_error_lem_rstr(lemin, file, 4));
+			return (ft_free_error(lemin, file, ERR_NO_START_END));
 		else if (ft_connection(file->str, lemin) < 0)
-			return (ft_free_error_lem_rstr(lemin, file, 2));
+			return (ft_free_error(lemin, file, ERR_CONNECTION));
 		file = file->next;
 	}
 	return (1);
@@ -87,11 +108,11 @@ static t_lemin	*ft_lem_in(t_rstr *file)
 	t_lemin	*lemin;
 
 	lemin = ft_create_lemin(file);
+
 	if (lemin == NULL || lemin->rooms < 2)
 	{
-		ft_free_rstr(file);
-		ft_free_lemin(lemin);
-		ft_error(lemin->rooms < 2 ? ERR_INVALID_ROOM_COUNT : ERR_MEM);
+		ft_free_error(lemin, file, lemin->rooms < 2 ?\
+		ERR_INVALID_ROOM_COUNT : ERR_MEM);
 		return (NULL);
 	}
 	if (ft_create_lists(lemin, file) == -1)
@@ -99,11 +120,7 @@ static t_lemin	*ft_lem_in(t_rstr *file)
 	lemin->max_flow = ft_max_flow(lemin);
 	if (lemin->max_flow <= 0)
 	{
-		if (file)
-			ft_free_rstr(file);
-		if (lemin)
-			ft_free_lemin(lemin);
-		ft_error(ERR_NO_PATHS);
+		ft_free_error(lemin, file, ERR_NO_PATHS);
 		return (NULL);
 	}
 	ft_print_rstr(file);

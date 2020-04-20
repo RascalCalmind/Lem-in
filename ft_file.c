@@ -25,7 +25,7 @@ static void	ft_read(t_rstr *file, int fd)
 			// 	(line[0] == '#' && line[1] == '#' &&
 			// 	!ft_is_command(line))))
 			// {
-			ft_printf("%s\n", line);
+			// ft_printf("%s\n", line);
 			file->str = ft_strdup(line);
 			file->next = ft_memalloc(sizeof(t_rstr));
 			file = file->next;

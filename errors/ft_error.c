@@ -6,23 +6,29 @@
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 15:25:41 by wmisiedj      #+#    #+#                 */
-/*   Updated: 2020/04/20 17:25:34 by wmisiedjan    ########   odam.nl         */
+/*   Updated: 2020/04/20 17:48:15 by wmisiedjan    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_error.h"
 #include "../ft_lem_in.h"
 
-int		ft_free_error_lem_rstr(t_lemin *list, t_rstr *file, int i)
+int		ft_free_error(t_lemin *list, t_rstr *file, int i)
 {
-	if (i == 1)
+	if (i == ERR_NO_ANTS)
 		ft_dprintf(STDERR_FILENO, "No ants :(\n");
-	else if (i == 2)
+	else if (i == ERR_CONNECTIONS)
 		ft_dprintf(STDERR_FILENO, "No ants or connections are invalid!\n");
-	else if (i == 3)
+	else if (i == ERR_COORDS)
 		ft_dprintf(STDERR_FILENO, "Error in coordinates of room\n");
-	else if (i == 4)
+	else if (i == ERR_CREATE_START_END)
 		ft_dprintf(STDERR_FILENO, "Error in saving start or end room\n");
+	else if (i == ERR_FILE)
+		ft_dprintf(STDERR_FILENO, "Error in parsing file\n");
+	else if (i == ERR_NO_START_END)
+		ft_dprintf(STDERR_FILENO, "No start or end room found\n");
+	else if (i == ERR_CONNECTION)
+		ft_dprintf(STDERR_FILENO, "Error creating connection\n");
 	else
 		ft_dprintf(STDERR_FILENO, "Error code: %d\n", i);
 	ft_free_rstr(file);

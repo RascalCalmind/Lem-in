@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/30 14:01:47 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/11 15:57:05 by lhageman      ########   odam.nl         */
+/*   Created: 2020/01/30 14:01:47 by lhageman      #+#    #+#                 */
+/*   Updated: 2020/04/20 17:32:37 by wmisiedjan    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int			ft_store_room(t_lemin *lemin, t_rstr *file)
 
 	args = ft_room_check(file->str);
 	if (args == NULL)
-		return (ft_free_error_lem_rstr(lemin, file, 3));
+		return (ft_free_error(lemin, file, 3));
 	hash = ft_hash_sdbm(args[0], MAX_HASHTABLE);
 	start = lemin->room[hash];
 	room = (t_room *)ft_memalloc(sizeof(t_room));

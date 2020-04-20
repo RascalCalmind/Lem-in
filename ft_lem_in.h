@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/15 15:35:25 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/28 20:07:36 by Lotte         ########   odam.nl         */
+/*   Created: 2020/01/15 15:35:25 by lhageman      #+#    #+#                 */
+/*   Updated: 2020/04/20 17:32:37 by wmisiedjan    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,25 +101,25 @@ void				ft_free_rstr(t_rstr *list);
 int					ft_create_room(t_room *room);
 t_lemin				*ft_create_lemin(t_rstr *file);
 char				**ft_room_check(char *str);
-int					ft_store_room(t_lemin *list, t_rstr *file);
+int					ft_store_room(t_lemin *lemin, t_rstr *file);
 void				ft_free_room(t_room *room);
-void				ft_free_lemin(t_lemin *list);
+void				ft_free_lemin(t_lemin *lemin);
 int					ft_free_paths(t_lemin *lem);
 
 int					ft_contains(char *str, char c);
-int					ft_connection(char *str, t_lemin *list);
-t_room				*ft_find_room(t_lemin *list, char *name);
+int					ft_connection(char *str, t_lemin *lemin);
+t_room				*ft_find_room(t_lemin *lemin, char *name);
 
-int					ft_free_error_lem_rstr(t_lemin *list, t_rstr *file, int i);
+int					ft_free_error(t_lemin *lemin, t_rstr *file, int i);
 
 int					ft_is_command(char *str);
 t_rstr				*ft_read_file(void);
 void				ft_print_rstr(t_rstr *file);
 
 int					ft_quicksort(t_room **open, int low, int high);
-int					ft_bfs(t_lemin *list, t_room *end);
-int					ft_dfs(t_lemin *list, t_room *start, t_room *end);
-int					ft_max_flow(t_lemin *list);
+int					ft_bfs(t_lemin *lemin, t_room *end);
+int					ft_dfs(t_lemin *lemin, t_room *start, t_room *end);
+int					ft_max_flow(t_lemin *lemin);
 
 t_queue				*ft_queue(int size);
 t_room				*ft_dequeue(t_queue *queue);
