@@ -1,0 +1,55 @@
+# map 01
+79
+# the rooms
+#LLLLLLLLLLLLLL
+# the rooms
+# the rooms
+# the rooms
+bla 3 646
+# the rooms
+##start
+# the rooms
+blu 54 20
+# the rooms
+# the rooms
+# the rooms
+# the rooms
+some_room 32 5
+# the rooms
+# the rooms
+# the rooms
+##end
+# the rooms
+# the rooms
+# the rooms
+# the rooms
+3 9 24
+# the rooms
+devil 20 20
+# the rooms
+# the rooms
+# the rooms
+room 10 3
+# the links
+# the links
+bla-some_room
+# the links
+some_room-room
+# the links
+# the links
+# the links
+# the links
+# the links
+# the links
+# the links
+# the links
+# the links
+room-3
+# the links
+# the links
+devil-3
+blu-some_room
+# the links
+# the links
+# the links
+# the links

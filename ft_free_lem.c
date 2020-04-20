@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/29 13:09:54 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/28 20:06:51 by Lotte         ########   odam.nl         */
+/*   Created: 2020/01/29 13:09:54 by lhageman      #+#    #+#                 */
+/*   Updated: 2020/04/20 16:37:34 by wmisiedjan    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,52 +74,52 @@ void		ft_free_room(t_room *room)
 	room = NULL;
 }
 
-void		ft_free_lemin(t_lemin *list)
+void		ft_free_lemin(t_lemin *lemin)
 {
 	unsigned int i;
 
 	i = 0;
-	if (list == NULL)
+	if (lemin == NULL)
 		return ;
-	if (list->start != NULL)
-		free(list->start);
-	if (list->end != NULL)
-		free(list->end);
+	if (lemin->start != NULL)
+		free(lemin->start);
+	if (lemin->end != NULL)
+		free(lemin->end);
 	while (i < MAX_HASHTABLE)
 	{
-		if (list->room[i] != NULL)
-			ft_free_room(list->room[i]);
+		if (lemin->room[i] != NULL)
+			ft_free_room(lemin->room[i]);
 		i++;
 	}
-	if (list->paths)
-		ft_free_paths(list);
-	if (list->iter)
-		free(list->iter);
-	free(list);
+	if (lemin->paths)
+		ft_free_paths(lemin);
+	if (lemin->iter)
+		free(lemin->iter);
+	free(lemin);
 }
 
-void		ft_free_rstr(t_rstr *list)
+void		ft_free_rstr(t_rstr *lemin)
 {
 	t_rstr *temp;
 
-	if (!list)
+	if (!lemin)
 		return ;
-	while (list->next != NULL)
+	while (lemin->next != NULL)
 	{
-		temp = list->next;
-		if (list && list->str)
+		temp = lemin->next;
+		if (lemin && lemin->str)
 		{
-			free(list->str);
-			list->str = NULL;
+			free(lemin->str);
+			lemin->str = NULL;
 		}
-		free(list);
-		list = temp;
+		free(lemin);
+		lemin = temp;
 	}
-	if (list && list->str)
+	if (lemin && lemin->str)
 	{
-		free(list->str);
-		list->str = NULL;
+		free(lemin->str);
+		lemin->str = NULL;
 	}
-	free(list);
-	list = NULL;
+	free(lemin);
+	lemin = NULL;
 }

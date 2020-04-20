@@ -5,26 +5,36 @@
 /*                                                     +:+                    */
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/29 15:25:41 by wmisiedj       #+#    #+#                */
-/*   Updated: 2020/03/11 17:22:38 by lhageman      ########   odam.nl         */
+/*   Created: 2020/01/29 15:25:41 by wmisiedj      #+#    #+#                 */
+/*   Updated: 2020/04/20 16:47:15 by wmisiedjan    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_error.h"
 #include "../ft_lem_in.h"
 
-int		ft_free_error_lem_rstr(t_lemin *list, t_rstr *file, int i)
+int		ft_free_error(t_lemin *lemin, t_rstr *file, int i)
 {
-	if (i == 1)
+	if (i == ERR_NO_ANTS)
 		ft_dprintf(STDERR_FILENO, "No ants :(\n");
-	if (i == 2)
-		ft_dprintf(STDERR_FILENO, "No ants or connections are invalid!\n");
-	if (i == 3)
+	else if (i == ERR_NO_START_END)
+		ft_dprintf(STDERR_FILENO, "No start or endroom found\n");
+	else if (i == ERR_CONN_INVALID)
+		ft_dprintf(STDERR_FILENO, "Connections are invalid!\n");
+	else if (i == ERR_ROOM_CORDS)
 		ft_dprintf(STDERR_FILENO, "Error in coordinates of room\n");
-	if (i == 4)
-		ft_dprintf(STDERR_FILENO, "Error in saving start or end room\n");
+	else if (i == ERR_START_END)
+		ft_dprintf(STDERR_FILENO, "Error in format / saving start or end room\n");
+	else if (i == ERR_PARSE_ROOM)
+		ft_dprintf(STDERR_FILENO, "Error in parsing a room\n");
+	else if (i == ERR_FILE)
+		ft_dprintf(STDERR_FILENO, "Something wrong in file format\n");
+	else if (i == ERR_NO_PATHS)
+		ft_dprintf(STDERR_FILENO, "No paths available!\n");
+	else
+		ft_dprintf(STDERR_FILENO, "Whoops something went wrong, error: %d\n", i);
 	ft_free_rstr(file);
-	ft_free_lemin(list);
+	ft_free_lemin(lemin);
 	return (-1);
 }
 
@@ -43,8 +53,6 @@ int	ft_error(int i)
 	else if (i == ERR_DOUBLE_COMMANDS)
 		ft_dprintf(STDERR_FILENO, "Detected double commands, either \
 ##start or ##end is double.\n");
-	else if (i == ERR_NO_PATHS)
-		ft_dprintf(STDERR_FILENO, "No paths available!\n");
 	else
 		ft_dprintf(STDERR_FILENO, "Error number: %d\n", i);
 	return (-1);
