@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: Lotte <Lotte@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/28 20:05:48 by Lotte          #+#    #+#                */
-/*   Updated: 2020/03/28 20:07:08 by Lotte         ########   odam.nl         */
+/*   Created: 2020/03/28 20:05:48 by Lotte         #+#    #+#                 */
+/*   Updated: 2020/04/22 17:18:12 by wmisiedjan    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ int			ft_free_paths(t_lemin *lem)
 {
 	int i;
 
-
 	i = 0;
-	if (lem->paths)
+	if (lem->paths != NULL)
 	{
-		while(lem->paths[i])
+		// if (lem->paths == NULL)
+		// 	return (1);
+		while (i < lem->path_count)
 		{
 			if (lem->paths[i]->room)
 			{
@@ -53,8 +54,8 @@ int			ft_free_paths(t_lemin *lem)
 			lem->paths[i] = NULL;
 			i += 1;
 		}
-		free (lem->paths);
+		free(lem->paths);
 		lem->paths = NULL;
 	}
-	return (0);
+	return (1);
 }

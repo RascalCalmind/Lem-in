@@ -10,7 +10,7 @@ some_room 32 5
 room 10 3
 # the links
 bla-some_room
-devil 20 20
+devil 20 20 # is this allowed?
 some_room-room
 room-3
 devil-3

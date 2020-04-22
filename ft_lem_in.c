@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:34:10 by lhageman      #+#    #+#                 */
-/*   Updated: 2020/04/20 17:46:56 by wmisiedjan    ########   odam.nl         */
+/*   Updated: 2020/04/22 17:36:26 by wmisiedjan    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,25 @@ static int		ft_read_ants(t_lemin *lemin, t_rstr *file)
 {
 	while (file->str[0] == '#' && file->str[1] != '#')
 		file = file->next;
-
-	if (!file->str || ft_contains(file->str, ' ') || ft_strcmp(file->str, "") == 0\
-	|| ft_check_int(file->str) != 0) {
+	if (!file->str || ft_contains(file->str, ' ') ||\
+	ft_strcmp(file->str, "") == 0 || ft_check_int(file->str) != 0)
 		return (ERR_FILE);
-	}
-	
 	lemin->ants = ft_atoi(file->str);
 	if (lemin->ants <= 0)
 		return (ERR_NO_ANTS);
+	return (1);
+}
 
+static int		ft_read_connections(t_lemin *lemin, t_rstr *file)
+{
+	while (file->next != NULL) 
+	{
+		if (ft_contains(file->str, '-') == 0)
+			return (ERR_FILE);
+		else if (ft_connection(file->str, lemin) < 0)
+			return (ERR_CONNECTION);
+		file = file->next;
+	}
 	return (1);
 }
 
@@ -64,14 +73,14 @@ static int		ft_create_lists(t_lemin *lemin, t_rstr *file)
 	int ret;
 
 	ret = ft_read_ants(lemin, file);
-
-	if (ret <= 0) {
-		return(ft_free_error(lemin, file, ret));
-	}
+	if (ret <= 0)
+		return (ft_free_error(lemin, file, ret));
 	file = file->next;
 	while (file->next != NULL)
 	{
-		if (file->str[0] == '#' && file->str[1] != '#')
+		if (ft_strcmp(file->str, "") == 0 )
+			return (ft_free_error(lemin, file, ERR_FILE));
+		else if (file->str[0] == '#' && file->str[1] != '#')
 			;
 		else if (ft_is_command(file->str))
 			ft_handle_command_line(lemin, file);
@@ -80,12 +89,15 @@ static int		ft_create_lists(t_lemin *lemin, t_rstr *file)
 			if (!ft_store_room(lemin, file))
 				return (-1);
 		}
-		else if (lemin->end == NULL || lemin->start == NULL)
-			return (ft_free_error(lemin, file, ERR_NO_START_END));
-		else if (ft_connection(file->str, lemin) < 0)
-			return (ft_free_error(lemin, file, ERR_CONNECTION));
+		else if (ft_contains(file->str, '-') && !ft_contains(file->str, ' '))
+			break;
 		file = file->next;
 	}
+	if (lemin->end == NULL || lemin->start == NULL)
+		return (ft_free_error(lemin, file, ERR_NO_START_END));
+	ret = ft_read_connections(lemin, file);
+	if (ret <= 0)
+		return (ft_free_error(lemin, file, ret));
 	return (1);
 }
 
