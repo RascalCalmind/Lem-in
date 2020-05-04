@@ -6,7 +6,7 @@
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 15:24:11 by wmisiedj      #+#    #+#                 */
-/*   Updated: 2020/04/20 17:47:01 by wmisiedjan    ########   odam.nl         */
+/*   Updated: 2020/05/04 14:38:05 by wmisiedjan    ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define ERR_CREATE_START_END -11
 # define ERR_NO_START_END -12
 # define ERR_CONNECTION -13
+# define ERR_DOUBLE_ROOM -14
 # define ERR_OTHER -99
 
 int ft_error(int i);

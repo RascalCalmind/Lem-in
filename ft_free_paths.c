@@ -6,7 +6,7 @@
 /*   By: Lotte <Lotte@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/28 20:05:48 by Lotte         #+#    #+#                 */
-/*   Updated: 2020/04/22 17:18:12 by wmisiedjan    ########   odam.nl         */
+/*   Updated: 2020/05/04 15:41:43 by Lotte         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ void		ft_free_ants(t_path *path)
 	i = 0;
 	if (path->ants != NULL)
 	{
-		while (path->ants[i] != NULL)
+		while (path->ants[i] != NULL && i < path->ants_len)
 		{
-			free(path->ants[i]);
-			path->ants[i] = NULL;
+			if (path->ants[i])
+			{
+				free(path->ants[i]);
+				// path->ants[i] = NULL;
+			}
 			i += 1;
 		}
 		free(path->ants);
@@ -32,14 +35,14 @@ void		ft_free_ants(t_path *path)
 
 int			ft_free_paths(t_lemin *lem)
 {
-	int i;
+	unsigned int i;
 
 	i = 0;
 	if (lem->paths != NULL)
 	{
 		// if (lem->paths == NULL)
 		// 	return (1);
-		while (i < lem->path_count)
+		while (i < lem->rooms)
 		{
 			if (lem->paths[i]->room)
 			{

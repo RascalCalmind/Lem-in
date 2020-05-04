@@ -6,49 +6,60 @@
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/07 17:29:34 by wmisiedj      #+#    #+#                 */
-/*   Updated: 2020/04/20 17:39:36 by wmisiedjan    ########   odam.nl         */
+/*   Updated: 2020/05/04 16:03:41 by Lotte         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./ft_lem_in.h"
 #include <fcntl.h>
 
-static void	ft_read(t_rstr *file, int fd)
+static int ft_read(t_rstr *file, int fd)
 {
 	char	*line;
+	int		ret;
 
-	while (get_next_line(fd, &line))
+	ret = 1;
+	line = NULL;
+	while (ret > 0)
 	{
-		if (line != NULL)
+		ret = get_next_line(fd, &line);
+		if (ret > 0 && line != NULL)
 		{
-			// if (!((line[0] == '#' && line[1] != '#') ||
-			// 	(line[0] == '#' && line[1] == '#' &&
-			// 	!ft_is_command(line))))
-			// {
-			// ft_printf("%s\n", line);
 			file->str = ft_strdup(line);
+			if (!file->str)
+			{
+				free(line);
+				return (ERR_MEM);
+			}
 			file->next = ft_memalloc(sizeof(t_rstr));
+			if (!file->next)
+			{
+				free(line);
+				return (ERR_MEM);
+			}
 			file = file->next;
-			// }
-		}
-		if (line != NULL)
 			free(line);
-		line = NULL;
+			line = NULL;
+		}	
 	}
+	return (1);
 }
 
 t_rstr		*ft_read_file(void)
 {
 	t_rstr	*file;
 	int		fd;
+	int		ret;
 
-	fd = STDIN_FILENO;
+	ret = 1;
+	// fd = STDIN_FILENO;
 	// fd = open("./testmaps/err_noant2.txt");
 	// fd = open("./testmaps/err_noant.txt");
 	// fd = open("./testmaps/err_nostart.txt", O_RDONLY);
 	// ft_printf("hi wendell\n");
 	// fd = open("./testmaps/map7.txt");
-	// fd = open("./testmaps/test_one.txt");
+	// fd = open("./testmaps/test_one.txt", O_RDONLY);
+	fd = open("./testmaps/err_start.txt", O_RDONLY);
 	// fd = open("./testmaps/test_one2.txt");
 	// fd = open("./testmaps/test_ten.txt", O_RDONLY);
 	// fd = open("./testmaps/test_ten2.txt");
@@ -57,10 +68,21 @@ t_rstr		*ft_read_file(void)
 	// fd = open("./testmaps/test_big.txt");
 	// fd = open("./testmaps/test_superpos.txt", O_RDONLY);
 	if (read(fd, NULL, 1) == 0)
+	{
+		ft_error(ERR_FILE);
 		return (NULL);
+	}
 	file = ft_memalloc(sizeof(t_rstr));
 	if (!file)
+	{
+		ft_error(ERR_MEM);
 		return (NULL);
-	ft_read(file, fd);
+	}
+	ret = ft_read(file, fd);
+	if (ret != 1) {
+		ft_free_rstr(file);
+		ft_error(ret);
+		return (NULL);
+	}
 	return (file);
 }

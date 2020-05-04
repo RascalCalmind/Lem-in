@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:34:10 by lhageman      #+#    #+#                 */
-/*   Updated: 2020/04/22 17:36:26 by wmisiedjan    ########   odam.nl         */
+/*   Updated: 2020/05/04 16:07:31 by Lotte         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ static int		ft_read_connections(t_lemin *lemin, t_rstr *file)
 {
 	while (file->next != NULL) 
 	{
-		if (ft_contains(file->str, '-') == 0)
+		if (file->str[0] == '#')
+			;
+		else if (ft_contains(file->str, '-') == 0)
 			return (ERR_FILE);
 		else if (ft_connection(file->str, lemin) < 0)
 			return (ERR_CONNECTION);
@@ -76,7 +78,7 @@ static int		ft_create_lists(t_lemin *lemin, t_rstr *file)
 	if (ret <= 0)
 		return (ft_free_error(lemin, file, ret));
 	file = file->next;
-	while (file->next != NULL)
+	while (file && file->next != NULL)
 	{
 		if (ft_strcmp(file->str, "") == 0 )
 			return (ft_free_error(lemin, file, ERR_FILE));
@@ -86,7 +88,7 @@ static int		ft_create_lists(t_lemin *lemin, t_rstr *file)
 			ft_handle_command_line(lemin, file);
 		else if (ft_contains(file->str, ' ') == 2)
 		{
-			if (!ft_store_room(lemin, file))
+			if (ft_store_room(lemin, file) != 1)
 				return (-1);
 		}
 		else if (ft_contains(file->str, '-') && !ft_contains(file->str, ' '))
@@ -124,7 +126,7 @@ static t_lemin	*ft_lem_in(t_rstr *file)
 	if (lemin == NULL || lemin->rooms < 2)
 	{
 		ft_free_error(lemin, file, lemin->rooms < 2 ?\
-		ERR_INVALID_ROOM_COUNT : ERR_MEM);
+		ERR_NO_START_END : ERR_MEM);
 		return (NULL);
 	}
 	if (ft_create_lists(lemin, file) == -1)
@@ -147,7 +149,7 @@ int				main(int argc, char **argv)
 	lemin = NULL;
 	file = ft_read_file();
 	if (!file)
-		return (ft_error(ERR_FILE));
+		return (0);
 	lemin = ft_lem_in(file);
 	if (lemin == NULL)
 		return (-1);
@@ -158,5 +160,7 @@ int				main(int argc, char **argv)
 		ft_free_rstr(file);
 	if (lemin)
 		ft_free_lemin(lemin);
+	while (1)
+		;
 	return (0);
 }
