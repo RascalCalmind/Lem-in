@@ -1,6 +1,6 @@
 # lem-in (#42network)
 
-Lem-in is an elemantary algorithmic project that is meant to make you code an ant farm manager.
+Lem-in is an elemantary algorithmic project that is meant to make you code an ant farm manager...
 
 ---
 
