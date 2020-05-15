@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_perc.c                                          :+:    :+:            */
+/*   ft_memset.c                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: lhageman <marvin@codam.nl>                   +#+                     */
+/*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/07/24 19:47:35 by lhageman       #+#    #+#                */
-/*   Updated: 2019/08/23 18:11:11 by mvan-hou      ########   odam.nl         */
+/*   Created: 2019/01/28 13:22:42 by wmisiedj      #+#    #+#                 */
+/*   Updated: 2019/07/04 11:49:37 by wmisiedj      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../ft_printf.h"
 
-int		ft_find_conv_perc(const char *str, int i)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	while (str[i] != '\0')
+	char	*s;
+
+	s = b;
+	while (len)
 	{
-		if (str[i] == '%')
-			return (i);
-		i += 1;
+		len--;
+		s[len] = c;
 	}
-	return (-1);
+	return (b);
 }

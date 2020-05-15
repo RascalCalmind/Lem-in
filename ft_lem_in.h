@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:35:25 by lhageman      #+#    #+#                 */
-/*   Updated: 2020/04/20 17:32:37 by wmisiedjan    ########   odam.nl         */
+/*   Updated: 2020/05/15 16:43:01 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 
 # include "libft/libft.h"
-# include "libft/ft_printf.h"
+# include "ft_printf/ft_printf.h"
 # include "./errors/ft_error.h"
 
 # define ANSI_OCEAN_BLUE "\033[38;5;39m"
@@ -25,7 +25,7 @@
 # define ANSI_GREY_PURPLE "\033[38;5;111m"
 # define ANSI_RESET "\033[0m"
 
-# define MAX_HASHTABLE 10
+# define MAX_HASHTABLE 20
 
 typedef struct		s_ant
 {
@@ -74,6 +74,12 @@ typedef struct		s_queue
 	int				dlen;
 }					t_queue;
 
+typedef struct		s_rstr
+{
+	char			*str;
+	struct s_rstr	*next;
+}					t_rstr;
+
 typedef struct		s_lemin
 {
 	char			*start;
@@ -86,22 +92,19 @@ typedef struct		s_lemin
 	unsigned int	path_count;
 	int				max_flow;
 	int				lines;
+	t_rstr			*line;
+	t_rstr			*file;
 }					t_lemin;
-
-typedef struct		s_rstr
-{
-	char			*str;
-	struct s_rstr	*next;
-}					t_rstr;
 
 int					ft_free_char_arr(char **arr, int len);
 unsigned int		ft_hash_sdbm(char *str, unsigned int max_int);
 void				ft_free_rstr(t_rstr *list);
 
 int					ft_create_room(t_room *room);
-t_lemin				*ft_create_lemin(t_rstr *file);
-char				**ft_room_check(char *str);
-int					ft_store_room(t_lemin *lemin, t_rstr *file);
+t_lemin				*ft_create_lemin(t_lemin *lemin);
+int					ft_create_lists(t_lemin *lemin);
+
+int					ft_store_room(t_lemin *lemin);
 void				ft_free_room(t_room *room);
 void				ft_free_lemin(t_lemin *lemin);
 int					ft_free_paths(t_lemin *lem);
@@ -110,9 +113,8 @@ int					ft_contains(char *str, char c);
 int					ft_connection(char *str, t_lemin *lemin);
 t_room				*ft_find_room(t_lemin *lemin, char *name);
 
-int					ft_free_error(t_lemin *lemin, t_rstr *file, int i);
+int					ft_free_error(t_lemin *lemin, int i);
 
-int					ft_is_command(char *str);
 t_rstr				*ft_read_file(void);
 void				ft_print_rstr(t_rstr *file);
 
@@ -133,4 +135,7 @@ void				ft_room_map_v(t_lemin *lemin, void (*func)\
 void				ft_print_paths(t_lemin *lemin, int max_flow);
 
 int					ft_move_ants(t_lemin *lemin);
+int					ft_read_ants(t_lemin *lemin);
+int					ft_read_connections(t_lemin *lemin);
+
 #endif

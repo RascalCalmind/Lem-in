@@ -5,14 +5,14 @@
 /*                                                     +:+                    */
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/22 15:35:02 by wmisiedj       #+#    #+#                */
-/*   Updated: 2020/03/11 17:35:40 by lhageman      ########   odam.nl         */
+/*   Created: 2020/02/22 15:35:02 by wmisiedj      #+#    #+#                 */
+/*   Updated: 2020/05/15 15:24:45 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_lem_in.h"
 
-void			reset_iter(t_room *room)
+static void		reset_iter(t_room *room)
 {
 	if (room != NULL)
 		room->dfs_iter = 0;

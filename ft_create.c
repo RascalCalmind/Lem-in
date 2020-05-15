@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/01/20 13:55:12 by lhageman       #+#    #+#                */
-/*   Updated: 2020/03/11 15:57:05 by lhageman      ########   odam.nl         */
+/*   Created: 2020/01/20 13:55:12 by lhageman      #+#    #+#                 */
+/*   Updated: 2020/05/15 16:29:12 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,11 @@ static int	ft_room_count(t_rstr *file)
 	return (cnt);
 }
 
-t_lemin		*ft_create_lemin(t_rstr *file)
+t_lemin		*ft_create_lemin(t_lemin *lemin)
 {
-	t_lemin *lemin;
-
-	lemin = (t_lemin *)ft_memalloc(sizeof(t_lemin));
-	if (lemin == NULL)
-		return (NULL);
-	lemin->rooms = ft_room_count(file);
+	lemin->rooms = ft_room_count(lemin->line);
 	lemin->iter = (unsigned int *)ft_memalloc(sizeof(unsigned int)\
 	* lemin->rooms);
-	lemin->lines = 0;
+	lemin->lines = -3;
 	return (lemin);
 }

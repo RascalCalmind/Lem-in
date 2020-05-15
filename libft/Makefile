@@ -5,8 +5,8 @@
 #                                                      +:+                     #
 #    By: lhageman <lhageman@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
-#    Created: 2019/07/24 22:50:24 by lhageman       #+#    #+#                 #
-#    Updated: 2020/02/12 19:28:19 by lhageman      ########   odam.nl          #
+#    Created: 2019/07/24 22:50:24 by lhageman      #+#    #+#                  #
+#    Updated: 2020/05/15 15:39:43 by lhageman      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,29 +25,6 @@ SRCC =	ft_itoa.c \
 	ft_strsub.c \
 	ft_strnew.c \
 	ft_strnjoin.c \
-	ft_math.c \
-	ft_buf.c \
-	ft_flags.c \
-	ft_float.c \
-	ft_initialize.c \
-	ft_integer.c \
-	ft_itoa_base.c \
-	ft_order.c \
-	ft_perc.c \
-	ft_printf.c \
-	ft_string.c \
-	ft_width.c \
-	ft_xotoa_base.c \
-	ft_numbers.c \
-	ft_massive_floats.c \
-	ft_inf_nan.c \
-	ft_dioux.c \
-	ft_cspf.c \
-	ft_format.c \
-	ft_binary.c \
-	ft_time.c \
-	ft_time2.c \
-	ft_time3.c \
 	ft_strcmp.c \
 	ft_strclr.c \
 	get_next_line.c \
@@ -68,7 +45,7 @@ SRCC =	ft_itoa.c \
 SRCO	= $(SRCC:%.c=%.o)
 TRASH	= $(SRCC:%.c=%.c~)
 
-SRCH	= libft.h ft_printf.h
+SRCH	= libft.h
 CC	= gcc -c -Wall -Wextra -Werror
 
 all: $(NAME)

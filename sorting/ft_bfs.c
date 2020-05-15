@@ -6,13 +6,13 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/13 15:14:06 by lhageman      #+#    #+#                 */
-/*   Updated: 2020/04/20 17:22:57 by wmisiedjan    ########   odam.nl         */
+/*   Updated: 2020/05/15 15:24:27 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_lem_in.h"
 
-static void	reset_levels(t_room *room)
+static void		reset_levels(t_room *room)
 {
 	if (room != NULL)
 	{
@@ -20,7 +20,7 @@ static void	reset_levels(t_room *room)
 	}
 }
 
-static void	reset_visit(t_room *room, t_path **paths, int cpath)
+static void		reset_visit(t_room *room, t_path **paths, int cpath)
 {
 	int p;
 	int r;
@@ -48,7 +48,7 @@ static void	reset_visit(t_room *room, t_path **paths, int cpath)
 	}
 }
 
-static void	ft_bfs_queueing(t_queue *queue)
+static void		ft_bfs_queueing(t_queue *queue)
 {
 	int		i;
 	int		j;
@@ -76,7 +76,7 @@ static void	ft_bfs_queueing(t_queue *queue)
 	}
 }
 
-int			ft_bfs(t_lemin *lemin, t_room *end)
+int				ft_bfs(t_lemin *lemin, t_room *end)
 {
 	t_queue	*queue;
 

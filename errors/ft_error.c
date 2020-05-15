@@ -6,14 +6,14 @@
 /*   By: wmisiedj <wmisiedj@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 15:25:41 by wmisiedj      #+#    #+#                 */
-/*   Updated: 2020/05/04 16:06:38 by Lotte         ########   odam.nl         */
+/*   Updated: 2020/05/15 16:30:57 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_error.h"
 #include "../ft_lem_in.h"
 
-int		ft_free_error(t_lemin *list, t_rstr *file, int i)
+int		ft_free_error(t_lemin *lemin, int i)
 {
 	if (i == ERR_NO_ANTS)
 		ft_dprintf(STDERR_FILENO, "No ants :(\n");
@@ -35,14 +35,12 @@ int		ft_free_error(t_lemin *list, t_rstr *file, int i)
 		ft_dprintf(STDERR_FILENO, "Not enough rooms\n");
 	else
 		ft_dprintf(STDERR_FILENO, "Error code: %d\n", i);
-	ft_free_rstr(file);
-	ft_free_lemin(list);
-	while (1)
-		;
+	ft_free_rstr(lemin->file);
+	ft_free_lemin(lemin);
 	return (-1);
 }
 
-int	ft_error(int i)
+int		ft_error(int i)
 {
 	if (i == ERR_PARAMS)
 		ft_dprintf(STDERR_FILENO, "Too many arguments given!\n");
@@ -53,8 +51,8 @@ int	ft_error(int i)
 	else if (i == ERR_MEM)
 		ft_dprintf(STDERR_FILENO, "Trouble allocating memory\n");
 	else if (i == ERR_DOUBLE_COMMANDS)
-		ft_dprintf(STDERR_FILENO, "Detected double commands, either \
-##start or ##end is double.\n");
+		ft_dprintf(STDERR_FILENO,
+			"Detected double commands, either ##start or ##end is double.\n");
 	else if (i == ERR_NO_PATHS)
 		ft_dprintf(STDERR_FILENO, "No paths available!\n");
 	else

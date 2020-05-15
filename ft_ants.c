@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/24 15:53:03 by lhageman      #+#    #+#                 */
-/*   Updated: 2020/04/20 17:17:22 by wmisiedjan    ########   odam.nl         */
+/*   Updated: 2020/05/14 12:05:53 by lottehagema   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 static int			ft_do_path(t_path *path, int *prev, t_lemin *lemin, \
 	int has_moved)
 {
-	int	i;
-	t_ant			*ant;
+	int		i;
+	t_ant	*ant;
 
 	i = 0;
 	while (i < path->ants_len)

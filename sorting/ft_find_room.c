@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/19 14:19:42 by lhageman      #+#    #+#                 */
-/*   Updated: 2020/04/20 17:23:13 by wmisiedjan    ########   odam.nl         */
+/*   Updated: 2020/05/15 15:24:11 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ t_room		*ft_find_room(t_lemin *lemin, char *name)
 				ft_strcmp(lemin->room[index]->name, name) != 0 &&
 				lemin->room[index]->next)
 			lemin->room[index] = lemin->room[index]->next;
-		if (lemin->room[index] && ft_strcmp(lemin->room[index]->name, name) == 0)
+		if (lemin->room[index] && ft_strcmp(lemin->room[index]->name, name)\
+		== 0)
 		{
 			p = lemin->room[index];
 			lemin->room[index] = temp;

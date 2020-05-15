@@ -6,13 +6,13 @@
 /*   By: Lotte <Lotte@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/28 20:05:48 by Lotte         #+#    #+#                 */
-/*   Updated: 2020/05/04 15:41:43 by Lotte         ########   odam.nl         */
+/*   Updated: 2020/05/15 15:29:52 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lem_in.h"
 
-void		ft_free_ants(t_path *path)
+static void	ft_free_ants(t_path *path)
 {
 	int i;
 
@@ -24,7 +24,7 @@ void		ft_free_ants(t_path *path)
 			if (path->ants[i])
 			{
 				free(path->ants[i]);
-				// path->ants[i] = NULL;
+				path->ants[i] = NULL;
 			}
 			i += 1;
 		}
@@ -40,8 +40,6 @@ int			ft_free_paths(t_lemin *lem)
 	i = 0;
 	if (lem->paths != NULL)
 	{
-		// if (lem->paths == NULL)
-		// 	return (1);
 		while (i < lem->rooms)
 		{
 			if (lem->paths[i]->room)

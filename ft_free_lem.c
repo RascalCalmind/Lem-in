@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/29 13:09:54 by lhageman      #+#    #+#                 */
-/*   Updated: 2020/05/04 16:03:44 by wmisiedjan    ########   odam.nl         */
+/*   Updated: 2020/05/15 15:29:53 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			ft_free_char_arr(char **arr, int len)
 	return (0);
 }
 
-void		ft_free_edges(t_room *room)
+static void	ft_free_edges(t_room *room)
 {
 	int i;
 

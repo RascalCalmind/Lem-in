@@ -6,13 +6,13 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/07 13:00:40 by lhageman      #+#    #+#                 */
-/*   Updated: 2020/04/20 17:22:15 by wmisiedjan    ########   odam.nl         */
+/*   Updated: 2020/05/15 15:17:11 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_lem_in.h"
 
-int		ft_in_lemin(char *str, t_lemin *lemin)
+static int		ft_in_lemin(char *str, t_lemin *lemin)
 {
 	int		index;
 	t_room	*temp;
@@ -35,7 +35,7 @@ int		ft_in_lemin(char *str, t_lemin *lemin)
 	return (-1);
 }
 
-t_edge	*create_edge(t_room *to, int available)
+static t_edge	*create_edge(t_room *to, int available)
 {
 	t_edge *edge;
 
@@ -49,7 +49,7 @@ t_edge	*create_edge(t_room *to, int available)
 ** returns index of edge added in room
 */
 
-int		add_edge(t_room *room, t_room *to, t_lemin *lemin)
+static int		add_edge(t_room *room, t_room *to, t_lemin *lemin)
 {
 	int i;
 
@@ -66,7 +66,7 @@ int		add_edge(t_room *room, t_room *to, t_lemin *lemin)
 	return (i);
 }
 
-int		ft_assign_connection(char **arr, t_lemin *lemin)
+static int		ft_assign_connection(char **arr, t_lemin *lemin)
 {
 	t_room	*from;
 	t_room	*to;
@@ -82,7 +82,7 @@ int		ft_assign_connection(char **arr, t_lemin *lemin)
 	return (0);
 }
 
-int		ft_connection(char *str, t_lemin *lemin)
+int				ft_connection(char *str, t_lemin *lemin)
 {
 	char	**arr;
 

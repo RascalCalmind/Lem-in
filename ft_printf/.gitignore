@@ -1,0 +1,7 @@
+.vscode
+printf_test
+*.[oa]
+.DS_Store
+./*/.DS_Store
+printf_test.dSYM/*
+a.out*
