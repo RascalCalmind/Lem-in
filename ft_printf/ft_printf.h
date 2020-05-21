@@ -6,7 +6,7 @@
 /*   By: mmarcell <mmarcell@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/05/02 14:23:50 by mmarcell      #+#    #+#                 */
-/*   Updated: 2019/07/29 12:39:42 by mmarcell      ########   odam.nl         */
+/*   Updated: 2020/05/21 10:38:40 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 # define BUFF_SIZE 512
 # define CONV_CHAR_START 'B'
-# define CONV_CHAR_END 'x' + 1
+# define CONV_CHAR_END 121
 
 typedef struct		s_flags
 {
