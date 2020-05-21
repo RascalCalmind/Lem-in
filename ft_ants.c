@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/24 15:53:03 by lhageman      #+#    #+#                 */
-/*   Updated: 2020/05/14 12:05:53 by lottehagema   ########   odam.nl         */
+/*   Updated: 2020/05/21 12:09:35 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int			ft_do_path(t_path *path, int *prev, t_lemin *lemin, \
 		ant = path->ants[i];
 		if (*prev != ant->cur && ant->cur <= path->len + 1)
 		{
-			ft_printf(ANSI_OCEAN_BLUE"L%i-%s", ant->num,
+			ft_printf("L%i-%s", ant->num,
 ant->cur == path->len + 1 ? lemin->end : path->room[ant->cur]->name);
 			*prev = ant->cur;
 			ant->cur += 1;
@@ -52,8 +52,8 @@ static int			ft_walk_ants(t_lemin *lemin)
 		prev = -1;
 		i++;
 	}
-	if (i > 0)
-		ft_printf("\n"ANSI_RESET);
+	if (i > 0 && has_moved > 0)
+		ft_printf("\n");
 	return (has_moved);
 }
 
@@ -92,9 +92,8 @@ int					ft_move_ants(t_lemin *lemin)
 		path->ants_len++;
 		i++;
 	}
-	ft_printf(ANSI_GREY_PINK"\n\n-----\n\nSOLUTION ANTS:\n\n"ANSI_RESET);
+	ft_printf("\n");
 	while (ft_walk_ants(lemin))
 		lemin->lines += 1;
-	ft_printf(ANSI_GREY_PINK"-----\n\n"ANSI_RESET);
 	return (lemin->lines);
 }

@@ -6,7 +6,7 @@
 #    By: lhageman <lhageman@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/01/13 17:45:16 by lhageman      #+#    #+#                  #
-#    Updated: 2020/05/15 15:41:28 by lhageman      ########   odam.nl          #
+#    Updated: 2020/05/21 11:00:39 by lhageman      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ LIBFT = libft/libft.a
 PRINTF = ft_printf/libftprintf.a
 LIBFLAGS = -lft -L./libft/ -lftprintf -L./ft_printf/
 
-CCC = gcc -gc -Wall -Wextra -fsanitize=address -fno-omit-frame-pointer
-CCO = gcc -g -Wall -Wextra -o
+CCC = gcc -gc -Wall -Wextra -Werror
+CCO = gcc -g -Wall -Wextra -Werror -o
 
 SRC =	ft_lem_in.c \
 		ft_free_lem.c \

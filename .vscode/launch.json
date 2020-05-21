@@ -9,7 +9,7 @@
             "request": "launch",
             "name": "Debug",
             "program": "${workspaceFolder}/lem-in",
-            "stdio": ["./testmaps/test_one.txt"],
+            "stdio": ["./moana_test/invalid_room_duplicate_1"],
             "cwd": "${workspaceFolder}",
         }
     ]

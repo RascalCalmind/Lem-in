@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/05/15 14:59:06 by lottehagema   #+#    #+#                 */
-/*   Updated: 2020/05/15 16:57:02 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/05/21 11:14:47 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ static int		ft_handle_command_line(t_lemin *lemin)
 
 static int		ft_read_rooms(t_lemin *lemin)
 {
+	int ret;
+
+	ret = 1;
 	while (lemin->line && lemin->line->next != NULL)
 	{
 		if (ft_strcmp(lemin->line->str, "") == 0)
@@ -56,8 +59,9 @@ static int		ft_read_rooms(t_lemin *lemin)
 			ft_handle_command_line(lemin);
 		else if (ft_contains(lemin->line->str, ' ') == 2)
 		{
-			if (ft_store_room(lemin) != 1)
-				return (-1);
+			ret = ft_store_room(lemin);
+			if (ret != 1)
+				return (ret);
 		}
 		else if (ft_contains(lemin->line->str, '-')
 			&& !ft_contains(lemin->line->str, ' '))

@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/30 14:01:47 by lhageman      #+#    #+#                 */
-/*   Updated: 2020/05/15 17:41:55 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/05/21 11:15:43 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int			ft_store_room(t_lemin *lemin)
 		ret = ft_check_room(lemin->room[hash], room);
 	ft_free_char_arr(args, 4);
 	if (ret != 1)
-		return (ft_free_error(lemin, ret));
+		return (ret);
 	lemin->room[hash] = start;
 	return (1);
 }

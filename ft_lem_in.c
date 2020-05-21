@@ -6,7 +6,7 @@
 /*   By: lhageman <lhageman@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/01/15 15:34:10 by lhageman      #+#    #+#                 */
-/*   Updated: 2020/05/15 16:32:39 by lhageman      ########   odam.nl         */
+/*   Updated: 2020/05/21 12:07:23 by lhageman      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,18 @@ static void		ft_lem_flags(int argc, char **argv, t_lemin *lemin)
 	if ((ft_strcmp(argv[1], "-l") == 0 && lemin->lines > 0) ||\
 		(ft_strcmp(argv[1], "-pl") == 0 && lemin->lines > 0) ||\
 		(ft_strcmp(argv[1], "-lp") == 0 && lemin->lines > 0))
-		ft_printf("Amount of lines used: %i\n", lemin->lines);
+	{
+		ft_printf(ANSI_RESET"\nAmount of lines used: %i\n", lemin->lines);
+	}
 	if ((ft_strcmp(argv[1], "-p") == 0 && lemin->lines == -3) ||\
 		(ft_strcmp(argv[1], "-pl") == 0 && lemin->lines == -3) ||\
 		(ft_strcmp(argv[1], "-lp") == 0 && lemin->lines == -3))
+	{
 		ft_print_paths(lemin, lemin->max_flow);
+		ft_printf(ANSI_OCEAN_BLUE);
+	}
+	if (ft_strcmp(argv[1], "-l") == 0 && lemin->lines == -3)
+		ft_printf(ANSI_OCEAN_BLUE);
 }
 
 static t_lemin	*ft_lem_in(t_lemin *lemin)
@@ -93,6 +100,7 @@ int				main(int argc, char **argv)
 	lemin = ft_lem_in(lemin);
 	if (lemin == NULL)
 		return (-1);
+	ft_print_rstr(lemin->file);
 	ft_lem_flags(argc, argv, lemin);
 	lemin->lines = ft_move_ants(lemin);
 	ft_lem_flags(argc, argv, lemin);
